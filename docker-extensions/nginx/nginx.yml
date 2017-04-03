@@ -1,0 +1,11 @@
+version: "2"
+services:
+ nginx:
+  build:
+    context: "${NGINX_BUILD_DOCKERFILE}"
+    dockerfile: "${NGINX_DOCKERFILE_NAME}"
+  container_name: "${NGINX_CONTAINER_NAME}"
+  ports:
+  - "${NGINX_PORT}"
+  #volumes:
+  #- "${NGINX_VOLUM_SRC}"

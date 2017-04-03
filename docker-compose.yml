@@ -1,0 +1,14 @@
+version: "2"
+services:
+ nginx:
+  extends:
+   file: docker-extensions/nginx/nginx.yml
+   service: nginx
+ web:
+  extends:
+   file: docker-extensions/web/web.yml
+   service: web
+ dashboard:
+  extends:
+   file: docker-extensions/dashboard/dashboard.yml
+   service: dashboard

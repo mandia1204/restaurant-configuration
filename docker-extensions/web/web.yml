@@ -1,0 +1,11 @@
+version: "2"
+services:
+ web:
+  build: 
+   context: "${WEB_BUILD_DOCKERFILE}"
+  container_name: "${WEB_CONTAINER_NAME}"
+  ports:
+  - "${WEB_PORT}"
+  volumes:
+  - "${WEB_VOLUM_SRC}:/var/www"
+  command: "${WEB_COMMAND}"
