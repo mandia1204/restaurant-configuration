@@ -6,5 +6,3 @@ services:
   container_name: "${DASHBOARD_CONTAINER_NAME}"
   ports:
   - "${DASHBOARD_PORT}"
-  volumes:
-  - "${DASHBOARD_VOLUM_SRC}:/var/www/aspnetcoreapp"

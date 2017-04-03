@@ -18,4 +18,3 @@ export NGINX_VOLUM_SRC=.:/var/www
 export DASHBOARD_BUILD_DOCKERFILE=../../../restaurant-dashboard-backend/
 export DASHBOARD_CONTAINER_NAME=res_dashboard
 export DASHBOARD_PORT=5500:5000
-export DASHBOARD_VOLUM_SRC=../../../restaurant-dashboard-backend

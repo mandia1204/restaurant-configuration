@@ -1,8 +1,6 @@
-docker rm -f web
-docker rm -f skill_db
-docker rm -f skill
-docker rm -f notification
-docker rm -f badge
-docker rm -f profile
-docker rm -f nginx
-docker rm -f profile_db
+#!/bin/bash
+#docker rm -f web
+docker rm -f res_dashboard
+docker rmi -f restaurant_dashboard
+# docker rm -f res_prueba
+# docker rmi -f restaurant_prueba
