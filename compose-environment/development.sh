@@ -12,7 +12,6 @@ export NGINX_BUILD_DOCKERFILE=../../nginx/
 export NGINX_DOCKERFILE_NAME=$VAR_NGINX_DOCKERFILE_NAME
 export NGINX_CONTAINER_NAME=res_nginx
 export NGINX_PORT=8443:443
-export NGINX_VOLUM_SRC=.:/var/www
 
 #### dashboard ####
 export DASHBOARD_BUILD_DOCKERFILE=../../../restaurant-dashboard-backend/

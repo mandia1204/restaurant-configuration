@@ -7,5 +7,3 @@ services:
   container_name: "${NGINX_CONTAINER_NAME}"
   ports:
   - "${NGINX_PORT}"
-  #volumes:
-  #- "${NGINX_VOLUM_SRC}"
