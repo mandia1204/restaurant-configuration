@@ -9,6 +9,11 @@ server {
 				resolver 8.8.8.8;
 				proxy_pass http://172.17.0.1:5500;
 		}
+		location ~ ^/securityApi/ {
+				rewrite /securityApi/(.*) /$1 break;
+				resolver 8.8.8.8;
+				proxy_pass http://172.17.0.1:3002;
+		}
 		location ~ ^/([a-zA-Z0-9-]*) {
 				resolver 8.8.8.8;
 				proxy_pass http://172.17.0.1:3000$request_uri;
