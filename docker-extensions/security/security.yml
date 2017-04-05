@@ -6,3 +6,4 @@ services:
   container_name: "${SECURITY_CONTAINER_NAME}"
   ports:
   - "${SECURITY_PORT}"
+  env_file: security.env
