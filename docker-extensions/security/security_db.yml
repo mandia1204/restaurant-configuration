@@ -1,0 +1,8 @@
+version: "2"
+services:
+ security_db:
+  image: bitnami/mongodb
+  container_name: "${SECURITY_DB_CONTAINER_NAME}"
+  ports:
+   - "${SECURITY_DB_PORT}"
+  env_file: .env

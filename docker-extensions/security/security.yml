@@ -1,0 +1,8 @@
+version: "2"
+services:
+ security:
+  build:
+   context: "${SECURITY_BUILD_DOCKERFILE}"
+  container_name: "${SECURITY_CONTAINER_NAME}"
+  ports:
+  - "${SECURITY_PORT}"
