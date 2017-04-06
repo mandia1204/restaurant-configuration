@@ -12,6 +12,10 @@ services:
   extends:
    file: docker-extensions/dashboard/dashboard.yml
    service: dashboard_common
+  volumes:
+    - "${DASHBOARD_VOLUM_SRC}:/var/www/aspnetcoreapp"
+    - /var/www/aspnetcoreapp/bin
+    - /var/www/aspnetcoreapp/obj
  security_db:
   extends:
    file: docker-extensions/security/security_db.yml

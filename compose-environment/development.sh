@@ -12,6 +12,7 @@ export WEB_COMMAND='/bin/bash -l bootstrap.sh'
 
 #### dashboard ####
 export DASHBOARD_BUILD_DOCKERFILE_NAME=DockerFile
+export DASHBOARD_VOLUM_SRC=../restaurant-dashboard-backend/src/
 
 #### security ####
 export SECURITY_BUILD_DOCKERFILE_NAME=DockerFile
