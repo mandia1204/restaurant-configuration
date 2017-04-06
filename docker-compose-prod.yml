@@ -12,13 +12,15 @@ services:
   extends:
    file: docker-extensions/dashboard/dashboard.yml
    service: dashboard_common
- security:
-  extends:
-   file: docker-extensions/security/security.yml
-   service: security_common
-  env_file: docker-extensions/security/production/security.env
  security_db:
   extends:
    file: docker-extensions/security/security_db.yml
    service: security_db_common
   env_file: docker-extensions/security/production/.env
+ security:
+  extends:
+   file: docker-extensions/security/security.yml
+   service: security_common
+  env_file: docker-extensions/security/production/security.env
+  depends_on:
+    - security_db
