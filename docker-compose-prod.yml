@@ -16,7 +16,9 @@ services:
   extends:
    file: docker-extensions/security/security.yml
    service: security_common
+  env_file: docker-extensions/security/production/security.env
  security_db:
   extends:
    file: docker-extensions/security/security_db.yml
    service: security_db_common
+  env_file: docker-extensions/security/production/.env

@@ -1,6 +1,6 @@
 version: "2"
 services:
- security_db:
+ security_db_common:
   image: bitnami/mongodb
   container_name: "${SECURITY_DB_CONTAINER_NAME}"
   ports:

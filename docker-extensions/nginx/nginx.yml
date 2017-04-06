@@ -1,6 +1,6 @@
 version: "2"
 services:
- nginx:
+ nginx_common:
   build:
     context: "${NGINX_BUILD_DOCKERFILE}"
     dockerfile: "${NGINX_DOCKERFILE_NAME}"

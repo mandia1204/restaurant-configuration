@@ -1,8 +1,9 @@
 version: "2"
 services:
- dashboard:
+ dashboard_common:
   build:
-   context: "${DASHBOARD_BUILD_DOCKERFILE}"
+   context: "${DASHBOARD_BUILD_DOCKERFILE_CTX}"
+   dockerfile: "${DASHBOARD_BUILD_DOCKERFILE_NAME}"
   container_name: "${DASHBOARD_CONTAINER_NAME}"
   ports:
   - "${DASHBOARD_PORT}"
