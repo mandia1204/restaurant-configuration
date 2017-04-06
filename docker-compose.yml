@@ -20,5 +20,8 @@ services:
   extends:
    file: docker-extensions/security/security.yml
    service: security_common
+  volumes:
+    - "${SECURITY_VOLUM_SRC}:/var/www"
+    - /var/www/node_modules
   depends_on:
     - security_db

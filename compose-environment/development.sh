@@ -15,5 +15,6 @@ export DASHBOARD_BUILD_DOCKERFILE_NAME=DockerFile
 
 #### security ####
 export SECURITY_BUILD_DOCKERFILE_NAME=DockerFile
+export SECURITY_VOLUM_SRC=../restaurant-security/src/
 
 #### security_db  ####

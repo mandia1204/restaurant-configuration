@@ -14,6 +14,6 @@ export WEB_COMMAND='/bin/bash -l bootstrap.sh'
 export DASHBOARD_BUILD_DOCKERFILE_NAME=DockerFile
 
 #### security ####
-export SECURITY_BUILD_DOCKERFILE_NAME=DockerFile
+export SECURITY_BUILD_DOCKERFILE_NAME=DockerFile-Prod
 
 #### security_db  ####
