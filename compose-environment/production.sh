@@ -11,7 +11,7 @@ export WEB_COMMAND='/bin/bash -l bootstrap.sh'
 #### nginx  ####
 
 #### dashboard ####
-export DASHBOARD_BUILD_DOCKERFILE_NAME=DockerFile
+export DASHBOARD_BUILD_DOCKERFILE_NAME=DockerFile-Prod
 
 #### security ####
 export SECURITY_BUILD_DOCKERFILE_NAME=DockerFile-Prod
