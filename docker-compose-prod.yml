@@ -4,10 +4,8 @@ services:
   extends:
    file: docker-extensions/nginx/nginx.yml
    service: nginx_common
- web:
-  extends:
-   file: docker-extensions/web/web.yml
-   service: web_common
+  volumes:
+    - "${NGINX_WEB_VOLUM_SRC}:/var/www/restaurant"
  dashboard:
   extends:
    file: docker-extensions/dashboard/dashboard.yml

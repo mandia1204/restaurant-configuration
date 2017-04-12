@@ -1,9 +1,11 @@
 server {
     listen 443 ssl;
-		ssl on;
-    server_name  192.168.99.100;
-		ssl_certificate /etc/ssl/certs/server.crt;
-		ssl_certificate_key /etc/ssl/private/server.key;
+    ssl on;
+    server_name 192.168.99.100;
+    ssl_certificate /etc/ssl/certs/server.crt;
+    ssl_certificate_key /etc/ssl/private/server.key;
+    root /var/www/restaurant;
+    index index.html index.htm;
 
     location ~ ^/dashboardApi/ {
 				rewrite /dashboardApi/(.*) /$1 break;
@@ -15,10 +17,5 @@ server {
 				rewrite /securityApi/(.*) /$1 break;
 				resolver 10.0.2.3;
 				proxy_pass http://192.168.99.100:3002;
-		}
-    
-		location ~ ^/([a-zA-Z0-9-]*) {
-				resolver 10.0.2.3;
-				proxy_pass http://192.168.99.100:3000$request_uri;
 		}
 }

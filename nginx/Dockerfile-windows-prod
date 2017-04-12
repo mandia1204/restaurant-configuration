@@ -2,7 +2,7 @@ FROM ubuntu
 
 MAINTAINER Marvin Andia (mandia1204@gmail.com)
 
-COPY /windows/default /opt/
+COPY /windows/default-prod /opt/
 
 COPY openssl.sh /opt/
 
@@ -14,7 +14,7 @@ RUN \
 	chmod 777 /opt/openssl.sh && \
 	dos2unix /opt/openssl.sh && \
 	/opt/./openssl.sh && \
-	cp /opt/default /etc/nginx/sites-available/default
+	cp /opt/default-prod /etc/nginx/sites-available/default
 
 EXPOSE 80 443
 
