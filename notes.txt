@@ -1,0 +1,32 @@
+[First deploy]
+
+1- git pull all projects in deploy-src folder
+2- docker-compose-up.sh windows prod
+3- check all services are up
+
+[Update service]
+
+1- git checkout
+2- git pull
+3- copy config files
+3- rebuild image
+4- restart service
+
+=================================================================
+
+[SH structure]
+
+docker-compose-up.sh $SO $ENVIRONMENT
+    docker-compose-up-dev.sh $SO
+        docker-compose-vars.sh $SO development
+            development.sh
+            windows-env.sh($SO==WINDOWS)
+    docker-compose-up-prod.sh $SO
+        docker-compose-vars.sh $SO production
+            production.sh
+            windows-env.sh($SO==WINDOWS)
+
+docker-compose-build-prod.sh $SO $SERVICE_NAME
+    docker-compose-vars.sh $SO production
+        production.sh
+        windows-env.sh($SO==WINDOWS)
