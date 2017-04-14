@@ -10,8 +10,8 @@ echo "-----------------REBUILDING IMAGE---------------------"
 docker-compose -p restaurant -f docker-compose-prod.yml build ${SERVICE_NAME}
 
 echo "-----------------RECREATING CONTAINER-----------------"
-docker stop res_security
-docker rm res_security
+docker stop res_${SERVICE_NAME}
+docker rm res_${SERVICE_NAME}
 
 docker-compose -p restaurant -f docker-compose-prod.yml up -d
 
