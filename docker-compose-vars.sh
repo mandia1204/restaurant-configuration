@@ -12,6 +12,11 @@ else
   export VAR_NGINX_DOCKERFILE_NAME=Dockerfile-unix
 fi
 
+if [ $ENV == "production" ]
+then
+  export VAR_NGINX_DOCKERFILE_NAME="$VAR_NGINX_DOCKERFILE_NAME-prod"
+fi
+
 source compose-environment/${ENV}.sh
 
 if [ $SO == "WINDOWS" ]

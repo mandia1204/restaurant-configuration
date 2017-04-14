@@ -2,8 +2,13 @@
 
 source compose-environment/common.sh
 
+#### web ####
+export WEB_BUILD_DOCKERFILE_NAME=DockerFile-Prod
+export EXPORT_VOLUM_SRC=../web-dist/
+export WEB_COMMAND_PROD='/bin/bash -l bootstrap-production.sh'
+
 #### nginx  ####
-export NGINX_WEB_VOLUM_SRC=../restaurant-frontend/export/
+export NGINX_WEB_VOLUM_SRC=../web-dist/
 
 #### dashboard ####
 export DASHBOARD_BUILD_DOCKERFILE_NAME=DockerFile-Prod

@@ -8,6 +8,11 @@ services:
   extends:
    file: docker-extensions/web/web.yml
    service: web_common
+  ports:
+  - "${WEB_PORT}"
+  volumes:
+  - "${WEB_VOLUM_SRC}:/var/www"
+  command: "${WEB_COMMAND}"
  dashboard:
   extends:
    file: docker-extensions/dashboard/dashboard.yml
