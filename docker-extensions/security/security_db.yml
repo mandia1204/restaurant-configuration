@@ -1,7 +1,7 @@
 version: "2"
 services:
  security_db_common:
-  image: bitnami/mongodb
+  image: bitnami/mongodb:3.4.3-r0
   container_name: "${SECURITY_DB_CONTAINER_NAME}"
   ports:
    - "${SECURITY_DB_PORT}"
