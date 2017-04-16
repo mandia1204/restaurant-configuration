@@ -1,0 +1,16 @@
+FROM ubuntu
+
+MAINTAINER Marvin Andia (mandia1204@gmail.com)
+
+COPY /unix/default-prod /opt/
+
+COPY openssl.sh /opt/
+
+RUN apt-get update
+RUN apt-get install -y nginx openssl
+RUN /opt/./openssl.sh && \
+    cp /opt/default-prod /etc/nginx/sites-available/default
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]
