@@ -23,6 +23,8 @@ services:
    file: docker-extensions/security/security_db.yml
    service: security_db_common
   env_file: docker-extensions/security/production/.env
+  volumes:
+      - "${SECURITY_DB_PATH}:/bitnami/mongodb"
  security:
   extends:
    file: docker-extensions/security/security.yml

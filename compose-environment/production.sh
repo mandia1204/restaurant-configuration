@@ -17,3 +17,4 @@ export DASHBOARD_BUILD_DOCKERFILE_NAME=DockerFile-Prod
 export SECURITY_BUILD_DOCKERFILE_NAME=DockerFile-Prod
 
 #### security_db  ####
+export SECURITY_DB_PATH=../security-database/
