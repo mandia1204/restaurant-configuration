@@ -1,7 +1,8 @@
 server {
 		listen 443 ssl;
 		ssl on;
-		server_name  172.17.0.1;
+		listen 80;
+		server_name  webserver.examplematt.com;
 		ssl_certificate /etc/ssl/certs/server.crt;
 		ssl_certificate_key /etc/ssl/private/server.key;
     root /var/www/restaurant;

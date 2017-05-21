@@ -1,0 +1,13 @@
+version: '2'
+services:
+  bind_common:
+    restart: always
+    image: sameersbn/bind
+    container_name: "${BIND_CONTAINER_NAME}"
+    environment:
+    - ROOT_PASSWORD=matt1204
+    ports:
+    - "53:53/udp"
+    - "10000:10000/tcp"
+    volumes:
+    - /srv/docker/bind:/data

@@ -6,6 +6,10 @@ services:
    service: nginx_common
   volumes:
     - "${NGINX_WEB_VOLUM_SRC}:/var/www/restaurant"
+ bind:
+  extends:
+   file: docker-extensions/bind/bind.yml
+   service: bind_common
  web:
   extends:
    file: docker-extensions/web/web.yml
