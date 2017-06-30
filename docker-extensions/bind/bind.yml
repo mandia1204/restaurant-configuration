@@ -7,7 +7,7 @@ services:
     environment:
     - ROOT_PASSWORD=matt1204
     ports:
-    # - "53:53/tcp"
+    - "53:53/tcp"
     - "53:53/udp"
     - "10000:10000/tcp"
     volumes:
