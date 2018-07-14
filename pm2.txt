@@ -1,0 +1,4 @@
+pm2 start pm2-apps.json
+pm2 stop pm2-apps.json
+
+pm2 delete security

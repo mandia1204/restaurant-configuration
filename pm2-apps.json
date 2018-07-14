@@ -1,0 +1,39 @@
+{
+  "apps": [
+    {
+      "name": "security-app",
+      "script": "./security/securityApp.js",
+      "instances": 1,
+	  "max_restarts": 3,
+      "exec_mode": "fork",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+	  {
+      "name": "web",
+	    "max_restarts": 3,
+      "script": "./webserver/startServer.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+	  {
+      "name": "proxy",
+	    "max_restarts": 3,
+      "script": "./proxy/startServer.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+	  {
+      "name": "dashboard-app",
+	    "max_restarts": 3,
+      "script": "dotnet",
+      "args": "backend/restaurant-dashboard-backend.dll",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "production"
+      }
+    }
+  ]
+}

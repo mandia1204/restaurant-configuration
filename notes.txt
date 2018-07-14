@@ -1,7 +1,7 @@
 [First deploy]
 
 1- git pull all projects in deploy-src folder
-2- docker-compose-up.sh windows prod
+2- docker-compose-up.sh windows prod(or dev)
 3- check all services are up
 
 [Update service]
