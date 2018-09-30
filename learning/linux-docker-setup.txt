@@ -1,0 +1,2 @@
+https://docs.docker.com/install/linux/docker-ce/ubuntu/#upgrade-docker-after-using-the-convenience-script
+https://docs.docker.com/install/linux/linux-postinstall/#ip-forwarding-problems

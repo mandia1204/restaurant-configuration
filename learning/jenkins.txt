@@ -1,0 +1,20 @@
+use git bash
+https://stackoverflow.com/questions/45140614/jenkins-pipeline-sh-fail-with-cannot-run-program-nohup-on-windows
+
+symbols in jenkins output:
+https://medium.com/pacroy/how-to-fix-jenkins-console-log-encoding-issue-on-windows-a1f4b26e0db4
+
+sample jenkins file declarative
+https://dzone.com/articles/jenkins-pipeline-for-continuous-delivery-and-deplo
+https://gist.github.com/Romeh/257056cae1730fe0c939b9f2b1b1436a
+
+Plugins:
+TAP Plugin
+NodeJs Plugin
+AnsiColor
+Blue Ocean
+Git Plugin
+Github plugin
+Copy artifact
+https://wiki.jenkins.io/display/JENKINS/GitHub+Plugin
+

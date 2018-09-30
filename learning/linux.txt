@@ -1,0 +1,5 @@
+if a package is installed:
+dpkg -l vim
+
+from windows to linux using putty:
+https://it.cornell.edu/managed-servers/transfer-files-using-putty

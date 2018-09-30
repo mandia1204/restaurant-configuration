@@ -1,0 +1,75 @@
+we should have kvm installed in our linux before installing k8:
+http://www.ubuntuboss.com/ubuntu-server-16-04-as-a-hypervisor-using-kvm-and-kimchi-for-vm-management/
+https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#kvm-driver
+sudo apt-get install qemu qemu-kvm libvirt-bin
+kvm-ok
+
+
+https://computingforgeeks.com/how-to-run-minikube-on-kvm/
+
+https://communities.vmware.com/thread/592140
+https://bugs.launchpad.net/qemu/+bug/1661386
+
+
+1)
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+2)
+
+https://github.com/kubernetes/minikube
+
+3) 
+install vbox on vmware linux
+sudo apt install virtualbox virtualbox-ext-pack
+https://computingforgeeks.com/how-to-install-minikube-on-ubuntu-18-04/
+
+4)
+minikube start
+
+minikube info: https://github.com/kubernetes/minikube
+
+
+commands:
+===================
+kubectl cluster-info
+minikube version
+kubectl version
+kubectl get nodes
+
+create a deployment:
+====================
+kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
+kubectl get deployments
+
+communication with the cluster private network we have to enable a proxy:
+=========================================================================
+kubectl proxy
+curl http://localhost:8001/version
+
+kubectl get pods
+export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/
+kubectl logs $POD_NAME
+kubectl exec $POD_NAME env
+kubectl exec -ti $POD_NAME bash
+
+expose apps outsite cluster using services
+=========================================
+kubectl get services
+kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+kubectl get services
+kubectl describe services/kubernetes-bootcamp
+export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
+curl $(minikube ip):$NODE_PORT
+kubectl describe deployment (to see the label that was created automatically)
+kubectl get pods -l run=kubernetes-bootcamp
+kubectl get services -l run=kubernetes-bootcamp
+kubectl label pod $POD_NAME app=v1 (applies a new label)
+kubectl get pods -l app=v1
+kubectl describe pods $POD_NAME
+
+kubectl delete service -l run=kubernetes-bootcamp
+kubectl exec -ti $POD_NAME curl localhost:8080
+
+A Pod models an application-specific "logical host" and can contain different application containers which are relatively tightly coupled. For example, 
+a Pod might include both the container with your Node.js app as well as a different container that feeds the data to be published by the Node.js webserver. The containers in a Pod share an IP Address and port space, are always co-located and co-scheduled, and run in a shared context on the same Node.
