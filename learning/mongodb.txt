@@ -1,0 +1,15 @@
+connect to db:
+mongo --port 27017 -u "matt" -p "1234" --authenticationDatabase "admin"
+mongo --port 27017 -u "security_user" -p "1234" --authenticationDatabase "restaurant_security"
+
+mongo -u "matt" -p "1234" --authenticationDatabase "admin"
+
+useful commands:
+
+db: current db
+show dbs
+show collections
+show users
+use [dbname]
+db.[collection].find()
+--trace-sync-io add to the node command to detect sync blocking ops

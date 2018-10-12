@@ -1,0 +1,67 @@
+1- create a local storage class
+
+kubectl create -f ./local-storage-class.yml
+kubectl get storageclass
+
+https://kubernetes.io/docs/concepts/storage/storage-classes/#local
+
+
+2- create the local persistent volume  (only suppors one node)
+
+kubectl create -f ./security-db/mongodb-volume.yml
+kubectl get pv
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+https://docs.openshift.com/container-platform/3.6/admin_guide/scheduling/node_affinity.html
+how to use local pv:
+https://kubernetes.io/blog/2018/04/13/local-persistent-volumes-beta/
+
+types of volumes:
+https://kubernetes.io/docs/concepts/storage/volumes/#local
+
+
+3- create the headless service and the statefulset with volume claim
+
+https://kubernetes.io/blog/2017/01/running-mongodb-on-kubernetes-with-statefulsets/
+https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/
+
+kubectl create -f ./security-db/security-db-service.yml
+
+kubectl create -f ./security-db/security-db-statefulset.yml
+
+
+* I need to build an image inside minikube docker
+docker build -t "restaurant-security-db:v1.1.0" -f Dockerfile-db .
+
+
+mounts folders to minikube vm
+=============================
+/var/data/security-db
+minikube ssh 'ls -ld /var/data/security-db'
+minikube ssh 'chmod 777 /var/data/security-db'
+
+minikube ssh 'ls -ld /var/data/security-db'
+
+minikube ssh 'ls -ld /var/mongodata'
+
+minikube mount /var/data/security-db:/var/data/security-db
+
+minikube mount /var/data/security-db:/var/data/security-db --9p-version=9p2000.L
+
+minikube mount /foo:/bar --9p-version=9p2000.L
+
+
+delete a statefulset, service and volumes associated:
+======================================================
+
+kubectl delete statefulsets security-db
+kubectl delete service security-db-svc
+kubectl delete pods -l app=security-db
+kubectl delete pvc -l app=security-db
+kubectl delete pv mongodb-local-pv
+
+kubectl delete pods -l app=security-db --grace-period=0 --force
+
+grace=$(kubectl get pods security-db-0 --template '{{.spec.terminationGracePeriodSeconds}}')
+kubectl delete statefulset security-db
+sleep $grace
+kubectl delete pvc -l app=security-db

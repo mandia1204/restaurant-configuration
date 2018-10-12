@@ -1,0 +1,47 @@
+dns concepts:
+https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts
+
+1- install:
+sudo apt-get install bind9 bind9utils bind9-doc
+
+https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-18-04
+
+2-
+ configure (follow steps on prev link)
+
+ sudo systemctl restart bind9 (restarts after change)
+
+
+3- check if config is valid
+    sudo named-checkconf
+   check if the zone files are ok
+    sudo named-checkzone matt.domain.com db.matt.domain.com
+   check the reverse zone files
+    sudo named-checkzone 100.168.192.in-addr.arpa /etc/bind/zones/db.100.168.192
+
+4- 
+    if all ok with tests, restart svc
+    sudo systemctl restart bind9
+
+5- configure the firewall to allow bind
+    sudo ufw allow Bind9
+
+
+configure a client to use the dns server:
+========================================
+
+sudo vim /etc/netplan/00-private-nameservers.yaml
+
+follow the steps: https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-18-04
+
+- the hosts that need to use the ns should be in the acl 
+
+sudo netplan try
+sudo systemd-resolve --status
+
+test the ns:
+nslookup restaurant
+nslookup 192.168.100.101
+
+flush:
+sudo systemd-resolve --flush-caches

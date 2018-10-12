@@ -1,0 +1,2 @@
+ip calc, subnet
+http://jodies.de/ipcalc?host=10.128.20.12&mask1=16&mask2=

@@ -41,6 +41,8 @@ create a deployment:
 kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
 kubectl get deployments
 
+kubectl create -f ./security-app/security-deployment.yml
+
 communication with the cluster private network we have to enable a proxy:
 =========================================================================
 kubectl proxy
@@ -49,6 +51,15 @@ curl http://localhost:8001/version
 kubectl get pods
 export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
 curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/
+
+scale a deployment
+===================
+kubectl scale deployments/kubernetes-bootcamp --replicas=2
+kubectl get pods -o wide
+kubectl describe deployments/kubernetes-bootcamp
+
+logs and entering container
+============================
 kubectl logs $POD_NAME
 kubectl exec $POD_NAME env
 kubectl exec -ti $POD_NAME bash
@@ -70,6 +81,82 @@ kubectl describe pods $POD_NAME
 
 kubectl delete service -l run=kubernetes-bootcamp
 kubectl exec -ti $POD_NAME curl localhost:8080
+
+call the service using the minikube ip:
+
+minikube service kubernetes-bootcamp --url
+curl $(minikube service kubernetes-bootcamp --url)
+
+ssh -i ~/.minikube/machines/minikube/id_rsa docker@$(minikube ip) -L \*:31000:0.0.0.0:31000
+
+https://console.bluemix.net/docs/containers/cs_nodeport.html#nodeport
+https://kubernetes.io/docs/setup/minikube/
+
+
+update an image 
+===============
+kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2 (deployment name, imagename=imageversion)
+kubectl apply -f security-app/security-deployment.yml
+kubectl create -f security-app/security-deployment.yml
+
+volumes
+=======
+https://kubernetes.io/docs/concepts/storage/volumes/
+
+cheatssheet:
+============
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects
+List of useful commands:
+https://gist.github.com/edsiper/fac9a816898e16fc0036f5508320e8b4#volumes
+
+use minikube internal docker daemon:
+====================================
+eval $(minikube docker-env)
+quit:
+eval $(minikube docker-env -u).
+
+run a command in pod:
+====================
+kubectl exec security-db-0 -- sh -c 'hostname'
+
+nslookup security-db-0.res-security-db
+
+dns
+===
+
+kubectl get services kube-dns --namespace=kube-system
+kubectl run curl --image=radial/busyboxplus:curl -i --tty
+nslookup kubernetes-bootcamp (svc name)
+kubectl attach curl-775f9567b5-nk25z -c curl -i -t
+
+https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/
+https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+
+configmaps
+==========
+
+kubectl create configmap security-config2 --from-file=dist/config
+kubectl describe configmaps security-config
+kubectl delete configmap security-config
+kubectl get configmaps security-config -o yaml
+kubectl create -f ./security-app/security-configmap.yml
+
+kubectl create configmap test-config --from-file=security/dist/config/default.js
+kubectl describe configmaps test-config
+kubectl create configmap test-config2 --from-file=game.properties
+
+update a configmap :
+https://blog.zkanda.io/updating-a-configmap-secrets-in-kubernetes/
+
+kubectl create configmap security-config --from-file=app-config=dist/config/default.js -o yaml --dry-run | kubectl replace -f -
+kubectl label  configmap security-config app=security
+
+alternative for updating the container (I deleted the pod)
+kubectl patch deployment security-app -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+kubectl describe deployments security-app
+
+kubectl create configmap security-config4 -l hola --from-file=app-config=dist/config/default.js
+
 
 A Pod models an application-specific "logical host" and can contain different application containers which are relatively tightly coupled. For example, 
 a Pod might include both the container with your Node.js app as well as a different container that feeds the data to be published by the Node.js webserver. The containers in a Pod share an IP Address and port space, are always co-located and co-scheduled, and run in a shared context on the same Node.

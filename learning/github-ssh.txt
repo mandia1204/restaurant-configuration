@@ -17,6 +17,7 @@ clip < ~/.ssh/id_rsa.pub
 change to ssh remote in project if neccesary:
 
 git remote set-url origin git@github.com:mandia1204/mandiarepojenkins.git
+git remote set-url origin git@github.com:mandia1204/restaurant-security.git
 
 set git agent to run automatically
 

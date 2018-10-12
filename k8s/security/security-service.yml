@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: security-app
+spec:
+  selector:
+    app: security
+  ports:
+  - protocol: TCP
+    port: 3001
+  type: NodePort

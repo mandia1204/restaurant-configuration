@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: security-app
+spec:
+  selector:
+    matchLabels:
+      app: security
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: security
+    spec:
+      containers:
+      - name: res-security
+        image: restaurant-security:v1.1.5
+        ports:
+        - containerPort: 3001
+        volumeMounts:
+        - mountPath: /var/www/config
+          name: config
+      volumes:
+        - name: config
+          configMap:
+            name: security-config
+            items:
+            - key: app-config
+              path: default.js

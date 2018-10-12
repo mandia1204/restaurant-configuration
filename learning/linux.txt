@@ -3,3 +3,20 @@ dpkg -l vim
 
 from windows to linux using putty:
 https://it.cornell.edu/managed-servers/transfer-files-using-putty
+
+sudo chown matt: data (change owner dir for matt)
+
+linux version:
+hostnamectl
+uname -r
+
+copy to putty:
+pscp C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\kubernetes\mongodb-volume.yml matt@192.168.127.129:/restaurant/k8/volumes/mongodb-volume.yml
+
+change hostname:
+https://askubuntu.com/questions/1028633/host-name-reverts-to-old-name-after-reboot-in-18-04-lts
+
+First edit /etc/cloud/cloud.cfg and set the parameter "preserve_hostname" from "false" to "true" and then edit /etc/hostname.
+
+update registry
+sudo apt-get update

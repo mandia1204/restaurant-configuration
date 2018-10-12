@@ -1,0 +1,18 @@
+1- Use the last artifacts
+2- Copy this artifacts to the server using ssh
+3- Generate image with new artifacts and assign a new tag. (inside minikube docker)
+4- Update deployment image using kubectl, this will generate new pods
+    eval $(minikube docker-env)
+    docker build -t "restaurant-security:v1.1.5" .
+5- If necessary, update the configmap or env vars.
+    kubectl create configmap security-config --from-file=app-config=dist/config/default.js -o yaml --dry-run | kubectl replace -f -
+    kubectl patch deployment security-app -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+
+
+create service: (/restaurant/security)
+kubectl create -f ./security-app/security-service.yml
+
+
+test the service:
+curl $(minikube service security-app --url)
+curl -d '{ "userName": "matt", "password": "1234"}' -H "Content-Type: application/json" -X POST $(minikube service security-app --url)/token

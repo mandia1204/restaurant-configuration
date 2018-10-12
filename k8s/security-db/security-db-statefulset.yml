@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: security-db
+spec:
+  serviceName: "security-db"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: security-db
+  template:
+    metadata:
+      labels:
+        app: security-db
+    spec:
+      containers:
+      - name: res-security-db
+        image: restaurant-security-db:v1.1.0
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "matt"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "1234"
+        - name: MONGO_INITDB_DATABASE
+          value: "restaurant_security"
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: restaurant-security-db-storage
+          mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: restaurant-security-db-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: local-storage
+      resources:
+        requests:
+          storage: 3Gi
