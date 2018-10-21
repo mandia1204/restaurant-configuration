@@ -9,6 +9,7 @@ https://dzone.com/articles/jenkins-pipeline-for-continuous-delivery-and-deplo
 https://gist.github.com/Romeh/257056cae1730fe0c939b9f2b1b1436a
 
 Plugins:
+========
 TAP Plugin
 NodeJs Plugin
 AnsiColor
@@ -17,4 +18,31 @@ Git Plugin
 Github plugin
 Copy artifact
 https://wiki.jenkins.io/display/JENKINS/GitHub+Plugin
+publish over ssh
 
+-configure shared libraries
+
+ENV VARS:
+===================================================
+JAVA_TOOLS_OPTIONS: -Dfile.encoding=UTF-8
+Path: C:\Program Files\Git\bin;C:\Users\Marvin\AppData\Roaming\npm;C:\Program Files\dotnet
+SECURITY_SERVICE_PATH: C:\Users\Marvin\Documents\Restaurant\dist\security
+WEB_SERVICE_PATH: C:\Users\Marvin\Documents\Restaurant\dist\frontend
+
+in jenkins tools configuration:
+configure a localnode to access pm2 packages
+configure the nodeversion we are using.
+
+connect to remote using ssh (gitbash for windows):
+=================================================
+https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604
+- Using gitbash create a rsa
+    ssh-keygen
+- in jenkins config add the private key path and the passphrase (x..9)
+- copy the key to the server
+    https://www.ssh.com/ssh/copy-id
+    ssh-copy-id -i ~/.ssh/kube.pub matt@192.168.100.104 (we need to provide login password)
+    test if it worked inside server:
+    cat ~/.ssh/authorized_keys
+
+    C:\Users\Marvin\.ssh\kube

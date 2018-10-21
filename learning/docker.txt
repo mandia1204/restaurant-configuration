@@ -14,3 +14,16 @@ creates a container from image:
 
 docker run --name restaurant-security -d restaurant-security:latest
 docker run --name restaurant-security-db -d -e MONGO_INITDB_ROOT_USERNAME=matt -e MONGO_INITDB_ROOT_PASSWORD=1234 -e MONGO_INITDB_DATABASE=restaurant_security restaurant-security-db:v1.1.0
+
+
+using docker hub:
+=================
+create an account 1 free repo.
+
+docker build -t "mandia1204/securityapp:v1.0.0" .
+
+* before pushing we need run: docker login (it asks for username and pass)
+
+docker push <hub-user>/<repo-name>:<tag>
+docker push mandia1204/securityapp:v1.0.0
+

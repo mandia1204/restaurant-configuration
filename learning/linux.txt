@@ -20,3 +20,10 @@ First edit /etc/cloud/cloud.cfg and set the parameter "preserve_hostname" from "
 
 update registry
 sudo apt-get update
+
+enable ssh in ubuntu
+====================
+https://linuxconfig.org/enable-ssh-on-ubuntu-18-04-bionic-beaver-linux
+
+initial configuration for a new ubuntu 
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04

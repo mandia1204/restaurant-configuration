@@ -1,0 +1,27 @@
+installation:
+============
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-18-04
+
+check if you can ssh from server to client (we need to add the rsa key first):
+ssh matt@192.168.100.103
+
+global inventory:
+/etc/ansible/hosts 
+
+add to the file:
+
+[servers]
+bind-client1 ansible_ssh_host=192.168.100.103
+
+PYTHON 2.7
+ansible will fail if it doen't find python 2 on host
+
+testing if it's ok
+===================
+ansible -m ping servers (previously configured in /etc/ansible/hosts )
+
+ansible -m shell -a 'free -m' bind-client1
+
+configuration:
+==============
+/etc/ansible/ansible.cfg

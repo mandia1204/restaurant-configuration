@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: res-security
-        image: restaurant-security:v1.1.5
+        image: mandia1204/securityapp:v1.0.0
         ports:
         - containerPort: 3001
         volumeMounts:
