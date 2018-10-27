@@ -24,6 +24,10 @@ publish over ssh
 
 ENV VARS:
 ===================================================
+jenkins defined vars:
+http://localhost:8080/env-vars.html/
+
+
 JAVA_TOOLS_OPTIONS: -Dfile.encoding=UTF-8
 Path: C:\Program Files\Git\bin;C:\Users\Marvin\AppData\Roaming\npm;C:\Program Files\dotnet
 SECURITY_SERVICE_PATH: C:\Users\Marvin\Documents\Restaurant\dist\security

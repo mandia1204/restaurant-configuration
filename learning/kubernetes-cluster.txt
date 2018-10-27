@@ -1,0 +1,69 @@
+Install kubeadm 
+    https://kubernetes.io/docs/setup/independent/install-kubeadm/
+    Verify the MAC address and product_uuid are unique for every node:
+        ip link
+        sudo cat /sys/class/dmi/id/product_uuid
+
+or with ansible:
+
+https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-1-11-cluster-using-kubeadm-on-ubuntu-18-04
+
+0- 
+    Verify the MAC address and product_uuid are unique for every node
+        ip link
+        sudo cat /sys/class/dmi/id/product_uuid
+    disable swap to kubelet properly work:
+        sudo swapoff -a 
+        sudo vim /etc/fstab (comment out the swap line adding #)
+        sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+        sudo sed -i '/ swap.img / s/^\(.*\)$/#\1/g' /etc/fstab
+        cat /proc/swaps (check if its enabled)
+
+    https://docs.platform9.com/support/disabling-swap-kubernetes-node/
+
+1- we need to communicate the ansible host with master and node with ssh:
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804
+
+ssh-copy-id matt@192.168.100.106 (master)
+ssh-copy-id matt@192.168.100.107 (node1)
+ssh matt@192.168.100.106
+ssh matt@192.168.100.107
+
+2- complete the steps in link , after we have /ansible/kube-cluster/* , run the command:
+ansible-playbook -i hosts ~/kube-cluster/initial.yml
+ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/initial.yml (using sudo user)
+
+create vault password:
+======================
+ansible-vault create passwd.yml
+-it will ask for a password, x....9 to encrypt
+
+3- install k8 dependencies in master and nodes
+    ansible-playbook -i hosts ~/kube-cluster/kube-dependencies.yml
+    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/kube-dependencies.yml (using sudo user)
+    
+4- initialize the cluster
+    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/master.yml
+
+    * if we have the error :
+    Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+    run:
+    
+    sudo systemctl unmask docker.service 
+    sudo systemctl unmask docker.socket 
+    sudo systemctl start docker.service 
+    
+    * if there is a problem with network: 
+
+    kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+5- add nodes
+    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/workers.yml
+
+===========
+[DEPRECATION WARNING]: Invoking "apt" only once while using a loop via squash_actions is deprecated. Instead of using a loop to supply multiple items and specifying `name:
+ {{ item }}`, please use `name: [u'apt-transport-https', u'ca-certificates', u'curl', u'software-properties-common']` and remove the loop. This feature will be removed in
+version 2.11. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+[DEPRECATION WARNING]: Invoking "apt" only once while using a loop via squash_actions is deprecated. Instead of using a loop to supply multiple items and specifying `name:
+ {{ item }}`, please use `name: [u'apt-transport-https', u'ca-certificates', u'curl', u'software-properties-common']` and remove the loop. This feature will be removed in
+version 2.11. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.

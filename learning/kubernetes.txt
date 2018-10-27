@@ -157,6 +157,9 @@ kubectl describe deployments security-app
 
 kubectl create configmap security-config4 -l hola --from-file=app-config=dist/config/default.js
 
+cloud:
+https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
+
 
 A Pod models an application-specific "logical host" and can contain different application containers which are relatively tightly coupled. For example, 
 a Pod might include both the container with your Node.js app as well as a different container that feeds the data to be published by the Node.js webserver. The containers in a Pod share an IP Address and port space, are always co-located and co-scheduled, and run in a shared context on the same Node.

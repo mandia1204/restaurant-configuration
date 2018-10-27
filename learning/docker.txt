@@ -27,3 +27,6 @@ docker build -t "mandia1204/securityapp:v1.0.0" .
 docker push <hub-user>/<repo-name>:<tag>
 docker push mandia1204/securityapp:v1.0.0
 
+https://docs.docker.com/docker-hub/repos/#pushing-a-repository-image-to-docker-hub
+
+

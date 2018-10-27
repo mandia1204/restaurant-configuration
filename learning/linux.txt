@@ -12,6 +12,8 @@ uname -r
 
 copy to putty:
 pscp C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\kubernetes\mongodb-volume.yml matt@192.168.127.129:/restaurant/k8/volumes/mongodb-volume.yml
+dirs:
+pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\ansible\kube-cluster matt@192.168.100.105:/home/matt/
 
 change hostname:
 https://askubuntu.com/questions/1028633/host-name-reverts-to-old-name-after-reboot-in-18-04-lts
@@ -27,3 +29,16 @@ https://linuxconfig.org/enable-ssh-on-ubuntu-18-04-bionic-beaver-linux
 
 initial configuration for a new ubuntu 
 https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04
+
+permissions on file:
+https://www.linux.com/learn/understanding-linux-file-permissions
+chmod 764 test.sh
+r = 4
+w = 2
+x = 1
+
+awk to filter strings 
+https://www.digitalocean.com/community/tutorials/how-to-use-the-awk-language-to-manipulate-text-in-linux
+
+remove a known host 
+ssh-keygen -f "/home/matt/.ssh/known_hosts" -R "192.168.100.106"

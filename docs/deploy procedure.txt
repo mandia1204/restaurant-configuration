@@ -6,6 +6,8 @@
         docker build -t "restaurant-security:v1.1.5" .
     - using docker hub:
         docker build -t "mandia1204/securityapp:v1.0.0" .
+        publish the image to dockerhub
+        docker push mandia1204/securityapp:v1.0.0
 4- Update deployment image using kubectl, this will generate new pods
     - if not using docker hub:
         kubectl patch deployment security-app -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
