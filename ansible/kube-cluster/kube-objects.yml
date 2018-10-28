@@ -1,0 +1,9 @@
+- hosts: master
+  become: yes
+  become_user: matt
+
+  tasks:
+   - name: create local storage class
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/security-db/local-storage-class.yml

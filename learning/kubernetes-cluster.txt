@@ -60,6 +60,10 @@ ansible-vault create passwd.yml
 5- add nodes
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/workers.yml
 
+6- create k8s objects
+    ansible-playbook -i hosts ~/kube-cluster/kube-objects.yml
+    
+
 ===========
 [DEPRECATION WARNING]: Invoking "apt" only once while using a loop via squash_actions is deprecated. Instead of using a loop to supply multiple items and specifying `name:
  {{ item }}`, please use `name: [u'apt-transport-https', u'ca-certificates', u'curl', u'software-properties-common']` and remove the loop. This feature will be removed in
