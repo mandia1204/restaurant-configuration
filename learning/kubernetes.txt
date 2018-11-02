@@ -161,5 +161,14 @@ cloud:
 https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
 
 
+bash completion:
+================
+*check if bash-completion is installed
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion
+
+
 A Pod models an application-specific "logical host" and can contain different application containers which are relatively tightly coupled. For example, 
 a Pod might include both the container with your Node.js app as well as a different container that feeds the data to be published by the Node.js webserver. The containers in a Pod share an IP Address and port space, are always co-located and co-scheduled, and run in a shared context on the same Node.
+

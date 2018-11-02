@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: security-db
+  namespace: default
 spec:
   serviceName: "security-db"
   replicas: 1
@@ -15,7 +16,7 @@ spec:
     spec:
       containers:
       - name: res-security-db
-        image: restaurant-security-db:v1.1.0
+        image: mongo:4
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
           value: "matt"

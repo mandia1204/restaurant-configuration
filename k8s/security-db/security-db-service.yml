@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: security-db
+  namespace: default #openshift needs this value
   labels:
     app: security-db
 spec:

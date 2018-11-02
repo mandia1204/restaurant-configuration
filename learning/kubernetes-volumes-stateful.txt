@@ -54,7 +54,7 @@ delete a statefulset, service and volumes associated:
 ======================================================
 
 kubectl delete statefulsets security-db
-kubectl delete service security-db-svc
+kubectl delete service security-db
 kubectl delete pods -l app=security-db
 kubectl delete pvc -l app=security-db
 kubectl delete pv mongodb-local-pv

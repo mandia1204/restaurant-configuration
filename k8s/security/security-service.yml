@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: security-app
+  namespace: default
 spec:
   selector:
     app: security

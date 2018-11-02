@@ -15,7 +15,6 @@ pscp C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\kubernetes\mo
 dirs:
 pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\ansible\kube-cluster matt@192.168.100.105:/home/matt/
 
-pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\k8s matt@192.168.100.105:/restaurant/
 pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\k8s matt@192.168.100.106:/restaurant/
 
 change hostname:
@@ -48,7 +47,7 @@ ssh-keygen -f "/home/matt/.ssh/known_hosts" -R "192.168.100.106"
 
 unable to search package ubuntu bionic:
 https://askubuntu.com/questions/1061486/unable-to-locate-package-python-pip-when-trying-to-install-from-fresh-18-04-in
-sudo nano /etc/apt/sources.list
+sudo vim /etc/apt/sources.list
 deb http://archive.ubuntu.com/ubuntu bionic main universe
 deb http://archive.ubuntu.com/ubuntu bionic-security main universe 
 deb http://archive.ubuntu.com/ubuntu bionic-updates main universe

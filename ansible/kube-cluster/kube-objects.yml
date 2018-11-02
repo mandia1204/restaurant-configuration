@@ -7,3 +7,27 @@
      k8s_raw:
        state: present
        src: /restaurant/k8s/security-db/local-storage-class.yml
+   - name: create security-db volume
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/security-db/mongodb-volume.yml
+   - name: create security-db service
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/security-db/security-db-service.yml
+   - name: create security-db stateful set
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/security-db/security-db-statefulset.yml
+   - name: create configmap for security-app
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/security/security-configmap.yml
+   - name: create service for security-app
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/security/security-service.yml
+   - name: create deployment for security-app
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/security/security-deployment.yml
