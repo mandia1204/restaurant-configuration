@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: dashboard-be-app
+spec:
+  selector:
+    matchLabels:
+      app: dashboard-be
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dashboard-be
+    spec:
+      containers:
+      - name: res-dashboard-be
+        image: mandia1204/dashboard-be-app:1.0.0
+        ports:
+        - containerPort: 5000

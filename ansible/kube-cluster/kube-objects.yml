@@ -14,20 +14,28 @@
    - name: create security-db service
      k8s_raw:
        state: present
-       src: /restaurant/k8s/security-db/security-db-service.yml
+       src: /restaurant/k8s/security-db/service.yml
    - name: create security-db stateful set
      k8s_raw:
        state: present
-       src: /restaurant/k8s/security-db/security-db-statefulset.yml
+       src: /restaurant/k8s/security-db/statefulset.yml
    - name: create configmap for security-app
      k8s_raw:
        state: present
-       src: /restaurant/k8s/security/security-configmap.yml
+       src: /restaurant/k8s/security/configmap.yml
    - name: create service for security-app
      k8s_raw:
        state: present
-       src: /restaurant/k8s/security/security-service.yml
+       src: /restaurant/k8s/security/service.yml
    - name: create deployment for security-app
      k8s_raw:
        state: present
-       src: /restaurant/k8s/security/security-deployment.yml
+       src: /restaurant/k8s/security/deployment.yml
+   - name: create service for dashboard backend
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/dashboard-be/service.yml
+   - name: create deployment for dashboard backend
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/dashboard-be/deployment.yml
