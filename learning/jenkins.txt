@@ -45,7 +45,7 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubunt
 - in jenkins config add the private key path and the passphrase (x..9)
 - copy the key to the server
     https://www.ssh.com/ssh/copy-id
-    ssh-copy-id -i ~/.ssh/kube.pub matt@192.168.100.104 (we need to provide login password)
+    ssh-copy-id -i ~/.ssh/kube.pub matt@192.168.100.106 (we need to provide login password)
     test if it worked inside server:
     cat ~/.ssh/authorized_keys
 

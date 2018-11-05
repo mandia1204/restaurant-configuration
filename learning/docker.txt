@@ -19,14 +19,23 @@ docker run --name restaurant-security-db -d -e MONGO_INITDB_ROOT_USERNAME=matt -
 using docker hub:
 =================
 create an account 1 free repo.
+user: mandia1204
+pass: x...9
 
 docker build -t "mandia1204/securityapp:v1.0.0" .
 
-* before pushing we need run: docker login (it asks for username and pass)
+* before pushing we need run: 
+  docker login (it asks for username and pass)
 
 docker push <hub-user>/<repo-name>:<tag>
 docker push mandia1204/securityapp:v1.0.0
 
 https://docs.docker.com/docker-hub/repos/#pushing-a-repository-image-to-docker-hub
 
+
+* after intalling docker we need to add our user to the group.
+https://docs.docker.com/install/linux/linux-postinstall/
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo usermod -aG docker jenkins
 

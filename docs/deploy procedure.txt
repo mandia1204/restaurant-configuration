@@ -25,3 +25,21 @@ kubectl create -f ./security-app/security-service.yml
 test the service:
 curl $(minikube service security-app --url)
 curl -d '{ "userName": "matt", "password": "1234"}' -H "Content-Type: application/json" -X POST $(minikube service security-app --url)/token
+
+FOLDER STRUCTURE
+================
+- k8s master:
+
+restaurant
+    deploy (scripts and vars)
+    k8s
+    security
+    dashboard-backend
+
+- inside each app folder like "security" we need: 
+    - to create a APP_NAME-vars.sh file to set values for IMAGE_REPO_NAME, DEPLOYMENT_NAME, CONTAINER_NAME
+    - add the dockerfile for building the image and upload it to docker hub
+- Jenkins node:
+/home/jenkins
+    restaurant
+        deploy

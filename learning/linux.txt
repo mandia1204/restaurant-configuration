@@ -52,3 +52,25 @@ deb http://archive.ubuntu.com/ubuntu bionic main universe
 deb http://archive.ubuntu.com/ubuntu bionic-security main universe 
 deb http://archive.ubuntu.com/ubuntu bionic-updates main universe
 sudo apt update
+
+firewall
+=========
+https://help.ubuntu.com/community/UFW
+sudo ufw status verbose
+sudo ufw enable
+sudo ufw disable
+sudo ufw allow 6443/tcp
+
+TAR:
+===
+tar -czvf archive.tar.gz dist
+tar -czvf `date '+%Y%m%d%H%M%S'`.tar.gz dist
+
+date:
+echo `date '+%Y-%m-%d %H:%M:%S'`
+echo `date '+%Y%m%d%H%M%S'`
+
+return if error in bash command:
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+https://stackoverflow.com/questions/821396/aborting-a-shell-script-if-any-command-returns-a-non-zero-value
+add to script header set -e, but it will not work with pipes unless you add set -o pipefail
