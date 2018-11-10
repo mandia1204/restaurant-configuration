@@ -1,0 +1,16 @@
+- name: create local storage class
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/security-db/local-storage-class.yml
+- name: create volume
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/security-db/mongodb-volume.yml
+- name: create service
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/security-db/service.yml
+- name: create stateful set
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/security-db/statefulset.yml

@@ -1,0 +1,12 @@
+- name: create nginx configmap
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/dashboard-fe/configmap.yml
+- name: create service
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/dashboard-fe/service.yml
+- name: create deployment
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/dashboard-fe/deployment.yml

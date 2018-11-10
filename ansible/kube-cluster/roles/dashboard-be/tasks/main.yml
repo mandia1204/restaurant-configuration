@@ -1,0 +1,8 @@
+- name: create service
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/dashboard-be/service.yml
+- name: create deployment
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/dashboard-be/deployment.yml
