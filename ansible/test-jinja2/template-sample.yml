@@ -1,0 +1,23 @@
+- hosts: workers
+  vars:
+    variable_to_be_replaced: 'Hello world2'
+    inline_variable: 'hello again'
+    app_name: 'my-app-2'
+  tasks:
+    - name: Ansible Template Example
+      template:
+        src: hello_world.j2
+        dest: /home/matt/template/hello_world.txt
+    - name: Ansible Template with yml
+      template:
+        src: config.yml
+        dest: /home/matt/template/config.yml
+- hosts: masters
+  vars:
+    resource_name: 'dev-01'
+  tasks:
+    - name: K8s resource with template
+      k8s_raw:
+       state: present
+       definition: "{{ lookup('template', 'namespace.yml') | from_yaml }}"
+
