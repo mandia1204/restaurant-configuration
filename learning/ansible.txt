@@ -33,3 +33,6 @@ https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault
 
 installing multiple packages with apt module
 http://www.mydailytutorials.com/introduction-ansible-apt-package-repository/
+
+run playbook:
+ansible-playbook -i hosts ~/kube-cluster/kube-objects.yml

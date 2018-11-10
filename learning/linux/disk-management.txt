@@ -1,0 +1,17 @@
+shows disk usage information:
+df -h
+
+show free space:
+gparted
+print free
+
+resize partition:
+print
+resizepart (it will ask for partition number and size, get that info from print command)
+quit
+
+after resize we need to update the filesystem:
+sudo resize2fs /dev/sda2 (get this from df -h)
+df -h
+
+https://www.tecmint.com/parted-command-to-create-resize-rescue-linux-disk-partitions/

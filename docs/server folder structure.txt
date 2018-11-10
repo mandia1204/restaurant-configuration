@@ -1,0 +1,19 @@
+FOLDER STRUCTURE
+================
+- common:
+	we need to create a APP_NAME-vars.sh file to set values for IMAGE_REPO_NAME, DEPLOYMENT_NAME, CONTAINER_NAME for each app
+- k8s master:
+	restaurant
+		deploy -- scripts and vars (we need APP_NAME-vars.sh)
+		k8s -- k8s objects like deployments, services ...
+- Jenkins node:
+	/home/jenkins
+		restaurant
+			deploy -- scripts for building the image and publishing to docker hub (we need APP_NAME-vars.sh)
+			app-name -- contains the dockerfile and the dist folder(we nee to repeat this folder for each app like security, dashboard-be... )
+				backup -- for storing the artifacts
+				Dockerfile
+				Dist -- artifact contents
+- ansible:
+	/home/matt
+		kube-cluster -- inventory and playbooks for k8s

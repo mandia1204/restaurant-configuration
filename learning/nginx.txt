@@ -1,0 +1,11 @@
+https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts
+
+configuration for serving static files:
+
+http {
+  server {
+    listen    80;
+    root      /var/www;
+    index     index.html;
+  }
+}

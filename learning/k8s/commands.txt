@@ -1,0 +1,1 @@
+kubectl set image deployment/security-app res-security=mandia1204/securityapp:1.0.2
