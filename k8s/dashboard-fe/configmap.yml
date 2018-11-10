@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dahsboard-fe-nginx-config
+  namespace: default
+  labels:
+    app: dashboard-fe
+data:
+  nginx-conf: |
+    events {
+      worker_connections  1024;
+    }
+
+    http {
+      server {
+        listen    80;
+        root      /var/www;
+        index     index.html;
+      }
+    }

@@ -39,3 +39,15 @@
      k8s_raw:
        state: present
        src: /restaurant/k8s/dashboard-be/deployment.yml
+   - name: create nginx configmap for dashboard frontend
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/dashboard-fe/configmap.yml
+   - name: create service for dashboard frontend
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/dashboard-fe/service.yml
+   - name: create deployment for dashboard frontend
+     k8s_raw:
+       state: present
+       src: /restaurant/k8s/dashboard-fe/deployment.yml

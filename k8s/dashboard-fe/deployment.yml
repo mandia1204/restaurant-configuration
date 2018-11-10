@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: dashboard-fe-app
+spec:
+  selector:
+    matchLabels:
+      app: dashboard-fe
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dashboard-fe
+    spec:
+      containers:
+      - name: res-dashboard-fe
+        image: mandia1204/dashboard-fe-app:1.0.0
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx
+          name: nginx-config
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: dahsboard-fe-nginx-config
+            items:
+            - key: nginx-conf
+              path: nginx.conf

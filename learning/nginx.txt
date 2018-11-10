@@ -1,6 +1,10 @@
 https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts
 
 configuration for serving static files:
+====================================================================
+events {
+    worker_connections  1024;
+}
 
 http {
   server {
@@ -9,3 +13,7 @@ http {
     index     index.html;
   }
 }
+====================================================================
+
+
+curl $(minikube service security-app --url)
