@@ -9,4 +9,3 @@ spec:
   ports:
   - protocol: TCP
     port: 3001
-  type: NodePort

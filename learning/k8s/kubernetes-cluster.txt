@@ -1,4 +1,4 @@
-Install kubeadm 
+Install kubeadm
     https://kubernetes.io/docs/setup/independent/install-kubeadm/
     Verify the MAC address and product_uuid are unique for every node:
         ip link
@@ -24,12 +24,12 @@ or with ansible:
 
 https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-1-11-cluster-using-kubeadm-on-ubuntu-18-04
 
-0- 
+0-
     Verify the MAC address and product_uuid are unique for every node
         ip link
         sudo cat /sys/class/dmi/id/product_uuid
     disable swap to kubelet properly work:
-        sudo swapoff -a 
+        sudo swapoff -a
         sudo vim /etc/fstab (comment out the swap line adding #)
         sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
         sudo sed -i '/ swap.img / s/^\(.*\)$/#\1/g' /etc/fstab
@@ -54,23 +54,25 @@ create vault password:
 ======================
 ansible-vault create passwd.yml
 -it will ask for a password, x....9 to encrypt
+-it will open an editor, you have to put the variables like var: value, we need to add this var:
+ hosts_sudo_pass: "sudo pass for matt user"
 
 3- install k8 dependencies in master and nodes
     ansible-playbook -i hosts ~/kube-cluster/kube-dependencies.yml
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/kube-dependencies.yml (using sudo user)
-    
+
 4- initialize the cluster
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/master.yml
 
     * if we have the error :
     Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
     run:
-    
-    sudo systemctl unmask docker.service 
-    sudo systemctl unmask docker.socket 
-    sudo systemctl start docker.service 
-    
-    * if there is a problem with network: 
+
+    sudo systemctl unmask docker.service
+    sudo systemctl unmask docker.socket
+    sudo systemctl start docker.service
+
+    * if there is a problem with network:
 
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 5- add nodes
@@ -78,4 +80,3 @@ ansible-vault create passwd.yml
 
 6- create k8s objects
     ansible-playbook -i hosts ~/kube-cluster/kube-objects.yml
-    
