@@ -2,6 +2,7 @@
   become: yes
   become_user: matt
   roles:
+    - ambassador
     - security-db
     - security-app
     - dashboard-be

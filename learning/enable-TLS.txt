@@ -1,4 +1,4 @@
-- open the firewall and allow ssh 
+- open the firewall and allow ssh
 
 https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04
 
@@ -7,3 +7,38 @@ ufw enable
 ufw status
 
 - need to add an A Record to the dns name for the service
+
+after buying a dns in namecheap and installing certbot:
+
+sudo certbot -d mandialand.com --manual --preferred-challenges dns certonly
+
+
+dig +trace _acme-challenge.mandialand.com TXT
+
+dig _acme-challenge.mandialand.com TXT +noall +answer
+
+nslookup -q=TXT _acme-challenge.mandialand.com
+
+dig -t txt mandialand.com
+dig -t txt _acme-challenge.mandialand.com
+dig -t a mandialand.com
+
+in namecheap console don't put the full path _acme-challenge.mandialand.com, just put _acme-challenge
+
+after the cert is created, we need to access as a root to the folder:
+sudo -i
+/etc/letsencrypt/live/mandialand.com/
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/mandialand.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/mandialand.com/privkey.pem
+   Your cert will expire on 2019-02-09. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le

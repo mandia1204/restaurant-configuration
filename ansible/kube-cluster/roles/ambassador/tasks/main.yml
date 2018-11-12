@@ -1,0 +1,9 @@
+- name: deploy required objects
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/ambassador/deploy.yml
+
+- name: create load balancer service
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/ambassador/service.yml

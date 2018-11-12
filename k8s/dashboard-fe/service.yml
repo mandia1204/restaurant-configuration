@@ -3,6 +3,14 @@ apiVersion: v1
 metadata:
   name: dashboard-fe-app
   namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  dashboard_fe_mapping
+      prefix: /
+      service: dashboard-fe-app
 spec:
   selector:
     app: dashboard-fe
