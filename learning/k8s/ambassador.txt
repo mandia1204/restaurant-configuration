@@ -1,4 +1,8 @@
 deploy ambassador:
 https://www.getambassador.io/user-guide/getting-started
 
+bare metal load balancer:
 
+https://dzone.com/articles/kubernetes-metallb-bare-metal-loadbalancer
+https://metallb.universe.tf/installation/
+https://www.getambassador.io/user-guide/bare-metal/
