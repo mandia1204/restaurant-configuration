@@ -6,6 +6,8 @@ Install kubeadm
 
 * opened ports in machines:
 https://kubernetes.io/docs/setup/independent/install-kubeadm/#check-required-ports
+https://github.com/coreos/coreos-kubernetes/blob/master/Documentation/kubernetes-networking.md (flannel)
+
 master:
 sudo ufw allow 6443/tcp
 sudo ufw allow 2379/tcp
@@ -13,12 +15,24 @@ sudo ufw allow 2380/tcp
 sudo ufw allow 10250/tcp
 sudo ufw allow 10251/tcp
 sudo ufw allow 10252/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 8080/tcp
+--flannel
+sudo ufw allow 8285/udp
+sudo ufw allow 53/udp
+sudo ufw allow 8472/udp
+
 
 worker:
 sudo ufw allow 10250/tcp
-
 sudo ufw allow 30000:32767/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 8080/tcp
 
+--flannel
+sudo ufw allow 8285/udp
+sudo ufw allow 53/udp
+sudo ufw allow 8472/udp
 
 or with ansible:
 
