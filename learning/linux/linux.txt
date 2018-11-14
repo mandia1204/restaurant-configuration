@@ -63,10 +63,11 @@ sudo ufw allow 6443/tcp
 
 sudo ufw allow 8080/tcp
 sudo ufw logging on
-tail -n 10 /var/log/ufw.log
+tail -n 5 /var/log/ufw.log
 
 cat /var/log/ufw.log
 
+sudo ufw delete allow 27018/tcp
 
 TAR:
 ===

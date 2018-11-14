@@ -1,0 +1,20 @@
+check if a port is open in a host:
+http://www.tutorialspoint.com/unix_commands/nc.htm
+
+nc -zv security-db 27017
+nc -z security-db 27015-27018
+nc -p 31337 -w 5 security-db 27017
+nc security-db 27017
+
+listen for open connection
+nc -l 27017
+
+
+nc 192.168.100.107 27017
+
+
+nc -zv 192.168.100.114 1434
+
+look active connections and ports:
+
+netstat -l

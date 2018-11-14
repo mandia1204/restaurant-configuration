@@ -3,6 +3,15 @@ apiVersion: v1
 metadata:
   name: dashboard-be-app
   namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  dashboard_be_mapping
+      prefix: /dashboardApi/
+      rewrite: /api/
+      service: dashboard-be-app:5000
 spec:
   selector:
     app: dashboard-be

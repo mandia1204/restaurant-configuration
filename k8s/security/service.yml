@@ -3,6 +3,14 @@ apiVersion: v1
 metadata:
   name: security-app
   namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  security_app_mapping
+      prefix: /securityApi/
+      service: security-app:3001
 spec:
   selector:
     app: security
