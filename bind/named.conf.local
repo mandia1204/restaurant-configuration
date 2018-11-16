@@ -1,0 +1,18 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "mandialand.com" {
+    type master;
+    file "/etc/bind/zones/db.mandialand.com";
+};
+
+zone "100.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/db.100.168.192";  # 192.168.100.0/24 subnet
+    #allow-transfer { 10.128.20.12; };  # ns2 private IP address - secondary
+};

@@ -16,10 +16,11 @@ https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-priv
     sudo named-checkconf
    check if the zone files are ok
     sudo named-checkzone matt.domain.com db.matt.domain.com
+    sudo named-checkzone mandialand.com db.mandialand.com
    check the reverse zone files
     sudo named-checkzone 100.168.192.in-addr.arpa /etc/bind/zones/db.100.168.192
 
-4- 
+4-
     if all ok with tests, restart svc
     sudo systemctl restart bind9
 
@@ -27,14 +28,16 @@ https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-priv
     sudo ufw allow Bind9
 
 
-configure a client to use the dns server:
+configure a client to use the dns server (ubuntu 18):
 ========================================
 
 sudo vim /etc/netplan/00-private-nameservers.yaml
 
 follow the steps: https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-18-04
 
-- the hosts that need to use the ns should be in the acl 
+- the hosts that need to use the ns should be in the acl
+
+check configuration after updating 00-private-nameservers.yaml
 
 sudo netplan try
 sudo systemd-resolve --status
