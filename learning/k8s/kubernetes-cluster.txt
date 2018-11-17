@@ -21,7 +21,8 @@ sudo ufw allow 8080/tcp
 sudo ufw allow 8285/udp
 sudo ufw allow 53/udp
 sudo ufw allow 8472/udp
-
+--tls
+sudo ufw allow 443/tcp
 
 worker:
 sudo ufw allow 10250/tcp

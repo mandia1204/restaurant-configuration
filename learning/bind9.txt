@@ -45,6 +45,7 @@ sudo systemd-resolve --status
 test the ns:
 nslookup restaurant
 nslookup 192.168.100.101
+nslookup mandialand.com
 
 flush:
 sudo systemd-resolve --flush-caches

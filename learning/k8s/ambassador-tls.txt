@@ -1,0 +1,20 @@
+https://www.getambassador.io/user-guide/tls-termination/
+
+1- first we need a tls certificate.
+
+2- create a embassador loadbalancer service with :
+    - name: ambassador-https
+      port: 443
+      targetPort: 80
+
+3- create an A DNS record for the external ip, this is done in the bind server
+
+4- create a k8s secrete
+
+files are located here: /etc/letsencrypt/live/mandialand.com/ in master k8s
+
+sudo kubectl create secret tls ambassador-certs --cert=/etc/letsencrypt/live/mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/mandialand.com/privkey.pem
+
+5- delete existing pods (if we already have the embassador deployment)
+
+kubectl delete pods -l service=ambassador

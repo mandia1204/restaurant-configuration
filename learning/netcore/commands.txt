@@ -1,0 +1,5 @@
+dotnet clean
+dotnet new mvc
+dotnet build
+dotnet test -v=n --no-build (we have to build before this command)
+dotnet run
