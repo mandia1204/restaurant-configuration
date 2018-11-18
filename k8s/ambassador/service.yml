@@ -3,6 +3,16 @@ kind: Service
 metadata:
   name: ambassador
   namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind: Module
+      name: tls
+      config:
+        server:
+          enabled: True
+          redirect_cleartext_from: 80
 spec:
   type: LoadBalancer
   ports:
@@ -10,6 +20,6 @@ spec:
      port: 80
    - name: ambassador-https
      port: 443
-     targetPort: https
+     targetPort: 443
   selector:
     service: ambassador
