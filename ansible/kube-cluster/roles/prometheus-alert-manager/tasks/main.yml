@@ -1,0 +1,19 @@
+- name: create configmap
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/prometheus-alert-manager/configmap.yml
+
+- name: create service account
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/prometheus-alert-manager/account.yml
+
+- name: create storage objects
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/prometheus-alert-manager/storage.yml
+
+- name: create service and deployment
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/prometheus-alert-manager/service.yml

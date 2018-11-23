@@ -11,3 +11,4 @@
     - prometheus
     - prometheus-kube-state-metrics
     - prometheus-node-exporter
+    - prometheus-alert-manager
