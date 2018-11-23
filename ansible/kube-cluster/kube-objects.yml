@@ -9,3 +9,4 @@
     - dashboard-be
     - dashboard-fe
     - prometheus
+    - prometheus-kube-state-metrics

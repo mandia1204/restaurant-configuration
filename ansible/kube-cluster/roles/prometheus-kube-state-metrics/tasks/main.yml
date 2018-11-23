@@ -1,0 +1,9 @@
+- name: create service account and role
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/prometheus-kube-state-metrics/account-roles.yml
+
+- name: create service and deployment
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/prometheus-kube-state-metrics/service.yml
