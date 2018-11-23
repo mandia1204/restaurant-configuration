@@ -10,3 +10,4 @@
     - dashboard-fe
     - prometheus
     - prometheus-kube-state-metrics
+    - prometheus-node-exporter

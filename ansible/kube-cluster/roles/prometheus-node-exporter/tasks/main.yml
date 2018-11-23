@@ -1,0 +1,9 @@
+- name: create service account
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/prometheus-node-exporter/account.yml
+
+- name: create service and daemonset
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/prometheus-node-exporter/service.yml
