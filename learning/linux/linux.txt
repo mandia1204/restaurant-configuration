@@ -84,3 +84,12 @@ https://stackoverflow.com/questions/821396/aborting-a-shell-script-if-any-comman
 add to script header set -e, but it will not work with pipes unless you add set -o pipefail
 
 
+mount vmware folder:
+====================
+
+sudo vmhgfs-fuse .host:/shared $HOME/shares/ -o allow_other
+
+.host:/shared _-> shared name, we can list shares whith:
+vmware-hgfsclient
+
+

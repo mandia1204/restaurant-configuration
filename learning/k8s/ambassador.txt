@@ -6,3 +6,9 @@ bare metal load balancer:
 https://dzone.com/articles/kubernetes-metallb-bare-metal-loadbalancer
 https://metallb.universe.tf/installation/
 https://www.getambassador.io/user-guide/bare-metal/
+
+diagnostics:
+kubectl get pods (to get pod name)
+kubectl port-forward ambassador-5f66f5fd89-542f2 8877
+workaround to see the diagnostic in another host.
+socat tcp-listen:8878,fork tcp:127.0.0.1:8877

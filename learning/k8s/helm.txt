@@ -1,0 +1,36 @@
+installing helm:
+================
+
+sudo apt-get install snapd (if we don't have snap installed)
+sudo snap install helm --classic
+
+-we need to close the current session and open a new one to update the PATH variable
+
+helm init --client-only (if we don't want tiller)
+
+using template without tiller:
+================================
+https://blog.giantswarm.io/what-you-yaml-is-what-you-get/
+
+
+helm fetch \
+  --repo https://kubernetes-charts.storage.googleapis.com \
+  --untar \
+  --untardir ./helm/charts/ \
+    prometheus
+
+to avoid overrides after updating chart, inside helm folder:
+
+cp ./charts/prometheus/values.yaml \
+  ./values/prometheus.yaml
+
+-finally render the chart:
+
+helm template \
+  --values ./values/prometheus.yaml \
+  --output-dir ./manifests \
+    ./charts/prometheus
+
+
+template execution order:
+https://github.com/helm/helm/issues/1780

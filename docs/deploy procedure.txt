@@ -29,6 +29,8 @@ curl -d '{ "userName": "matt", "password": "1234"}' -H "Content-Type: applicatio
 inside master
 - should return dashboard-frontend html
 curl http://192.168.100.150/
+curl https://mandialand.com/
+
 
 - should return the token
 curl -d '{ "userName": "matt", "password": "1234"}' -H "Content-Type: application/json" -X POST http://192.168.100.150/securityApi/token
