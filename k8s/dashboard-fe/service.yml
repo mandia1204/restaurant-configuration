@@ -9,6 +9,7 @@ metadata:
       apiVersion: ambassador/v0
       kind:  Mapping
       name:  dashboard_fe_mapping
+      ambassador_id: restaurant
       prefix: /
       service: dashboard-fe-app
 spec:

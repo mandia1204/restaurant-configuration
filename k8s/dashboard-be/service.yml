@@ -9,6 +9,7 @@ metadata:
       apiVersion: ambassador/v0
       kind:  Mapping
       name:  dashboard_be_mapping
+      ambassador_id: restaurant
       prefix: /dashboardApi/
       rewrite: /api/
       service: dashboard-be-app:5000

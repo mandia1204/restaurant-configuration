@@ -58,7 +58,7 @@ metadata:
   name: ambassador
   namespace: default
 spec:
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       annotations:
@@ -82,6 +82,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: AMBASSADOR_ID
+          value: restaurant
         ports:
         - name: http
           containerPort: 80
