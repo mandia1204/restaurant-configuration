@@ -10,7 +10,8 @@ ufw status
 
 after buying a dns in namecheap and installing certbot:
 
-sudo certbot -d mandialand.com --manual --preferred-challenges dns certonly
+- sudo certbot -d mandialand.com --manual --preferred-challenges dns certonly
+- sudo certbot -d prometheus.mandialand.com --manual --preferred-challenges dns certonly
 
 
 dig +trace _acme-challenge.mandialand.com TXT
@@ -42,3 +43,10 @@ IMPORTANT NOTES:
 
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/prometheus.mandialand.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/prometheus.mandialand.com/privkey.pem
+   Your cert will expire on 2019-02-22. To obtain a new or tweaked

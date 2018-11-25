@@ -13,6 +13,7 @@ metadata:
       config:
         server:
           enabled: True
+          secret: restaurant-cert-secret
           redirect_cleartext_from: 80
 spec:
   type: LoadBalancer
@@ -35,8 +36,13 @@ metadata:
       ---
       apiVersion: ambassador/v0
       kind: Module
-      name: metrics
+      name: tls
       ambassador_id: metrics
+      config:
+        server:
+          enabled: True
+          secret: prometheus-cert-secret
+          redirect_cleartext_from: 80
 spec:
   type: LoadBalancer
   ports:
