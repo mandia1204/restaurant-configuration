@@ -6,6 +6,15 @@ metadata:
     component: "server"
   name: prometheus-server
   namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  prometheus_mapping
+      ambassador_id: metrics
+      prefix: /
+      service: prometheus-server
 spec:
   ports:
     - name: http

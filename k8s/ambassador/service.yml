@@ -24,3 +24,26 @@ spec:
      targetPort: 443
   selector:
     service: ambassador
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ambassador-metrics
+  namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind: Module
+      name: metrics
+      ambassador_id: metrics
+spec:
+  type: LoadBalancer
+  ports:
+   - name: ambassador-http
+     port: 80
+   - name: ambassador-https
+     port: 443
+     targetPort: 443
+  selector:
+    service: ambassador-metrics
