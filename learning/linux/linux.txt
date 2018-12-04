@@ -92,4 +92,5 @@ sudo vmhgfs-fuse .host:/shared $HOME/shares/ -o allow_other
 .host:/shared _-> shared name, we can list shares whith:
 vmware-hgfsclient
 
-
+change timezone:
+sudo dpkg-reconfigure tzdata

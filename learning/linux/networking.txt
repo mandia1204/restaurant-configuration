@@ -18,3 +18,14 @@ nc -zv 192.168.100.114 1434
 look active connections and ports:
 
 netstat -l
+
+removing cloud init:
+====================
+echo 'datasource_list: [ None ]' | sudo -s tee /etc/cloud/cloud.cfg.d/90_dpkg.cfg
+sudo apt-get purge cloud-init
+sudo rm -rf /etc/cloud/; sudo rm -rf /var/lib/cloud/
+sudo reboot
+
+
+https://makandracards.com/operations/42688-how-to-remove-cloud-init-from-ubuntu
+https://nucco.org/2018/05/ubuntu-18-04-chronicles-removing-cloud-init.html

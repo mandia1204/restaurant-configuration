@@ -1,3 +1,27 @@
 https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml
 https://github.com/prometheus/alertmanager/blob/master/template/default.tmpl
 https://github.com/giantswarm/kubernetes-prometheus/blob/master/manifests-all.yaml
+
+
+querying:
+=========
+https://prometheus.io/docs/prometheus/latest/querying/basics/
+
+kube_deployment_status_replicas{deployment="security-app"}
+count(kube_deployment_status_replicas)
+rate(http_requests_total{job="kubernetes-apiservers"}[15m])
+changes(http_requests_total{job="kubernetes-apiservers"}[5m])
+kube_node_status_condition {condition="OutOfDisk"}
+kube_pod_status_phase{phase="Failed"}
+kube_pod_container_status_restarts_total
+
+cpu:
+sum(rate(container_cpu_usage_seconds_total[5m])) by (container_name)
+rate(container_cpu_usage_seconds_total{container_name="res-dashboard-fe"}[5m])  * 100
+sum(
+    rate(container_cpu_cfs_throttled_seconds_total[5m]))
+by (container_name)
+
+memory:
+
+https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-3-container-resource-metrics-361c5ee46e66

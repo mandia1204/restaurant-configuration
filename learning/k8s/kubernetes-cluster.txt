@@ -36,6 +36,11 @@ sudo ufw allow 8080/tcp
 sudo ufw allow 8285/udp
 sudo ufw allow 53/udp
 sudo ufw allow 8472/udp
+--metal-lb for prometheus
+sudo ufw allow 7472/tcp
+--prometheus node exporter
+sudo ufw allow 9100/tcp
+
 
 or with ansible:
 
