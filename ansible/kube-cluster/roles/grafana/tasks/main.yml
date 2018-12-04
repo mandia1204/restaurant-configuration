@@ -1,0 +1,24 @@
+- name: create secret
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/grafana/secret.yml
+
+- name: create configmap
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/grafana/configmap.yml
+
+- name: create service account and role
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/grafana/account-roles.yml
+
+- name: create storage objects
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/grafana/storage.yml
+
+- name: create service and deployment
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/grafana/service.yml

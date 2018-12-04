@@ -1,9 +1,19 @@
-- name: deploy required objects
+- name: create service account and role
   k8s_raw:
     state: present
-    src: /restaurant/k8s/ambassador/deploy.yml
+    src: /restaurant/k8s/ambassador/account-roles.yml
 
-- name: create load balancer service
+- name: create restaurant service
   k8s_raw:
     state: present
-    src: /restaurant/k8s/ambassador/service.yml
+    src: /restaurant/k8s/ambassador/restaurant-service.yml
+
+- name: create metrics service
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/ambassador/metrics-service.yml
+
+- name: create grafana service
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/ambassador/grafana-service.yml

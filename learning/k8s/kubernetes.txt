@@ -18,7 +18,7 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
 https://github.com/kubernetes/minikube
 
-3) 
+3)
 install vbox on vmware linux
 sudo apt install virtualbox virtualbox-ext-pack
 https://computingforgeeks.com/how-to-install-minikube-on-ubuntu-18-04/
@@ -93,7 +93,7 @@ https://console.bluemix.net/docs/containers/cs_nodeport.html#nodeport
 https://kubernetes.io/docs/setup/minikube/
 
 
-update an image 
+update an image
 ===============
 kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2 (deployment name, imagename=imageversion)
 kubectl apply -f security-app/security-deployment.yml
@@ -120,17 +120,6 @@ run a command in pod:
 kubectl exec security-db-0 -- sh -c 'hostname'
 
 nslookup security-db-0.res-security-db
-
-dns
-===
-
-kubectl get services kube-dns --namespace=kube-system
-kubectl run curl --image=radial/busyboxplus:curl -i --tty
-nslookup kubernetes-bootcamp (svc name)
-kubectl attach curl-775f9567b5-nk25z -c curl -i -t
-
-https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/
-https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 
 configmaps
 ==========
@@ -173,6 +162,6 @@ delete evicted pods:
 kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
 
 
-A Pod models an application-specific "logical host" and can contain different application containers which are relatively tightly coupled. For example, 
+A Pod models an application-specific "logical host" and can contain different application containers which are relatively tightly coupled. For example,
 a Pod might include both the container with your Node.js app as well as a different container that feeds the data to be published by the Node.js webserver. The containers in a Pod share an IP Address and port space, are always co-located and co-scheduled, and run in a shared context on the same Node.
 

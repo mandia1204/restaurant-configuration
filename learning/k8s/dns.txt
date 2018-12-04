@@ -1,0 +1,16 @@
+kubectl get services kube-dns --namespace=kube-system
+kubectl run curl --image=radial/busyboxplus:curl -i --tty
+nslookup kubernetes-bootcamp (svc name)
+kubectl attach curl-775f9567b5-nk25z -c curl -i -t
+
+https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/
+https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+
+nslookup using busybox:
+kubectl create -f pod.yml
+kubectl exec -ti busybox -- nslookup kubernetes.default
+kubectl exec -ti busybox -- nslookup prometheus-server.default
+kubectl exec -ti busybox -- nslookup prometheus-server
+kubectl exec -ti busybox -- nslookup prometheus-server.default.svc.cluster.local
+
+https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/

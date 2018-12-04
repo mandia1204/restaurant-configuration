@@ -31,6 +31,11 @@ helm template \
   --output-dir ./manifests \
     ./charts/prometheus
 
+helm template \
+  --values ./values/grafana.yaml \
+  --output-dir ./manifests \
+    ./charts/grafana
+
 
 template execution order:
 https://github.com/helm/helm/issues/1780
