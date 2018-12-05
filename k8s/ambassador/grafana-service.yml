@@ -3,10 +3,26 @@ kind: Service
 metadata:
   name: ambassador-grafana
   namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind: Module
+      name: tls
+      ambassador_id: grafana
+      config:
+        server:
+          enabled: True
+          secret: grafana-cert-secret
+          redirect_cleartext_from: 80
 spec:
   type: LoadBalancer
   ports:
-   - port: 80
+   - name: ambassador-http
+     port: 80
+   - name: ambassador-https
+     port: 443
+     targetPort: 443
   selector:
     service: ambassador-grafana
 ---

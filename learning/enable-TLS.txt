@@ -12,6 +12,7 @@ after buying a dns in namecheap and installing certbot:
 
 - sudo certbot -d mandialand.com --manual --preferred-challenges dns certonly
 - sudo certbot -d prometheus.mandialand.com --manual --preferred-challenges dns certonly
+- sudo certbot -d grafana.mandialand.com --manual --preferred-challenges dns certonly
 
 
 dig +trace _acme-challenge.mandialand.com TXT

@@ -18,3 +18,4 @@ ns1.mandialand.com.               IN      A       192.168.100.101
 ; 192.168.100.0/24 - A records
 mandialand.com.                   IN      A      192.168.100.150
 prometheus.mandialand.com.        IN      A      192.168.100.151
+grafana.mandialand.com.           IN      A      192.168.100.152
