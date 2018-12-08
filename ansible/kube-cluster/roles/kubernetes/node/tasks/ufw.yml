@@ -1,0 +1,65 @@
+- name: allow SSH and enable ufw
+  ufw:
+    state: enabled
+    rule: allow
+    name: OpenSSH
+
+- name: allow TCP 10250
+  ufw:
+    rule: allow
+    port: 10250
+    proto: tcp
+
+- name: allow TCP 30000-32767
+  ufw:
+    rule: allow
+    port: 30000:32767
+    proto: tcp
+
+- name: allow TCP 80
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+
+- name: allow TCP 8080
+  ufw:
+    rule: allow
+    port: 8080
+    proto: tcp
+
+- name: allow UDP 8285
+  ufw:
+    rule: allow
+    port: 8285
+    proto: udp
+
+- name: allow TCP 443
+  ufw:
+    rule: allow
+    port: 443
+    proto: tcp
+
+- name: allow UDP 53
+  ufw:
+    rule: allow
+    port: 53
+    proto: udp
+
+- name: allow UDP 8472
+  ufw:
+    rule: allow
+    port: 8472
+    proto: udp
+
+- name: allow TCP 7472
+  ufw:
+    rule: allow
+    port: 7472
+    proto: tcp
+
+- name: allow TCP 9100
+  ufw:
+    rule: allow
+    port: 9100
+    proto: tcp

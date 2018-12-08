@@ -1,0 +1,8 @@
+---
+# Disable swap
+- import_tasks: 01-swapoff.yml
+  when:
+    - not dns_late
+    - disable_swap
+# setup ubuntu user
+- import_tasks: 02-ubuntu-user.yml
