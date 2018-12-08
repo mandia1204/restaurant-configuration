@@ -55,6 +55,12 @@ data:
     -H "Accept: application/json" \
     -H "Content-Type: application/json;charset=UTF-8" \https://grafana.com/api/dashboards/2/revisions/2/download| sed 's|\"datasource\":[^,]*|\"datasource\": \"Prometheus\"|g' \
     > /var/lib/grafana/dashboards/default/kube-official-dash.json
+    curl -sk \
+    --connect-timeout 60 \
+    --max-time 60 \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json;charset=UTF-8" \https://grafana.com/api/dashboards/1860/revisions/12/download| sed 's|\"datasource\":[^,]*|\"datasource\": \"Prometheus\"|g' \
+    > /var/lib/grafana/dashboards/default/kube-node-exporter-dash.json
 ---
 apiVersion: v1
 kind: ConfigMap

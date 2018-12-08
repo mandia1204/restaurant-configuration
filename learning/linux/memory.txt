@@ -1,0 +1,3 @@
+free -m
+cat /proc/meminfo | head -10
+htop
