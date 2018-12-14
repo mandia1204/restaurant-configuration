@@ -2,12 +2,12 @@ shows disk usage information:
 df -h
 
 show free space:
-gparted
+parted
 print free
 
 resize partition:
 print
-resizepart (it will ask for partition number and size, get that info from print command)
+resizepart (it will ask for partition number and size, get that info from print command) , should give number in GB ,example: 25.6GB
 quit
 
 after resize we need to update the filesystem:

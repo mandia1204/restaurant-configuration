@@ -67,6 +67,7 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubunt
 ssh-copy-id matt@192.168.100.106 (master)
 ssh-copy-id matt@192.168.100.107 (node1)
 ssh-copy-id matt@192.168.100.108 (node2)
+ssh-copy-id matt@192.168.100.117 (node3)
 ssh matt@192.168.100.106
 ssh matt@192.168.100.107
 
@@ -84,6 +85,8 @@ ansible-vault create passwd.yml
 3- install k8 dependencies in master and nodes
     ansible-playbook -i hosts ~/kube-cluster/kube-dependencies.yml
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/kube-dependencies.yml (using sudo user)
+
+    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/workers.yml
 
 4- initialize the cluster
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/master.yml
