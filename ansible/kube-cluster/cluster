@@ -1,0 +1,14 @@
+[masters]
+master ansible_host=192.168.100.106 ansible_user=matt
+
+[workers]
+worker1 ansible_host=192.168.100.107 ansible_user=matt
+worker2 ansible_host=192.168.100.108 ansible_user=matt
+worker3 ansible_host=192.168.100.117 ansible_user=matt
+worker4 ansible_host=192.168.100.121 ansible_user=matt
+
+[servers]
+bind9 ansible_host=192.168.100.101 ansible_user=matt
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
