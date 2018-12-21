@@ -68,6 +68,7 @@ ssh-copy-id matt@192.168.100.106 (master)
 ssh-copy-id matt@192.168.100.107 (node1)
 ssh-copy-id matt@192.168.100.108 (node2)
 ssh-copy-id matt@192.168.100.117 (node3)
+ssh-copy-id matt@192.168.100.121 (node4)
 ssh matt@192.168.100.106
 ssh matt@192.168.100.107
 

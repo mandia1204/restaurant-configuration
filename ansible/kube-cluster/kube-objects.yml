@@ -13,3 +13,4 @@
     - prometheus-node-exporter
     - prometheus-alert-manager
     - grafana
+    - elasticsearch

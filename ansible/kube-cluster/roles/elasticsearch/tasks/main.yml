@@ -1,0 +1,39 @@
+- name: create configmap
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/elasticsearch/configmap.yml
+
+- name: create accounts
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/elasticsearch/account.yml
+
+- name: create master storage objects
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/elasticsearch/master-storage.yml
+
+- name: create data storage objects
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/elasticsearch/data-storage.yml
+
+- name: create services
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/elasticsearch/service.yml
+
+- name: create master statefulset
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/elasticsearch/master-statefulset.yml
+
+- name: create client deployment
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/elasticsearch/client-deployment.yml
+
+- name: create data statefulset
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/elasticsearch/data-statefulset.yml

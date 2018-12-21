@@ -1,0 +1,100 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  labels:
+    app: elasticsearch
+    component: "master"
+  name: elasticsearch-master
+  namespace: default
+spec:
+  serviceName: elasticsearch-discovery
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+        component: "master"
+    spec:
+      serviceAccountName: elasticsearch-master
+      securityContext:
+        fsGroup: 1000
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  app: "elasticsearch"
+                  component: "master"
+      initContainers:
+      - name: "sysctl"
+        image: "busybox:latest"
+        imagePullPolicy: "Always"
+        command: ["sysctl", "-w", "vm.max_map_count=262144"]
+        securityContext:
+          privileged: true
+      - name: "chown"
+        image: "docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.0"
+        imagePullPolicy: "IfNotPresent"
+        command:
+        - /bin/bash
+        - -c
+        - chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data &&
+          chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/logs
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /usr/share/elasticsearch/data
+          name: data
+      containers:
+      - name: elasticsearch
+        env:
+        - name: NODE_DATA
+          value: "false"
+        - name: NODE_INGEST
+          value: "false"
+        - name: DISCOVERY_SERVICE
+          value: elasticsearch-discovery
+        - name: PROCESSORS
+          valueFrom:
+            resourceFieldRef:
+              resource: limits.cpu
+        - name: ES_JAVA_OPTS
+          value: "-Djava.net.preferIPv4Stack=true -Xms512m -Xmx512m "
+        - name: MINIMUM_MASTER_NODES
+          value: "1"
+        resources:
+            limits:
+              cpu: "1"
+            requests:
+              cpu: 25m
+              memory: 512Mi
+
+        readinessProbe:
+          httpGet:
+            path: /_cluster/health?local=true
+            port: 9200
+          initialDelaySeconds: 30
+        image: "docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.0"
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 9300
+          name: transport
+
+        volumeMounts:
+        - mountPath: /usr/share/elasticsearch/data
+          name: data
+        - mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+          name: config
+          subPath: elasticsearch.yml
+      volumes:
+      - name: config
+        configMap:
+          name: elasticsearch
+      - name: data
+        persistentVolumeClaim:
+          claimName: elasticsearch-master
+  updateStrategy:
+    type: OnDelete

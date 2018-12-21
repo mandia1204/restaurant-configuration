@@ -36,6 +36,10 @@ helm template \
   --output-dir ./manifests \
     ./charts/grafana
 
+helm template \
+  --values ./values/elastic.yaml \
+  --output-dir ./manifests \
+    ./charts/elasticsearch
 
 template execution order:
 https://github.com/helm/helm/issues/1780
