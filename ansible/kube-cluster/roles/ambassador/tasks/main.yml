@@ -17,3 +17,8 @@
   k8s_raw:
     state: present
     src: /restaurant/k8s/ambassador/grafana-service.yml
+
+- name: create kibana service
+  k8s_raw:
+    state: present
+    src: /restaurant/k8s/ambassador/kibana-service.yml

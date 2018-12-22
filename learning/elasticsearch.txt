@@ -1,0 +1,24 @@
+kubectl attach curl-5cc7b478b6-csbbd -c curl -i -t
+
+cluster status:
+curl -X GET "elasticsearch-client:9200/_cat/health?v"
+
+node list:
+curl -X GET "elasticsearch-client:9200/_cat/nodes?v"
+
+list indexes:
+curl -X GET "elasticsearch-client:9200/_cat/indices?v"
+
+create an index:
+curl -X PUT "elasticsearch-client:9200/customer?pretty"
+curl -X GET "elasticsearch-client:9200/_cat/indices?v"
+
+add a doc to index:
+curl -X PUT "elasticsearch-client:9200/customer/_doc/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "John Doe"
+}
+'
+
+get created doc passing id:
+curl -X GET "elasticsearch-client:9200/customer/_doc/1?pretty"

@@ -41,5 +41,7 @@ helm template \
   --output-dir ./manifests \
     ./charts/elasticsearch
 
+cp -r ./manifests/kibana /home/matt/shares
+
 template execution order:
 https://github.com/helm/helm/issues/1780

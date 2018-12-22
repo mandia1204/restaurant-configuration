@@ -1,0 +1,58 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: kibana
+  name: kibana
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      annotations:
+        checksum/config: 74fd07e7a881fc3b4b8abcd19a46a3e8e66ae76faf463572c7048331d7f5813d
+      labels:
+        app: kibana
+    spec:
+      serviceAccountName: default
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - k8s-node1
+
+      containers:
+      - name: kibana
+        image: "docker.elastic.co/kibana/kibana-oss:6.5.0"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: "ELASTICSEARCH_URL"
+          value: "http://elasticsearch-client:9200"
+        ports:
+        - containerPort: 5601
+          name: kibana
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 300Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
+
+        volumeMounts:
+        - name: kibana
+          mountPath: "/usr/share/kibana/config/kibana.yml"
+          subPath: kibana.yml
+      tolerations:
+        []
+
+      volumes:
+        - name: kibana
+          configMap:
+            name: kibana
