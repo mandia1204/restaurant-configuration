@@ -43,7 +43,7 @@ spec:
       serviceAccountName: ambassador
       containers:
       - name: ambassador-grafana
-        image: quay.io/datawire/ambassador:0.40.0
+        image: quay.io/datawire/ambassador:0.50.0-rc2
         resources:
           limits:
             cpu: 1

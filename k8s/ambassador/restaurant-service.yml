@@ -48,7 +48,7 @@ metadata:
   name: ambassador
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       annotations:
@@ -59,7 +59,7 @@ spec:
       serviceAccountName: ambassador
       containers:
       - name: ambassador
-        image: quay.io/datawire/ambassador:0.40.0
+        image: quay.io/datawire/ambassador:0.50.0-rc2
         resources:
           limits:
             cpu: 1
