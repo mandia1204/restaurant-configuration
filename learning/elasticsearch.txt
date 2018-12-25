@@ -1,4 +1,4 @@
-kubectl attach curl-5cc7b478b6-csbbd -c curl -i -t
+kubectl attach curl-5cc7b478b6-6sqfx -c curl -i -t
 
 cluster status:
 curl -X GET "elasticsearch-client:9200/_cat/health?v"
@@ -22,3 +22,15 @@ curl -X PUT "elasticsearch-client:9200/customer/_doc/1?pretty" -H 'Content-Type:
 
 get created doc passing id:
 curl -X GET "elasticsearch-client:9200/customer/_doc/1?pretty"
+
+===============================
+Test kibana
+1) create mappings , use this link https://www.elastic.co/guide/en/kibana/current/tutorial-load-dataset.html
+2) load data
+  curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/bank/account/_bulk?pretty' --data-binary @accounts.json
+  curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/shakespeare/doc/_bulk?pretty' --data-binary @shakespeare_6.0.json
+  curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/_bulk?pretty' --data-binary @logs.jsonl
+
+3) on kibana dev tools, verify the data created
+
+GET /_cat/indices?v
