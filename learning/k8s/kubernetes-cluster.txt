@@ -103,6 +103,10 @@ ansible-vault create passwd.yml
     * if there is a problem with network:
 
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+    * if there is a problem with cni flannel conflist, remove the file /etc/cni/net.d/10-flannel.conf
+      more info https://github.com/coreos/flannel/pull/855#issuecomment-349520067 , https://github.com/coreos/flannel/releases
+
 5- add nodes
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/workers.yml
 
