@@ -4,6 +4,7 @@ metadata:
   name: security-app
   namespace: default
   annotations:
+    prometheus.io/scrape: "true"
     getambassador.io/config: |
       ---
       apiVersion: ambassador/v0
