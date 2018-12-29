@@ -203,4 +203,8 @@ data:
           regex:
           action: drop
   rules: |
-    {}
+    groups:
+      - name: security_app
+        rules:
+        - record: handler:security_app_http_requests_total:sum
+          expr: sum(security_app_http_requests_total) by (handler)
