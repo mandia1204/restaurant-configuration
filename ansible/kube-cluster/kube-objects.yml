@@ -2,17 +2,17 @@
   become: yes
   become_user: matt
   roles:
-    - metallb
-    - ambassador
-    - security-db
-    - security-app
-    - dashboard-be
-    - dashboard-fe
-    - prometheus
-    - prometheus-kube-state-metrics
-    - prometheus-node-exporter
-    - prometheus-alert-manager
-    - grafana
-    - elasticsearch
-    - kibana
-    - fluentd
+    - { role: metallb, tags: metallb }
+    - { role: ambassador, tags: ambassador }
+    - { role: security-db, tags: security-db }
+    - { role: security-app, tags: security-app }
+    - { role: dashboard-be, tags: dashboard-be }
+    - { role: dashboard-fe, tags: dashboard-fe }
+    - { role: prometheus, tags: prometheus }
+    - { role: prometheus-kube-state-metrics, tags: prometheus-kube-state-metrics }
+    - { role: prometheus-node-exporter, tags: prometheus-node-exporter }
+    - { role: prometheus-alert-manager, tags: prometheus-alert-manager }
+    - { role: grafana, tags: grafana }
+    - { role: elasticsearch, tags: elasticsearch }
+    - { role: kibana, tags: kibana }
+    - { role: fluentd, tags: fluentd }
