@@ -8,7 +8,7 @@ metadata:
   name: prometheus-alertmanager
   namespace: default
 data:
-  alertmanager.yml: |
+  alertmanager.yml: |-
     global: {}
     receivers:
     - name: default-receiver
@@ -17,3 +17,7 @@ data:
       group_wait: 10s
       receiver: default-receiver
       repeat_interval: 3h
+  amtool.yml: |-
+    alertmanager.url: http://localhost:9093
+    author: mandia1204@gmail.com
+    output: simple

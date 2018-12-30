@@ -64,7 +64,11 @@ spec:
 
           volumeMounts:
             - name: config-volume
-              mountPath: /etc/config
+              mountPath: /etc/config/alertmanager.yml
+              subPath: alertmanager.yml
+            - name: config-volume
+              mountPath: /etc/amtool/config.yml
+              subPath: amtool.yml
             - name: storage-volume
               mountPath: "/data"
               subPath: ""
@@ -80,7 +84,8 @@ spec:
 
           volumeMounts:
             - name: config-volume
-              mountPath: /etc/config
+              mountPath: /etc/config/alertmanager.yml
+              subPath: alertmanager.yml
               readOnly: true
       volumes:
         - name: config-volume

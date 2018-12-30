@@ -8,7 +8,16 @@ metadata:
   namespace: default
 data:
   alerts: |
-    {}
+    groups:
+    - name: security_app
+      rules:
+      - alert: TokenRequestCountGreaterThanFive
+        expr: handler:security_app_http_requests_total:sum{handler='/token'} > 5
+        for: 3m
+        labels:
+          severity: page
+        annotations:
+          summary: More than 5 tokens created
 
   prometheus.yml: |
     global:
