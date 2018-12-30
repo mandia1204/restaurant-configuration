@@ -1,9 +1,9 @@
 - name: create service account and role
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/prometheus-kube-state-metrics/account-roles.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/prometheus-kube-state-metrics/account-roles.yml') | from_yaml_all | list }}"
 
 - name: create service and deployment
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/prometheus-kube-state-metrics/service.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/prometheus-kube-state-metrics/service.yml') | from_yaml_all | list }}"

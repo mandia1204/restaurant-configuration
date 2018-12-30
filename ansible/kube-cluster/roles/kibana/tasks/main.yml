@@ -1,14 +1,14 @@
 - name: create configmap
-  k8s_raw:
+  k8s:
     state: present
     definition: "{{ lookup('file', '~/k8s/kibana/configmap.yml') | from_yaml }}"
 
 - name: create service
-  k8s_raw:
+  k8s:
     state: present
     definition: "{{ lookup('file', '~/k8s/kibana/service.yml') | from_yaml }}"
 
 - name: create deployment
-  k8s_raw:
+  k8s:
     state: present
     definition: "{{ lookup('file', '~/k8s/kibana/deployment.yml') | from_yaml }}"

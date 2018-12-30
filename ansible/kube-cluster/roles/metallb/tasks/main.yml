@@ -1,9 +1,9 @@
 - name: deploy required objects
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/metallb/deploy.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/metallb/deploy.yml') | from_yaml_all | list }}"
 
 - name: create config for load balancer
-  k8s_raw:
+  k8s:
     state: present
     definition: "{{ lookup('file', '~/k8s/metallb/config.yml') | from_yaml }}"

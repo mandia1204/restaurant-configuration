@@ -1,9 +1,9 @@
 - name: create service account
-  k8s_raw:
+  k8s:
     state: present
     definition: "{{ lookup('file', '~/k8s/prometheus-node-exporter/account.yml') | from_yaml }}"
 
 - name: create service and daemonset
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/prometheus-node-exporter/service.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/prometheus-node-exporter/service.yml') | from_yaml_all | list }}"

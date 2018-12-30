@@ -1,14 +1,14 @@
 - name: create service account and role
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/fluentd/account-roles.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/fluentd/account-roles.yml') | from_yaml_all | list }}"
 
 - name: create configmap
-  k8s_raw:
+  k8s:
     state: present
     definition: "{{ lookup('file', '~/k8s/fluentd/configmap.yml') | from_yaml }}"
 
 - name: create deployment
-  k8s_raw:
+  k8s:
     state: present
     definition: "{{ lookup('file', '~/k8s/fluentd/daemonset.yml') | from_yaml }}"

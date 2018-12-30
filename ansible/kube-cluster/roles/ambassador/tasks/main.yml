@@ -1,24 +1,24 @@
 - name: create service account and role
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/ambassador/account-roles.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/ambassador/account-roles.yml') | from_yaml_all | list }}"
 
 - name: create restaurant service
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/ambassador/restaurant-service.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/ambassador/restaurant-service.yml') | from_yaml_all | list }}"
 
 - name: create metrics service
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/ambassador/metrics-service.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/ambassador/metrics-service.yml') | from_yaml_all | list }}"
 
 - name: create grafana service
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/ambassador/grafana-service.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/ambassador/grafana-service.yml') | from_yaml_all | list }}"
 
 - name: create kibana service
-  k8s_raw:
+  k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/ambassador/kibana-service.yml') | from_yaml }}"
+    definition: "{{ lookup('file', '~/k8s/ambassador/kibana-service.yml') | from_yaml_all | list }}"
