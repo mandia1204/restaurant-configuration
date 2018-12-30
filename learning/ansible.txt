@@ -44,3 +44,7 @@ ansible-playbook -i hosts ~/kube-cluster/kube-objects.yml
 using vault variables:
 ======================
 ansible-playbook -i hosts --ask-vault-pass kube-objects.yml
+
+adding tags to roles and execute only tasks with that role:
+
+ansible-playbook -i hosts --ask-vault-pass kube-objects.yml --tags "dashboard-be"
