@@ -1,39 +1,39 @@
 - name: create configmap
   k8s_raw:
     state: present
-    src: /restaurant/k8s/elasticsearch/configmap.yml
+    definition: "{{ lookup('file', '~/k8s/elasticsearch/configmap.yml') | from_yaml }}"
 
 - name: create accounts
   k8s_raw:
     state: present
-    src: /restaurant/k8s/elasticsearch/account.yml
+    definition: "{{ lookup('file', '~/k8s/elasticsearch/account.yml') | from_yaml }}"
 
 - name: create master storage objects
   k8s_raw:
     state: present
-    src: /restaurant/k8s/elasticsearch/master-storage.yml
+    definition: "{{ lookup('file', '~/k8s/elasticsearch/master-storage.yml') | from_yaml }}"
 
 - name: create data storage objects
   k8s_raw:
     state: present
-    src: /restaurant/k8s/elasticsearch/data-storage.yml
+    definition: "{{ lookup('file', '~/k8s/elasticsearch/data-storage.yml') | from_yaml }}"
 
 - name: create services
   k8s_raw:
     state: present
-    src: /restaurant/k8s/elasticsearch/service.yml
+    definition: "{{ lookup('file', '~/k8s/elasticsearch/service.yml') | from_yaml }}"
 
 - name: create master statefulset
   k8s_raw:
     state: present
-    src: /restaurant/k8s/elasticsearch/master-statefulset.yml
+    definition: "{{ lookup('file', '~/k8s/elasticsearch/master-statefulset.yml') | from_yaml }}"
 
 - name: create client deployment
   k8s_raw:
     state: present
-    src: /restaurant/k8s/elasticsearch/client-deployment.yml
+    definition: "{{ lookup('file', '~/k8s/elasticsearch/client-deployment.yml') | from_yaml }}"
 
 - name: create data statefulset
   k8s_raw:
     state: present
-    src: /restaurant/k8s/elasticsearch/data-statefulset.yml
+    definition: "{{ lookup('file', '~/k8s/elasticsearch/data-statefulset.yml') | from_yaml }}"

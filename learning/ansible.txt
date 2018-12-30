@@ -6,7 +6,7 @@ check if you can ssh from server to client (we need to add the rsa key first):
 ssh matt@192.168.100.103
 
 global inventory:
-/etc/ansible/hosts 
+/etc/ansible/hosts
 
 add to the file:
 
@@ -31,8 +31,16 @@ creating vaults:
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_vault.html
 https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault/
 
+ansible-vault create vars.yml
+it will open a file, format:
+my_var: myval
+
 installing multiple packages with apt module
 http://www.mydailytutorials.com/introduction-ansible-apt-package-repository/
 
 run playbook:
 ansible-playbook -i hosts ~/kube-cluster/kube-objects.yml
+
+using vault variables:
+======================
+ansible-playbook -i hosts --ask-vault-pass kube-objects.yml

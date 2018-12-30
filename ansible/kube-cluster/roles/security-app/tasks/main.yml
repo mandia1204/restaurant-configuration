@@ -1,12 +1,19 @@
+- name: create secret
+  k8s_raw:
+    state: present
+    definition: "{{ lookup('template', '~/k8s/security/secret.yml') | from_yaml }}"
+
 - name: create configmap
   k8s_raw:
     state: present
-    src: /restaurant/k8s/security/configmap.yml
+    definition: "{{ lookup('file', '~/k8s/security/configmap.yml') | from_yaml }}"
+
 - name: create service
   k8s_raw:
     state: present
-    src: /restaurant/k8s/security/service.yml
+    definition: "{{ lookup('file', '~/k8s/security/service.yml') | from_yaml }}"
+
 - name: create deployment
   k8s_raw:
     state: present
-    src: /restaurant/k8s/security/deployment.yml
+    definition: "{{ lookup('file', '~/k8s/security/deployment.yml') | from_yaml }}"

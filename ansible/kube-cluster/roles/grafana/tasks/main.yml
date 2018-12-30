@@ -1,24 +1,24 @@
 - name: create secret
   k8s_raw:
     state: present
-    src: /restaurant/k8s/grafana/secret.yml
+    definition: "{{ lookup('file', '~/k8s/grafana/secret.yml') | from_yaml }}"
 
 - name: create configmap
   k8s_raw:
     state: present
-    src: /restaurant/k8s/grafana/configmap.yml
+    definition: "{{ lookup('file', '~/k8s/grafana/configmap.yml') | from_yaml }}"
 
 - name: create service account and role
   k8s_raw:
     state: present
-    src: /restaurant/k8s/grafana/account-roles.yml
+    definition: "{{ lookup('file', '~/k8s/grafana/account-roles.yml') | from_yaml }}"
 
 - name: create storage objects
   k8s_raw:
     state: present
-    src: /restaurant/k8s/grafana/storage.yml
+    definition: "{{ lookup('file', '~/k8s/grafana/storage.yml') | from_yaml }}"
 
 - name: create service and deployment
   k8s_raw:
     state: present
-    src: /restaurant/k8s/grafana/service.yml
+    definition: "{{ lookup('file', '~/k8s/grafana/service.yml') | from_yaml }}"

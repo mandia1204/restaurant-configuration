@@ -1,12 +1,14 @@
 - name: create nginx configmap
   k8s_raw:
     state: present
-    src: /restaurant/k8s/dashboard-fe/configmap.yml
+    definition: "{{ lookup('file', '~/k8s/dashboard-fe/configmap.yml') | from_yaml }}"
+
 - name: create service
   k8s_raw:
     state: present
-    src: /restaurant/k8s/dashboard-fe/service.yml
+    definition: "{{ lookup('file', '~/k8s/dashboard-fe/service.yml') | from_yaml }}"
+
 - name: create deployment
   k8s_raw:
     state: present
-    src: /restaurant/k8s/dashboard-fe/deployment.yml
+    definition: "{{ lookup('file', '~/k8s/dashboard-fe/deployment.yml') | from_yaml }}"

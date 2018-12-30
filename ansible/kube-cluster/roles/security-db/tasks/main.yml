@@ -1,16 +1,19 @@
 - name: create local storage class
   k8s_raw:
     state: present
-    src: /restaurant/k8s/security-db/local-storage-class.yml
+    definition: "{{ lookup('file', '~/k8s/security-db/local-storage-class.yml') | from_yaml }}"
+
 - name: create volume
   k8s_raw:
     state: present
-    src: /restaurant/k8s/security-db/mongodb-volume.yml
+    definition: "{{ lookup('file', '~/k8s/security-db/mongodb-volume.yml') | from_yaml }}"
+
 - name: create service
   k8s_raw:
     state: present
-    src: /restaurant/k8s/security-db/service.yml
+    definition: "{{ lookup('file', '~/k8s/security-db/service.yml') | from_yaml }}"
+
 - name: create stateful set
   k8s_raw:
     state: present
-    src: /restaurant/k8s/security-db/statefulset.yml
+    definition: "{{ lookup('file', '~/k8s/security-db/statefulset.yml') | from_yaml }}"

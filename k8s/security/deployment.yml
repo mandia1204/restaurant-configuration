@@ -15,12 +15,33 @@ spec:
     spec:
       containers:
       - name: res-security
-        image: mandia1204/securityapp:1.0.3
+        image: mandia1204/securityapp:12282018_22
         ports:
         - containerPort: 3001
         volumeMounts:
         - mountPath: /var/www/config
           name: config
+        env:
+          - name: SECURITY_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: security-app
+                key: dbUserName
+          - name: SECURITY_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: security-app
+                key: dbPassword
+          - name: SECURITY_ACCESS_TOKEN_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: security-app
+                key: dbAccessTokenSecret
+          - name: SECURITY_REFRESH_TOKEN_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: security-app
+                key: dbRefreshTokenSecret
       volumes:
         - name: config
           configMap:

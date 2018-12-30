@@ -1,24 +1,24 @@
 - name: create service account and role
   k8s_raw:
     state: present
-    src: /restaurant/k8s/ambassador/account-roles.yml
+    definition: "{{ lookup('file', '~/k8s/ambassador/account-roles.yml') | from_yaml }}"
 
 - name: create restaurant service
   k8s_raw:
     state: present
-    src: /restaurant/k8s/ambassador/restaurant-service.yml
+    definition: "{{ lookup('file', '~/k8s/ambassador/restaurant-service.yml') | from_yaml }}"
 
 - name: create metrics service
   k8s_raw:
     state: present
-    src: /restaurant/k8s/ambassador/metrics-service.yml
+    definition: "{{ lookup('file', '~/k8s/ambassador/metrics-service.yml') | from_yaml }}"
 
 - name: create grafana service
   k8s_raw:
     state: present
-    src: /restaurant/k8s/ambassador/grafana-service.yml
+    definition: "{{ lookup('file', '~/k8s/ambassador/grafana-service.yml') | from_yaml }}"
 
 - name: create kibana service
   k8s_raw:
     state: present
-    src: /restaurant/k8s/ambassador/kibana-service.yml
+    definition: "{{ lookup('file', '~/k8s/ambassador/kibana-service.yml') | from_yaml }}"
