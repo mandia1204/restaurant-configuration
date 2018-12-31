@@ -74,11 +74,9 @@ spec:
 
           volumeMounts:
             - name: config-volume
-              mountPath: /etc/config/alertmanager.yml
-              subPath: alertmanager.yml
-            - name: config-volume
-              mountPath: /etc/amtool/config.yml
-              subPath: amtool.yml
+              mountPath: /etc/config
+            - name: config-amtool-volume
+              mountPath: /etc/amtool
             - name: storage-volume
               mountPath: "/data"
               subPath: ""
@@ -94,13 +92,21 @@ spec:
 
           volumeMounts:
             - name: config-volume
-              mountPath: /etc/config/alertmanager.yml
-              subPath: alertmanager.yml
+              mountPath: /etc/config
               readOnly: true
       volumes:
         - name: config-volume
           configMap:
             name: prometheus-alertmanager
+            items:
+            - key: alertmanager.yml
+              path: alertmanager.yml
+        - name: config-amtool-volume
+          configMap:
+            name: prometheus-alertmanager
+            items:
+            - key: amtool.yml
+              path: config.yml
         - name: storage-volume
           persistentVolumeClaim:
             claimName: prometheus-alertmanager
