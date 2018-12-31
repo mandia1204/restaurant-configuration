@@ -87,8 +87,6 @@ ansible-vault create passwd.yml
     ansible-playbook -i hosts ~/kube-cluster/kube-dependencies.yml
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/kube-dependencies.yml (using sudo user)
 
-    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/workers.yml
-
 4- initialize the cluster
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/master.yml
 

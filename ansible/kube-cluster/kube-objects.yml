@@ -2,17 +2,17 @@
   become: yes
   become_user: matt
   roles:
-    - { role: metallb, tags: metallb }
-    - { role: ambassador, tags: ambassador }
-    - { role: security-db, tags: security-db }
-    - { role: security-app, tags: security-app }
-    - { role: dashboard-be, tags: dashboard-be }
-    - { role: dashboard-fe, tags: dashboard-fe }
-    - { role: prometheus, tags: prometheus }
-    - { role: prometheus-kube-state-metrics, tags: prometheus-kube-state-metrics }
-    - { role: prometheus-node-exporter, tags: prometheus-node-exporter }
-    - { role: prometheus-alert-manager, tags: prometheus-alert-manager }
-    - { role: grafana, tags: grafana }
-    - { role: elasticsearch, tags: elasticsearch }
-    - { role: kibana, tags: kibana }
-    - { role: fluentd, tags: fluentd }
+    - { role: apps/metallb, tags: metallb }
+    - { role: apps/ambassador, tags: ambassador }
+    - { role: apps/security-db, tags: security-db }
+    - { role: apps/security-app, tags: security-app }
+    - { role: apps/dashboard-be, tags: dashboard-be }
+    - { role: apps/dashboard-fe, tags: dashboard-fe }
+    - { role: apps/prometheus, tags: prometheus }
+    - { role: apps/prometheus-kube-state-metrics, tags: prometheus-kube-state-metrics }
+    - { role: apps/prometheus-node-exporter, tags: prometheus-node-exporter }
+    - { role: apps/prometheus-alert-manager, tags: prometheus-alert-manager }
+    - { role: apps/grafana, tags: grafana }
+    - { role: apps/elasticsearch, tags: elasticsearch }
+    - { role: apps/kibana, tags: kibana }
+    - { role: apps/fluentd, tags: fluentd }
