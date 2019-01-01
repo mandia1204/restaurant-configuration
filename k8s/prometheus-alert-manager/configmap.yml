@@ -14,12 +14,12 @@ data:
     - name: default-receiver
     - name: email-receiver
       email_configs:
-      - to: ${ALERT_GOOGLE_EMAIL}
-        from: ${ALERT_GOOGLE_EMAIL}
+      - to: ALERT_GOOGLE_EMAIL
+        from: ALERT_GOOGLE_EMAIL
         smarthost: smtp.gmail.com:587
-        auth_username: "${ALERT_GOOGLE_EMAIL}"
-        auth_identity: "${ALERT_GOOGLE_EMAIL}"
-        auth_password: "${ALERT_GOOGLE_PASS}"
+        auth_username: "ALERT_GOOGLE_EMAIL"
+        auth_identity: "ALERT_GOOGLE_EMAIL"
+        auth_password: "ALERT_GOOGLE_PASS"
     route:
       group_interval: 5m
       group_wait: 10s
@@ -27,5 +27,5 @@ data:
       repeat_interval: 3h
   amtool.yml: |-
     alertmanager.url: http://localhost:9093
-    author: ${ALERT_GOOGLE_EMAIL}
+    author: mandia
     output: simple

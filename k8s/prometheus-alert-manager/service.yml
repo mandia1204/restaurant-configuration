@@ -34,16 +34,19 @@ spec:
         component: "alertmanager"
     spec:
       serviceAccountName: prometheus-alertmanager
-      containers:
-        - name: prometheus-alertmanager
-          image: "prom/alertmanager:v0.15.3"
+      initContainers:
+        - name: init-alertmanager-config
+          image: "busybox:latest"
           imagePullPolicy: "IfNotPresent"
+          command: ["sh", "-ce","cp /var/tmp/config/alertmanager.yml /etc/config/alertmanager.yml
+            && sed -i 's/ALERT_GOOGLE_EMAIL/'\"$ALERT_GOOGLE_EMAIL\"'/g' /etc/config/alertmanager.yml
+            && sed -i 's/ALERT_GOOGLE_PASS/'\"$ALERT_GOOGLE_PASS\"'/g' /etc/config/alertmanager.yml"]
+          volumeMounts:
+            - name: config-volume
+              mountPath: /var/tmp/config
+            - name: alertmanager-config
+              mountPath: /etc/config
           env:
-            - name: POD_IP
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: status.podIP
             - name: ALERT_GOOGLE_EMAIL
               valueFrom:
                 secretKeyRef:
@@ -55,6 +58,16 @@ spec:
                   name: prometheus-alert-manager
                   key: alertGooglePass
 
+      containers:
+        - name: prometheus-alertmanager
+          image: "prom/alertmanager:v0.15.3"
+          imagePullPolicy: "IfNotPresent"
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
           args:
             - --config.file=/etc/config/alertmanager.yml
             - --storage.path=/data
@@ -73,7 +86,7 @@ spec:
             {}
 
           volumeMounts:
-            - name: config-volume
+            - name: alertmanager-config
               mountPath: /etc/config
             - name: config-amtool-volume
               mountPath: /etc/amtool
@@ -91,10 +104,12 @@ spec:
             {}
 
           volumeMounts:
-            - name: config-volume
+            - name: alertmanager-config
               mountPath: /etc/config
               readOnly: true
       volumes:
+        - name: alertmanager-config
+          emptyDir: {}
         - name: config-volume
           configMap:
             name: prometheus-alertmanager
