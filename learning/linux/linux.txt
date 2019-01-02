@@ -74,6 +74,16 @@ mount vmware folder:
 ====================
 
 sudo vmhgfs-fuse .host:/shared $HOME/shares/ -o allow_other
+sudo vmhgfs-fuse .host:/kube-cluster $HOME/kube-cluster/ -o allow_other
+
+*fix problem with permissions
+sudo umount $HOME/kube-cluster
+vmhgfs-fuse .host:/kube-cluster $HOME/kube-cluster -o uid=1000 -o gid=1000 -o umask=0033
+vmhgfs-fuse .host:/kube-cluster $HOME/kube-cluster -o uid=1000 -o gid=1000 -o allow_other
+
+*to know what uid and gid to use:
+id -u
+id -g
 
 .host:/shared _-> shared name, we can list shares whith:
 vmware-hgfsclient

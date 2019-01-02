@@ -1,0 +1,2 @@
+alert_google_email: "{{ vault_alert_google_email }}"
+alert_google_pass: "{{ vault_alert_google_pass }}"
