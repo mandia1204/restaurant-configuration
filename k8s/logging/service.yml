@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: logging-app
+  namespace: default
+spec:
+  selector:
+    app: logging
+  ports:
+  - protocol: TCP
+    port: 50051

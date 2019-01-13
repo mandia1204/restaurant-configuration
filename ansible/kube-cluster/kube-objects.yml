@@ -8,6 +8,7 @@
     - { role: apps/security-app, tags: security-app }
     - { role: apps/dashboard-be, tags: dashboard-be }
     - { role: apps/dashboard-fe, tags: dashboard-fe }
+    - { role: apps/logging, tags: logging }
     - { role: apps/prometheus, tags: prometheus }
     - { role: apps/prometheus-kube-state-metrics, tags: prometheus-kube-state-metrics }
     - { role: apps/prometheus-node-exporter, tags: prometheus-node-exporter }

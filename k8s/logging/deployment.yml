@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: logging-app
+spec:
+  selector:
+    matchLabels:
+      app: logging
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: logging
+    spec:
+      containers:
+      - name: res-logging
+        image: mandia1204/logging-app:1
+        ports:
+        - containerPort: 50051
