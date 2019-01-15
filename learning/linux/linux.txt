@@ -75,6 +75,7 @@ mount vmware folder:
 
 sudo vmhgfs-fuse .host:/shared $HOME/shares/ -o allow_other
 sudo vmhgfs-fuse .host:/kube-cluster $HOME/kube-cluster/ -o allow_other
+sudo vmhgfs-fuse .host:/k8s $HOME/k8s/ -o allow_other
 
 *fix problem with permissions
 sudo umount $HOME/kube-cluster

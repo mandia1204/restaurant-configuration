@@ -1,0 +1,11 @@
+- create the dockerfile prod in the root of the app source code.
+- create the jenkins files for build and deploy
+- create the jenkins multibranch pipeline for build
+- create the jenkins pipeline for deploy
+- add the ansible role and include the role in the playbook
+- configure folders and sh files:
+  - in k8s master, create {app-name}-vars.sh file inside /restaurant/deploy
+  - in jenkins node, create the app folder inside ~/restaurant , name should be {app-name} same as vars file, this folder should contain folders backup,
+    dist and the dockerfile
+- create the docker hub repository
+- create the k8s objects
