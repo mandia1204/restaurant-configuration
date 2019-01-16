@@ -7,8 +7,6 @@ metadata:
     app: security
 data:
   app-config: |
-    const path = require('path');
-
     module.exports = {
       database: {
         userName: process.env.SECURITY_DB_USER,
@@ -18,7 +16,7 @@ data:
         hostName: 'security-db',
       },
       loggingUrl: 'logging-app:50051',
-      baseDir: path.join(__dirname, '..'),
+      baseDir: process.env.PWD,
       auth: {
         issuer: 'security.mattcompany.com',
         audience: 'restaurant.mattcompany.com',

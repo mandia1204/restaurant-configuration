@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: res-security
-        image: mandia1204/securityapp:12282018_22
+        image: mandia1204/securityapp:01152019_28
         ports:
         - containerPort: 3001
         volumeMounts:
@@ -48,4 +48,4 @@ spec:
             name: security-config
             items:
             - key: app-config
-              path: default.js
+              path: production.js
