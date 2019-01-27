@@ -6,4 +6,4 @@
 - name: create deployment
   k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/dashboard-be/deployment.yml') | from_yaml }}"
+    definition: "{{ lookup('template', '~/k8s/dashboard-be/deployment.yml') | from_yaml }}"

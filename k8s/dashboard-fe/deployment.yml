@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: res-dashboard-fe
-        image: mandia1204/dashboard-fe-app:1.0.0
+        image: mandia1204/dashboard-fe-app:{{ app_image_tag }}
         ports:
         - containerPort: 80
         volumeMounts:

@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: res-dashboard-be
-        image: mandia1204/dashboard-be-app:1.0.0
+        image: mandia1204/dashboard-be-app:{{ app_image_tag }}
         ports:
         - containerPort: 5000

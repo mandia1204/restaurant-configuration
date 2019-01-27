@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: res-logging
-        image: mandia1204/logging-app:1
+        image: mandia1204/logging-app:{{ app_image_tag }}
         ports:
         - containerPort: 50051
