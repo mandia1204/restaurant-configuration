@@ -5,7 +5,7 @@
     - { role: apps/metallb, tags: metallb }
     - { role: apps/ambassador, tags: ambassador }
     - { role: apps/security-db, tags: security-db }
-    - { role: apps/security-app, tags: security-app }
+    - { role: apps/security, tags: security }
     - { role: apps/dashboard-be, tags: dashboard-be }
     - { role: apps/dashboard-fe, tags: dashboard-fe }
     - { role: apps/logging, tags: logging }

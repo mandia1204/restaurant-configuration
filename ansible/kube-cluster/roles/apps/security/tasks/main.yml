@@ -16,4 +16,4 @@
 - name: create deployment
   k8s:
     state: present
-    definition: "{{ lookup('file', '~/k8s/security/deployment.yml') | from_yaml }}"
+    definition: "{{ lookup('template', '~/k8s/security/deployment.yml') | from_yaml }}"

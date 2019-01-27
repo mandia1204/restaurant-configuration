@@ -49,7 +49,9 @@ adding tags to roles and execute only tasks with that role:
 
 ansible-playbook -i hosts --ask-vault-pass kube-objects.yml --tags "dashboard-be"
 ansible-playbook -i hosts --ask-vault-pass kube-objects.yml --tags "security-app"
-ansible-playbook -i hosts --vault-password-file=~/myfile kube-objects.yml --tags "security-app"
+
+exec without asking pass:
+ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "security-app"
 
 shutdown all vm:
 ansible all -i cluster --become --ask-become-pass -m shell -a 'shutdown -h now'
