@@ -13,7 +13,6 @@ https://www.getambassador.io/user-guide/tls-termination/
 
 files are located here: /etc/letsencrypt/live/mandialand.com/ in master k8s
 
-sudo kubectl create secret tls ambassador-certs --cert=/etc/letsencrypt/live/mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/mandialand.com/privkey.pem
 sudo kubectl create secret tls restaurant-cert-secret --cert=/etc/letsencrypt/live/mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/mandialand.com/privkey.pem
 
 sudo kubectl create secret tls prometheus-cert-secret --cert=/etc/letsencrypt/live/prometheus.mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/prometheus.mandialand.com/privkey.pem
@@ -23,3 +22,11 @@ sudo kubectl create secret tls kibana-cert-secret --cert=/etc/letsencrypt/live/k
 5- delete existing pods (if we already have the embassador deployment)
 
 kubectl delete pods -l service=ambassador
+kubectl delete pods -l service=ambassador-grafana
+kubectl delete pods -l service=ambassador-metrics
+kubectl delete pods -l service=ambassador-kibana
+
+kubectl delete secret restaurant-cert-secret
+kubectl delete secret prometheus-cert-secret
+kubectl delete secret grafana-cert-secret
+kubectl delete secret kibana-cert-secret

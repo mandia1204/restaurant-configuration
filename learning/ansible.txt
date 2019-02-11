@@ -55,3 +55,9 @@ ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "s
 
 shutdown all vm:
 ansible all -i cluster --become --ask-become-pass -m shell -a 'shutdown -h now'
+
+use colors with jenkins:
+edit:
+sudo vim /etc/ansible/ansible.cfg
+add line:
+force_color = 1

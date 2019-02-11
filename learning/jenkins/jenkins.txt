@@ -19,6 +19,7 @@ Github plugin
 Copy artifact
 https://wiki.jenkins.io/display/JENKINS/GitHub+Plugin
 publish over ssh
+simple theme
 
 -configure shared libraries
 
@@ -51,3 +52,6 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubunt
 
     C:\Users\Marvin\.ssh\kube
   * reuse the same key to connect to other servers.
+
+  adding style to jenkins:
+  http://afonsof.com/jenkins-material-theme/

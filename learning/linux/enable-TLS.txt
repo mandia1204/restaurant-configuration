@@ -15,9 +15,11 @@ after buying a dns in namecheap and installing certbot:
 - sudo certbot -d grafana.mandialand.com --manual --preferred-challenges dns certonly
 - sudo certbot -d kibana.mandialand.com --manual --preferred-challenges dns certonly
 
+CHECK IF TXT is present:
+========================
 dig +trace _acme-challenge.mandialand.com TXT
-
 dig _acme-challenge.mandialand.com TXT +noall +answer
+
 
 nslookup -q=TXT _acme-challenge.mandialand.com
 
