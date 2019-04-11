@@ -12,6 +12,7 @@ data:
     }
 
     http {
+      include       mime.types;
       server {
         listen    80;
         root      /var/www;
@@ -21,4 +22,26 @@ data:
           try_files $uri /index.html;
         }
       }
+    }
+  mime.types: |
+    types {
+      text/html                                        html htm shtml;
+      text/css                                         css;
+      text/xml                                         xml;
+      image/gif                                        gif;
+      image/jpeg                                       jpeg jpg;
+      application/javascript                           js;
+
+      text/plain                                       txt;
+
+      image/png                                        png;
+      image/svg+xml                                    svg svgz;
+      image/tiff                                       tif tiff;
+      image/x-icon                                     ico;
+      image/x-jng                                      jng;
+      image/x-ms-bmp                                   bmp;
+
+      font/woff                                        woff;
+      font/woff2                                       woff2;
+      application/json                                 json;
     }

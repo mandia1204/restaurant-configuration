@@ -1,2 +1,5 @@
 list global packages
 npm ls --global=true --depth=0
+
+
+npm outdated
