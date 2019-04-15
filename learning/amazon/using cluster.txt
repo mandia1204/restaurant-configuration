@@ -1,0 +1,5 @@
+after creating a LB
+http://aaf8c0e0b5f9611e9adfa0641b32f9bc-1440589413.us-east-2.elb.amazonaws.com:3000
+
+cleaning sample:
+kubectl delete rc/redis-master rc/redis-slave rc/guestbook svc/redis-master svc/redis-slave svc/guestbook
