@@ -1,0 +1,47 @@
+1) create the cluster:
+https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
+
+clusterName: mandia-cluster, complete others fields, k8s default, IAM role, SecurityGroups ( from vpc output),
+it takes like 10 minutes to complete.
+
+using the cli:
+
+SubnetIds (from vpc):	subnet-01557096b74406654,subnet-017abe68d6c57ece5,subnet-07c0425297332409d
+
+aws eks --region us-east-2 create-cluster --name mandia-cluster --role-arn arn:aws:iam::341189667252:role/eksServiceRole --resources-vpc-config subnetIds=subnet-01557096b74406654,subnet-017abe68d6c57ece5,subnet-07c0425297332409d,securityGroupIds=sg-0767dd8fef1b87d45
+aws eks --region us-east-2 describe-cluster --name mandia-cluster --query cluster.status
+
+2) Create a kubeconfig File
+
+You can view your default AWS CLI or SDK identity by running the: aws sts get-caller-identity command
+
+aws eks --region us-east-2 update-kubeconfig --name mandia-cluster --role-arn arn:aws:iam::341189667252:role/eksServiceRole
+
+region is in the Cluster ARN , https://us-east-2.console.aws.amazon.com/eks/home?region=us-east-2#/clusters/mandia-cluster
+
+3) Launch and Configure Amazon EKS Worker Nodes
+
+https://console.aws.amazon.com/cloudformation/
+https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2019-02-11/amazon-eks-nodegroup.yaml
+
+Stack name: mandia-cluster-worker-nodes
+ClusterName: mandia-cluster
+ClusterControlPlaneSecurityGroup: sg-xxxx (from vpc SecurityGroups)
+NodeGroupName:workerNodes
+NodeInstanceType: t2.small
+NodeImageId: ami-03b1b6cc34c010f9c	(ami for region us-east-2 k8s: 1.11)
+KeyName: k8sWorkerSSH
+VpcId: vpc-xxxxx (from vpc)
+
+for keyname we need to create the kvp here:
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#KeyPairs:sort=keyName
+Or with the cli:
+aws ec2 create-key-pair --key-name k8sWorkerSSH
+
+4- after the creation of the stack, copy the NodeInstanceRole generated.
+
+
+
+\\\\==============================CLEANING AFTER FINISH=============================\\\\
+https://docs.aws.amazon.com/eks/latest/userguide/delete-cluster.html
+aws eks delete-cluster --name mandia-cluster

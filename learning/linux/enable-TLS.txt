@@ -3,6 +3,7 @@
 https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04
 
 ufw allow OpenSSH
+ufw allow ssh
 ufw enable
 ufw status
 

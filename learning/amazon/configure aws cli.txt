@@ -1,0 +1,15 @@
+1) create a user and group for the admin
+  https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html
+
+  aws iam create-group --group-name Admins (after cli is configured)
+
+2) create the Access Key and Secret Access Key
+  https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
+
+3)
+  aws configure
+
+  AWS Access Key ID [None]: from 2)
+  AWS Secret Access Key [None]: from 2)
+  Default region name [None]: us-east-2
+  Default output format [None]: json

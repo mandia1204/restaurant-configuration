@@ -3,6 +3,7 @@ installation:
 https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-18-04
 
 check if you can ssh from server to client (we need to add the rsa key first):
+ssh-copy-id matt@192.168.100.124
 ssh matt@192.168.100.103
 
 global inventory:

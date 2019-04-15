@@ -1,0 +1,38 @@
+Getting started
+https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
+
+1) create role:
+  https://console.aws.amazon.com/iam/home#/roles
+
+2) create the vpc:
+  https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks?filter=active
+
+  sample output:
+  SecurityGroups	sg-xxxx
+  VpcId	vpc-xxx1212xxxxx
+  SubnetIds	subnet-01xxxx,subnet-01xxxx,subnet-07xxxx
+
+3) install kubectl:
+
+  https://kubernetes.io/docs/tasks/tools/install-kubectl/
+  (might need to install curl and gnupg)
+
+4) install aws-iam-authenticator for Amazon EKS:
+
+  curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/amd64/aws-iam-authenticator
+
+  verify binary:
+  curl -o aws-iam-authenticator.sha256 https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/amd64/aws-iam-authenticator.sha256
+  openssl sha1 -sha256 aws-iam-authenticator
+
+  chmod +x ./aws-iam-authenticator
+  mkdir $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
+  echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+
+5) install AWS CLI
+sudo apt install python3-pip
+pip3 install awscli --upgrade --user
+export PATH=~/.local/bin:$PATH
+aws --version
+
+*then we need to configure the aws cli.

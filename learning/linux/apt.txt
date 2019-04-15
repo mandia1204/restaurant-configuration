@@ -7,7 +7,7 @@ deb http://archive.ubuntu.com/ubuntu bionic-security main universe
 deb http://archive.ubuntu.com/ubuntu bionic-updates main universe
 
 sudo apt update
-apt-cache policy <package name>
+apt-cache policy <package name> --gets candidates for install and installed version
 sudo apt-get install docker-ce=18.06.1~ce~3-0~ubuntu
 apt-get purge <package name>
 
