@@ -1,0 +1,21 @@
+--image-id ami-02bcbb802e03574ba
+--instance-type t2.micro
+--key-name SimpleInstance2
+--security-group-ids sg-011737c600a982621
+--subnet-id subnet-052cb98ad826091bb
+--user-data "data1=val1 | data2=val2"
+
+launch an instance:
+
+aws ec2 run-instances --image-id ami-02bcbb802e03574ba --instance-type t2.micro --user-data "data1=val1 | data2=val2" --key-name SimpleInstance2 --security-group-ids sg-011737c600a982621 --subnet-id subnet-052cb98ad826091bb
+
+show status of instance:
+
+aws ec2 describe-instances --instance-ids i-085744d61045e12c6
+
+getting instance metadata (only inside instance):
+curl http://169.254.169.254/latest/meta-data/
+
+from a template:
+
+aws ec2 run-instances --launch-template LaunchTemplateId=lt-02d78edb82c65f164,Version=1

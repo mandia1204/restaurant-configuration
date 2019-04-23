@@ -1,0 +1,3 @@
+get the az in ohio region:
+
+aws ec2 describe-availability-zones --region us-east-2

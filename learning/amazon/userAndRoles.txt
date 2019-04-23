@@ -1,0 +1,4 @@
+Users with AWS Management Console access can sign-in at:
+https://[ACCOUNT-ID].signin.aws.amazon.com/console
+
+user:Administrator
