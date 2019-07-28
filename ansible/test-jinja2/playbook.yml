@@ -1,8 +1,16 @@
-- hosts: workers
+- hosts: 127.0.0.1
+  connection: local
   vars:
-    variable_to_be_replaced: 'Hello world2'
+    variable_to_be_replaced: 'matt here'
     inline_variable: 'hello again'
     app_name: 'my-app-2'
+    my_list:
+        - 
+          name: 'matt'
+          age: 20
+        -
+          name: 'edson'
+          age: 30
   tasks:
     - name: Ansible Template Example
       template:
@@ -12,12 +20,3 @@
       template:
         src: config.yml
         dest: /home/matt/template/config.yml
-- hosts: masters
-  vars:
-    resource_name: 'dev-01'
-  tasks:
-    - name: K8s resource with template
-      k8s_raw:
-       state: present
-       definition: "{{ lookup('template', 'namespace.yml') | from_yaml }}"
-

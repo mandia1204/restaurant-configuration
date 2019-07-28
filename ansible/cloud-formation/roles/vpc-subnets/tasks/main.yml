@@ -4,7 +4,7 @@
     state: "present"
     region: "us-east-2"
     disable_rollback: true
-    template_body: "{{ lookup('template', 'roles/vpc-subnets/files/vpc-2-subnets-template.yml') }}"
+    template_body: "{{ lookup('template', 'roles/vpc-subnets/files/vpc-2-subnets.j2') }}"
     tags:
       Stack: "mandia-cloudformation"
   register: vpc_create_result
@@ -13,4 +13,5 @@
     msg:
       - '{{ vpc_create_result.output }}'
       - 'changed: {{ vpc_create_result.changed }}'
-      # - '{{ vpc_create_result.stack_resources | selectattr("status", "equalto", "UPDATE_COMPLETE") | list }}'
+#       - '{{ vpc_create_result.stack_resources | selectattr("status", "equalto", "UPDATE_COMPLETE") | list }}'
+

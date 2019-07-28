@@ -1,2 +1,17 @@
-{{ variable_to_be_replaced }}
+my var: {{ variable_to_be_replaced }}
 Variable given as inline - {{ inline_variable }} - :)
+
+my list:
+
+{{ my_list[0].name }}
+{{ my_list[1].name }}
+
+{% for item in my_list %}
+name: {{ item.name }}
+age: {{ item.age }}
+old: {{ 'yes' if item.age > 20 else 'no' }}
+{% endfor %}
+
+{% if my_list[0].name == 'matty' %}
+entered!
+{% endif %}

@@ -1,0 +1,11 @@
+subnet_list:
+  -
+    id: Subnet01
+    name: public
+    cidrBlock: 192.168.64.0/18
+    availabilityZone: us-east-2c
+  -
+    id: Subnet02
+    name: private
+    cidrBlock: 192.168.128.0/18
+    availabilityZone: us-east-2a
