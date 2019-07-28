@@ -1,0 +1,16 @@
+- name: create vpc with 2 subnets
+  cloudformation:
+    stack_name: "mandia-vpc-2subnets"
+    state: "present"
+    region: "us-east-2"
+    disable_rollback: true
+    template_body: "{{ lookup('template', 'roles/vpc-subnets/files/vpc-2-subnets-template.yml') }}"
+    tags:
+      Stack: "mandia-cloudformation"
+  register: vpc_create_result
+
+- debug:
+    msg:
+      - '{{ vpc_create_result.output }}'
+      - 'changed: {{ vpc_create_result.changed }}'
+      # - '{{ vpc_create_result.stack_resources | selectattr("status", "equalto", "UPDATE_COMPLETE") | list }}'

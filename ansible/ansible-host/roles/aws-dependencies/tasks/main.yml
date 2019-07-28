@@ -1,0 +1,10 @@
+- name: install python-pip
+  apt:
+    name: python-pip
+    state: present
+- name: install boto
+  pip:
+   name: boto
+- name: install boto3
+  pip:
+   name: boto3

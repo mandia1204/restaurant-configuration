@@ -1,0 +1,12 @@
+1- install the ansible-host playbook
+2- create a .boto file in {HOME}/.boto with the following content:
+
+[Credentials]
+aws_access_key_id = <your_access_key_here>
+aws_secret_access_key = <your_secret_key_here>
+
+https://boto.readthedocs.io/en/latest/boto_config_tut.html
+
+* I can get the keys from a user in aws console IAM.
+
+3- we can avoid step 2 and add aws_access_key aws_secret_key to cloudformation module

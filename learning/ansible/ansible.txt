@@ -62,3 +62,8 @@ edit:
 sudo vim /etc/ansible/ansible.cfg
 add line:
 force_color = 1
+
+local playbook:
+===============
+# inside ansible-host folder
+ansible-playbook main.yml --ask-become-pass
