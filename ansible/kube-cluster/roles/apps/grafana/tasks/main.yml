@@ -1,24 +1,24 @@
 - name: "{{ create_or_delete }} secret"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', '~/k8s/grafana/secret.yml') | from_yaml }}"
+    definition: "{{ lookup('file', 'files/secret.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} configmap"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', '~/k8s/grafana/configmap.yml') | from_yaml_all | list }}"
+    definition: "{{ lookup('file', 'files/configmap.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} service account and role"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', '~/k8s/grafana/account-roles.yml') | from_yaml_all | list }}"
+    definition: "{{ lookup('file', 'files/account-roles.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} storage objects"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', '~/k8s/grafana/storage.yml') | from_yaml_all | list }}"
+    definition: "{{ lookup('file', 'files/storage.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} service and deployment"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', '~/k8s/grafana/service.yml') | from_yaml_all | list }}"
+    definition: "{{ lookup('file', 'files/service.yml') | from_yaml_all | list }}"

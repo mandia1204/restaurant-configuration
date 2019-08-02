@@ -8,7 +8,7 @@
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/configmap.yml') | from_yaml }}"
 
-- name: "{{ create_or_delete }} daemonset"
+- name: "{{ create_or_delete }} daemonsets"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', 'files/daemonset.yml') | from_yaml }}"
+    definition: "{{ lookup('file', 'files/daemonset.yml') | from_yaml_all | list }}"

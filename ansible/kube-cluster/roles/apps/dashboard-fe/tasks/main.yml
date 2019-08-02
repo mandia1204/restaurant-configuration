@@ -1,14 +1,14 @@
 - name: "{{ create_or_delete }} nginx configmap"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', '~/k8s/dashboard-fe/configmap.yml') | from_yaml }}"
+    definition: "{{ lookup('file', 'files/configmap.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} service"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', '~/k8s/dashboard-fe/service.yml') | from_yaml }}"
+    definition: "{{ lookup('file', 'files/service.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} deployment"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('template', '~/k8s/dashboard-fe/deployment.yml') | from_yaml }}"
+    definition: "{{ lookup('template', 'templates/deployment.j2') | from_yaml }}"
