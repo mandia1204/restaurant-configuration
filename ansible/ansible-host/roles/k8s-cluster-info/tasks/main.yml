@@ -1,0 +1,23 @@
+- name: get cluster master ip
+  shell: kubectl config view --flatten -o jsonpath='{.clusters[?(@.name=="kubernetes")].cluster.server}'
+  register: k8s_master_ip_result
+  changed_when: false
+
+- name: get cluster certificate authority data
+  shell: kubectl config view --flatten -o jsonpath='{.clusters[?(@.name=="kubernetes")].cluster.certificate-authority-data}'
+  register: k8s_certificate_authority_data_result
+  changed_when: false
+
+- name: get cluster ansible service account token
+  shell: kubectl get secrets "$(kubectl get sa ansible -o jsonpath='{.secrets[0].name}')" -o jsonpath="{.data.token}" | openssl enc -d -base64 -A
+  register: ansible_service_account_token_result
+  changed_when: false
+
+- name: exporting variables
+  set_fact:
+    k8s_master_ip: "{{ k8s_master_ip_result.stdout }}"
+    k8s_certificate_authority_data: "{{ k8s_certificate_authority_data_result.stdout }}"
+    ansible_service_account_token: "{{ ansible_service_account_token_result.stdout }}"
+
+
+

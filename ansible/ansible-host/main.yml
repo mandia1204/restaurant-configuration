@@ -1,7 +1,18 @@
-- hosts: 127.0.0.1
-  connection: local
+- hosts: master
+  become: yes
+  become_user: matt
+  gather_facts: false
+  roles:
+    - { role: k8s-cluster-info, tags: k8s-kube-config }
+
+- hosts: local
   become: yes
   become_method: sudo
+  vars:
+    ansible_become_pass: '{{ ansible_sudo_pass }}'
   gather_facts: no
   roles:
-    - aws-dependencies
+    - { role: aws-dependencies, tags: aws-dependencies }
+    - { role: kube-dependencies, tags: kube-dependencies }
+    - { role: k8s-kube-config, tags: k8s-kube-config }
+

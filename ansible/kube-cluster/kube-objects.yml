@@ -17,3 +17,4 @@
     - { role: apps/elasticsearch, tags: elasticsearch }
     - { role: apps/kibana, tags: kibana }
     - { role: apps/fluentd, tags: fluentd }
+    - { role: ansible-access, tags: ansible-access }

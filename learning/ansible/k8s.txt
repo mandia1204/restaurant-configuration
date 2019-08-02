@@ -1,0 +1,27 @@
+to use lookup 'k8s' plugin (query k8s objects from ansible)
+==========================
+
+* execute playbook ansible-host for  step 1 and 3
+
+1- it need openshift in the ansible host to run the k8s lookup plugin.
+  inside ansible-host:
+  ansible-playbook main.yml --ask-become-pass
+
+2- create service account and role for ansible
+  inside kube-cluster:
+  ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "ansible-access"
+
+3- it should have a kubeconfig in '~/.kube/config', to configure it follow the steps:
+  http://docs.shippable.com/deploy/tutorial/create-kubeconfig-for-self-hosted-kubernetes-cluster/
+  https://gardener.cloud/050-tutorials/content/howto/working-with-kubeconfig/#create-custom-kubeconfig-file-for-each-user
+
+
+  - get service account secret name:
+  kubectl get serviceAccount ansible -o jsonpath="{.secrets[0].name}"
+  - get secret token:
+  kubectl get secrets {SECRET_NAME} -o jsonpath="{.data.token}"
+  - get server and certificate-authority-data:
+  kubectl config view --flatten -o jsonpath='{.clusters[?(@.name=="kubernetes")].cluster.server}'
+  kubectl config view --flatten -o jsonpath='{.clusters[?(@.name=="kubernetes")].cluster.certificate-authority-data}'
+
+

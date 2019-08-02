@@ -1,0 +1,19 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: {{ k8s_certificate_authority_data }}
+    server: {{ k8s_master_ip }}
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: default
+    user: ansible
+  name: ansible-host
+current-context: ansible-host
+kind: Config
+preferences: {}
+users:
+- name: ansible
+  user:
+    token: {{ ansible_service_account_token }}
