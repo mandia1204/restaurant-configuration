@@ -1,9 +1,9 @@
-- name: create service
+- name: "{{ create_or_delete }} service"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/dashboard-be/service.yml') | from_yaml }}"
 
-- name: create deployment
+- name: "{{ create_or_delete }} deployment"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('template', '~/k8s/dashboard-be/deployment.yml') | from_yaml }}"

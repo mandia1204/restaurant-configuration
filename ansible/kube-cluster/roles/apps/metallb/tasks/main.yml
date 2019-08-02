@@ -1,9 +1,9 @@
-- name: deploy required objects
+- name: "{{ create_or_delete }} required objects"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/metallb/deploy.yml') | from_yaml_all | list }}"
 
-- name: create config for load balancer
+- name: "{{ create_or_delete }} config for load balancer"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/metallb/config.yml') | from_yaml }}"

@@ -1,4 +1,4 @@
-security_db_user: "{{ vault_security_db_user }}"
+security_db_user: "{{ vault_security_db_user }}" #from group_vars/masters/vault.yml
 security_db_pass: "{{ vault_security_db_pass }}"
 security_access_token_secret: "{{ vault_security_access_token_secret }}"
 security_refresh_token_secret: "{{ vault_security_refresh_token_secret }}"

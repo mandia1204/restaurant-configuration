@@ -1,0 +1,3 @@
+create_or_delete: "{{ 'create' if desired_state == 'present' else 'delete' }}"
+desired_state: "present"
+app_image_tag: "test"

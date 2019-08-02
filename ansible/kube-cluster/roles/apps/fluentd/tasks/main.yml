@@ -1,14 +1,14 @@
-- name: create service account and role
+- name: "{{ create_or_delete }} service account and role"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/fluentd/account-roles.yml') | from_yaml_all | list }}"
 
-- name: create configmap
+- name: "{{ create_or_delete }} configmap"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/fluentd/configmap.yml') | from_yaml }}"
 
-- name: create deployment
+- name: "{{ create_or_delete }} deployment"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/fluentd/daemonset.yml') | from_yaml }}"

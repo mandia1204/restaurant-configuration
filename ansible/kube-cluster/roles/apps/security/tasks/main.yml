@@ -1,19 +1,19 @@
-- name: create secret
+- name: "{{ create_or_delete }} secret"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('template', '~/k8s/security/secret.yml') | from_yaml }}"
 
-- name: create configmap
+- name: "{{ create_or_delete }} configmap"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/security/configmap.yml') | from_yaml }}"
 
-- name: create service
+- name: "{{ create_or_delete }} service"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/security/service.yml') | from_yaml }}"
 
-- name: create deployment
+- name: "{{ create_or_delete }} deployment"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('template', '~/k8s/security/deployment.yml') | from_yaml }}"

@@ -1,24 +1,24 @@
-- name: create service account and role
+- name: "{{ create_or_delete }} service account and role"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/ambassador/account-roles.yml') | from_yaml_all | list }}"
 
-- name: create restaurant service
+- name: "{{ create_or_delete }} restaurant service"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/ambassador/restaurant-service.yml') | from_yaml_all | list }}"
 
-- name: create metrics service
+- name: "{{ create_or_delete }} metrics service"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/ambassador/metrics-service.yml') | from_yaml_all | list }}"
 
-- name: create grafana service
+- name: "{{ create_or_delete }} grafana service"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/ambassador/grafana-service.yml') | from_yaml_all | list }}"
 
-- name: create kibana service
+- name: "{{ create_or_delete }} kibana service"
   k8s:
-    state: present
+    state: "{{ desired_state }}"
     definition: "{{ lookup('file', '~/k8s/ambassador/kibana-service.yml') | from_yaml_all | list }}"
