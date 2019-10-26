@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  EKS cluster
+Parameters:
+  NetworkStackName:
+    Type: String
+Resources:
+  EKSCluster:
+    Type: AWS::EKS::Cluster
+    Properties:
+      Name: 'mandia-eks-cluster'
+      ResourcesVpcConfig:
+        SecurityGroupIds:
+          Fn::Split:
+              - ","
+              - Fn::ImportValue:
+                    Fn::Sub: ${NetworkStackName}-SECURITY-GROUP-ID
+        SubnetIds:
+          Fn::Split:
+              - ","
+              - Fn::ImportValue:
+                    Fn::Sub: ${NetworkStackName}-SUBNETS
+      RoleArn: arn:aws:iam::341189667252:role/eksServiceRole
+
+
+

@@ -2,9 +2,6 @@
     Type: 'AWS::EC2::NetworkAcl'
     Properties:
       VpcId: !Ref VPC
-      Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackId'
   InboundHTTPNetworkAclEntry:
     Type: 'AWS::EC2::NetworkAclEntry'
     Properties:
@@ -39,8 +36,20 @@
       Egress: 'false'
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '1024'
+        From: '1025'
         To: '65535'
+  InBoundHTTPSNetworkAclEntry:
+    Type: 'AWS::EC2::NetworkAclEntry'
+    Properties:
+      NetworkAclId: !Ref NetworkAcl
+      RuleNumber: '104'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '443'
+        To: '443'
   OutBoundHTTPNetworkAclEntry:
     Type: 'AWS::EC2::NetworkAclEntry'
     Properties:
