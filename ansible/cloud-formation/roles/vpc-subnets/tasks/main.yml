@@ -7,32 +7,3 @@
     template_body: "{{ lookup('template', 'roles/vpc-subnets/files/vpc-and-subnets.j2') }}"
     tags:
       Stack: "mandia-cloudformation-vpc"
-  register: vpc_create_result
-
-- name: create eks cluster
-  cloudformation:
-    stack_name: "mandia-eks-cluster"
-    state: "present"
-    region: "us-east-2"
-    disable_rollback: true
-    template_body: "{{ lookup('file', 'roles/vpc-subnets/files/eks-cluster.yml') }}"
-    template_parameters:
-      NetworkStackName: "mandia-eks-vpc-4subnets"
-    tags:
-      Stack: "mandia-cloudformation-eks-cluster"
-
-# - name: test template
-#   become_user: matt
-#   template:
-#     src: roles/vpc-subnets/files/vpc.j2
-#     dest: ~/ansible/test/template.yml
-#     owner: matt
-#     group: matt
-#     mode: 0644
-
-# - debug:
-#     msg:
-#       - '{{ vpc_create_result.output }}'
-#       - 'changed: {{ vpc_create_result.changed }}'
-#       - '{{ vpc_create_result.stack_resources | selectattr("status", "equalto", "UPDATE_COMPLETE") | list }}'
-

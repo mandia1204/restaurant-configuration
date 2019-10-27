@@ -1,0 +1,12 @@
+- name: create eks cluster
+  cloudformation:
+    stack_name: "mandia-eks-cluster"
+    state: "present"
+    region: "us-east-2"
+    disable_rollback: true
+    template_body: "{{ lookup('file', 'roles/vpc-subnets/files/eks-cluster.yml') }}"
+    template_parameters:
+      NetworkStackName: "mandia-eks-vpc-4subnets"
+    tags:
+      Stack: "mandia-cloudformation-eks-cluster"
+

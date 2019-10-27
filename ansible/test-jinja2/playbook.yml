@@ -5,7 +5,7 @@
     inline_variable: 'hello again'
     app_name: 'my-app-2'
     my_list:
-        - 
+        -
           name: 'matt'
           age: 20
         -
@@ -20,3 +20,18 @@
       template:
         src: config.yml
         dest: /home/matt/template/config.yml
+
+# - name: test template
+#   become_user: matt
+#   template:
+#     src: roles/vpc-subnets/files/vpc.j2
+#     dest: ~/ansible/test/template.yml
+#     owner: matt
+#     group: matt
+#     mode: 0644
+
+# - debug:
+#     msg:
+#       - '{{ vpc_create_result.output }}'
+#       - 'changed: {{ vpc_create_result.changed }}'
+#       - '{{ vpc_create_result.stack_resources | selectattr("status", "equalto", "UPDATE_COMPLETE") | list }}'
