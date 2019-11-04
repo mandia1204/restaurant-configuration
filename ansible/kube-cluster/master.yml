@@ -8,4 +8,9 @@
     - openshift
     - certbot
     - { role: kubernetes/kube-common, tags: kube-common }
+
+- hosts: master
+  vars:
+    ansible_become_pass: '{{ hosts_sudo_pass }}'
+  roles:
     - { role: kubernetes/master, tags: master }
