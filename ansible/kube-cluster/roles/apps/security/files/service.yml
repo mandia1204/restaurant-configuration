@@ -7,10 +7,9 @@ metadata:
     prometheus.io/scrape: "true"
     getambassador.io/config: |
       ---
-      apiVersion: ambassador/v0
+      apiVersion: ambassador/v1
       kind:  Mapping
       name:  security_app_mapping
-      ambassador_id: restaurant
       prefix: /securityApi/
       service: security-app:3001
 spec:
@@ -19,3 +18,4 @@ spec:
   ports:
   - protocol: TCP
     port: 3001
+    targetPort: 3001

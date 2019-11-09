@@ -1,0 +1,8 @@
+apiVersion: getambassador.io/v1
+kind: TLSContext
+metadata:
+  name: tls
+  namespace: default
+spec:
+  hosts: ["*"]
+  secret: restaurant-cert-secret

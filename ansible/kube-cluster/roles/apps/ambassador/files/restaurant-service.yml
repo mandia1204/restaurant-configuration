@@ -3,26 +3,18 @@ kind: Service
 metadata:
   name: ambassador-restaurant
   namespace: default
-  annotations:
-    getambassador.io/config: |
-      ---
-      apiVersion: ambassador/v0
-      kind: Module
-      name: tls
-      ambassador_id: restaurant
-      config:
-        server:
-          enabled: True
-          secret: restaurant-cert-secret
-          redirect_cleartext_from: 80
 spec:
   type: LoadBalancer
   ports:
    - name: ambassador-http
      port: 80
+     protocol: TCP
+     targetPort: 8080
    - name: ambassador-https
      port: 443
      targetPort: 443
+     protocol: TCP
+     targetPort: 8443
   selector:
     service: ambassador
 ---
@@ -42,24 +34,37 @@ spec:
   selector:
     service: ambassador
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ambassador
   namespace: default
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      service: ambassador
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
+        "consul.hashicorp.com/connect-inject": "false"
       labels:
         service: ambassador
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  service: ambassador
+              topologyKey: kubernetes.io/hostname
       serviceAccountName: ambassador
       containers:
       - name: ambassador
-        image: quay.io/datawire/ambassador:0.50.0-rc2
+        image: quay.io/datawire/ambassador:0.85.0
         resources:
           limits:
             cpu: 1
@@ -72,13 +77,11 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: AMBASSADOR_ID
-          value: restaurant
         ports:
         - name: http
-          containerPort: 80
+          containerPort: 8080
         - name: https
-          containerPort: 443
+          containerPort: 8443
         - name: admin
           containerPort: 8877
         livenessProbe:
@@ -93,4 +96,16 @@ spec:
             port: 8877
           initialDelaySeconds: 30
           periodSeconds: 3
+        volumeMounts:
+        - name: ambassador-pod-info
+          mountPath: /tmp/ambassador-pod-info
+      volumes:
+      - name: ambassador-pod-info
+        downwardAPI:
+          items:
+          - path: "labels"
+            fieldRef:
+              fieldPath: metadata.labels
       restartPolicy: Always
+      securityContext:
+        runAsUser: 8888

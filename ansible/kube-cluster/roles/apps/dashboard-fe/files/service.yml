@@ -6,10 +6,9 @@ metadata:
   annotations:
     getambassador.io/config: |
       ---
-      apiVersion: ambassador/v0
+      apiVersion: ambassador/v1
       kind:  Mapping
       name:  dashboard_fe_mapping
-      ambassador_id: restaurant
       prefix: /
       service: dashboard-fe-app
 spec:
@@ -18,3 +17,4 @@ spec:
   ports:
   - protocol: TCP
     port: 80
+    targetPort: 80

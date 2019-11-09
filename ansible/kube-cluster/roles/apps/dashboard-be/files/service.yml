@@ -6,10 +6,9 @@ metadata:
   annotations:
     getambassador.io/config: |
       ---
-      apiVersion: ambassador/v0
+      apiVersion: ambassador/v1
       kind:  Mapping
       name:  dashboard_be_mapping
-      ambassador_id: restaurant
       prefix: /dashboardApi/
       rewrite: /api/
       service: dashboard-be-app:5000
@@ -19,3 +18,4 @@ spec:
   ports:
   - protocol: TCP
     port: 5000
+    targetPort: 5000

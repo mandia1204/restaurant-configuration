@@ -1,7 +1,10 @@
 to exec a single app:
 
 by default desired_state=present
-ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "security" --extra-vars "desired_state=present"
+ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "dashboard-fe" --extra-vars "desired_state=present app_image_tag=04102019_4"
+ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "security" --extra-vars "desired_state=absent app_image_tag=04102019_34"
+ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "dashboard-be" --extra-vars "desired_state=absent app_image_tag=01272019_4"
+ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "ambassador" --extra-vars "desired_state=absent"
 
 to exec all apps:
 ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --extra-vars "desired_state=present"

@@ -8,17 +8,22 @@
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/restaurant-service.yml') | from_yaml_all | list }}"
 
-- name: "{{ create_or_delete }} metrics service"
+- name: "{{ create_or_delete }} restaurant tls context"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', 'files/metrics-service.yml') | from_yaml_all | list }}"
+    definition: "{{ lookup('file', 'files/restaurant-tls.yml') | from_yaml_all | list }}"
 
-- name: "{{ create_or_delete }} grafana service"
-  k8s:
-    state: "{{ desired_state }}"
-    definition: "{{ lookup('file', 'files/grafana-service.yml') | from_yaml_all | list }}"
+# - name: "{{ create_or_delete }} metrics service"
+#   k8s:
+#     state: "{{ desired_state }}"
+#     definition: "{{ lookup('file', 'files/metrics-service.yml') | from_yaml_all | list }}"
 
-- name: "{{ create_or_delete }} kibana service"
-  k8s:
-    state: "{{ desired_state }}"
-    definition: "{{ lookup('file', 'files/kibana-service.yml') | from_yaml_all | list }}"
+# - name: "{{ create_or_delete }} grafana service"
+#   k8s:
+#     state: "{{ desired_state }}"
+#     definition: "{{ lookup('file', 'files/grafana-service.yml') | from_yaml_all | list }}"
+
+# - name: "{{ create_or_delete }} kibana service"
+#   k8s:
+#     state: "{{ desired_state }}"
+#     definition: "{{ lookup('file', 'files/kibana-service.yml') | from_yaml_all | list }}"
