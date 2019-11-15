@@ -10,5 +10,5 @@ do
  esac
 done
 
-cd $HOME/kube-cluster
+cd $HOME/ansible/kube-cluster
 ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "$APP_NAME" --extra-vars "app_image_tag=$IMAGE_TAG"
