@@ -13,6 +13,16 @@
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/service.yml') | from_yaml }}"
 
+- name: "get latest image tag"
+  uri:
+    url: "{{image_tag_api_url | replace('APP_NAME','securityapp')}}"
+    method: GET
+  register: get_tag_response
+  when: (app_image_tag|length == 0) and (desired_state == "present")
+
+- set_fact: app_image_tag="{{ get_tag_response.json.results[0].name }}"
+  when: (app_image_tag|length == 0) and (desired_state == "present")
+
 - name: "{{ create_or_delete }} deployment"
   k8s:
     state: "{{ desired_state }}"

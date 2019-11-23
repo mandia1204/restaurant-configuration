@@ -1,3 +1,4 @@
 create_or_delete: "{{ 'create' if desired_state == 'present' else 'delete' }}"
 desired_state: "present"
-app_image_tag: "test"
+app_image_tag: ""
+image_tag_api_url: https://hub.docker.com/v2/repositories/mandia1204/APP_NAME/tags/?page_size=1
