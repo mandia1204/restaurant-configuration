@@ -8,5 +8,5 @@ spec:
     app: logging
   ports:
   - protocol: TCP
-    port: 50051
-    targetPort: 50051
+    port: 5051
+    targetPort: 5051

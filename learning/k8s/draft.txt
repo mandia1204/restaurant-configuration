@@ -1,0 +1,17 @@
+install and configuration:
+=========================
+choco install draft
+draft init (only once)
+
+install helm:
+=============
+choco install kubernetes-helm
+choco install kubernetes-helm --version=2.9.1
+choco install kubernetes-helm --version=2.15.1
+
+* helm 3 is not supported, use 2.15.1 instead and we need to modify the tiller deployment for k8s 1.6
+
+helm init --output yaml > init.yml
+
+then exec:
+kubectl apply -f init.yml

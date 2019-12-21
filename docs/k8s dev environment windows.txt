@@ -1,0 +1,57 @@
+1- run systeminfo on cmd, it should display:
+
+Hyper-V Requirements:     VM Monitor Mode Extensions: Yes
+                          Virtualization Enabled In Firmware: Yes
+                          Second Level Address Translation: Yes
+                          Data Execution Prevention Available: Yes
+
+2- enable hyper-v, open in powershell as admin
+
+https://kubernetes.io/docs/tasks/tools/install-minikube/
+
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Hypervisor
+
+3- install chocolatey
+
+4- install minikube:
+
+  choco install minikube
+
+5- confirm installation:
+
+  minikube start --vm-driver=hyperv --memory 8192 --cpus 8 (in powershell as admin)
+  minikube status
+
+  minikube config set memory 8192
+  minikube config set cpus 8
+
+6- test
+  https://kubernetes.io/blog/2018/05/01/developing-on-kubernetes/
+
+7- install docker cli on windows:
+
+  choco install docker --version=18.09.0
+
+
+8- build image
+eval $(minikube docker-env)
+minikube docker-env | Invoke-Expression
+docker build -t security-app:dev -f Dockerfile-dev .
+
+9- install skaffold
+
+choco install skaffold
+
+10- install metalLB (change config with minikube ip)
+
+kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.3/manifests/metallb.yaml
+
+
+clean docker :
+
+docker system prune
+
+test container internet access:
+kubectl run busybox --image=busybox --rm -ti --restart=Never --command -- ping -c 5 google-public-dns-a.google.com
+kubectl run curl-mandia --image=radial/busyboxplus:curl -i --tty --rm

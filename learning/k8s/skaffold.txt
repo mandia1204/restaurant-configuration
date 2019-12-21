@@ -1,0 +1,5 @@
+choco install skaffold
+
+
+skaffold dev --port-forward
+skaffold delete
