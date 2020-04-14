@@ -1,0 +1,11 @@
+- name: create eks worker nodes
+  cloudformation:
+    stack_name: "mandia-eks-worker-nodes"
+    state: "present"
+    region: "us-east-2"
+    disable_rollback: true
+    template_body: "{{ lookup('template', 'roles/eks-worker-nodes/files/worker-nodes.j2') }}"
+    template_parameters:
+      NetworkStackName: "mandia-eks-vpc-4subnets"
+    tags:
+      Stack: "mandia-cloudformation-eks-worker-nodes"

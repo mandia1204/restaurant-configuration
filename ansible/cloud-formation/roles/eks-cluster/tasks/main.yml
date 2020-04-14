@@ -4,9 +4,17 @@
     state: "present"
     region: "us-east-2"
     disable_rollback: true
-    template_body: "{{ lookup('file', 'roles/vpc-subnets/files/eks-cluster.yml') }}"
+    template_body: "{{ lookup('file', 'roles/eks-cluster/files/eks-cluster.yml') }}"
     template_parameters:
       NetworkStackName: "mandia-eks-vpc-4subnets"
     tags:
       Stack: "mandia-cloudformation-eks-cluster"
 
+# - name: test template
+#   become_user: matt
+#   template:
+#     src: roles/eks-cluster/files/worker-nodes.j2
+#     dest: ~/ansible/test/template.yml
+#     owner: matt
+#     group: matt
+#     mode: 0644

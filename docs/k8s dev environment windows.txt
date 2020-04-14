@@ -20,7 +20,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Hypervisor
 
 5- confirm installation:
 
-  minikube start --vm-driver=hyperv --memory 8192 --cpus 8 (in powershell as admin)
+  minikube start --vm-driver=hyperv --memory 16384 --cpus 8 --disk-size 30g (in powershell as admin)
   minikube status
 
   minikube config set memory 8192
@@ -55,3 +55,8 @@ docker system prune
 test container internet access:
 kubectl run busybox --image=busybox --rm -ti --restart=Never --command -- ping -c 5 google-public-dns-a.google.com
 kubectl run curl-mandia --image=radial/busyboxplus:curl -i --tty --rm
+
+
+11- install ambassador in k8s
+kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+

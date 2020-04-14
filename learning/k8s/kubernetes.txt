@@ -167,3 +167,23 @@ kubectl delete pod <pod_name> --grace-period=0 --force
 A Pod models an application-specific "logical host" and can contain different application containers which are relatively tightly coupled. For example,
 a Pod might include both the container with your Node.js app as well as a different container that feeds the data to be published by the Node.js webserver. The containers in a Pod share an IP Address and port space, are always co-located and co-scheduled, and run in a shared context on the same Node.
 
+ssh to minikube
+===============
+kubectl config view (get the ip)
+docker/tcuser
+
+https://gist.github.com/hsaputra/4d8da2d42ae12e57f2d3df3ea08dd5db
+
+fix docker minikube dns issue:
+===============================
+- add daemon.json to /etc/docker
+
+{
+    "dns": ["8.8.8.8", "8.8.4.4"]
+}
+- restart docker:
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+
+https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/

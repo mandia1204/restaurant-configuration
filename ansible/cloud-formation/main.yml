@@ -2,5 +2,6 @@
   connection: local
   gather_facts: no
   roles:
-    - vpc-subnets
-    - eks-cluster
+    - { role: vpc-subnets, tags: vpc-subnets }
+    - { role: eks-cluster, tags: eks-cluster }
+    - { role: eks-worker-nodes, tags: eks-worker-nodes }

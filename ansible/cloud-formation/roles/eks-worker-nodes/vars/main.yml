@@ -1,0 +1,2 @@
+clusterName : "mandia-eks-cluster"
+nodeGroupName : "mandia-eks-node-group"

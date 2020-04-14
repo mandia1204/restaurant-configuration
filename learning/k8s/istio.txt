@@ -1,0 +1,58 @@
+installation:
+https://istio.io/docs/setup/getting-started/
+
+1) donwload the istio files: https://github.com/istio/istio/releases/tag/1.4.2
+2) extract the zip and add the bin folder to env variables
+3) apply configuration specific to minikube:
+  https://istio.io/docs/setup/platform-setup/minikube/
+
+4)   install istio objects:
+$ istioctl manifest apply --set profile=demo
+verify :
+$ kubectl get svc -n istio-system
+$ kubectl get pods -n istio-system
+
+5) enable injection
+
+kubectl label namespace default istio-injection=enabled
+
+
+enable feature in default profile:
+istioctl manifest apply --set profile=default --set values.tracing.enabled=true --set components.telemetry.enabled=true --set values.kiali.enabled=true --set values.pilot.traceSampling=100.0 --set values.global.mtls.auto=false --set values.gateways.istio-ingressgateway.enabled=true
+
+1.4:
+istioctl manifest apply --set profile=default --set values.tracing.enabled=true --set values.kiali.enabled=true --set values.pilot.traceSampling=100.0 --set values.global.mtls.auto=false --set values.gateways.istio-ingressgateway.enabled=true
+
+istioctl manifest apply --set values.pilot.traceSampling=100.0 --set values.tracing.enabled=true --set values.kiali.enabled=true --set values.global.mtls.auto=true --set values.gateways.istio-ingressgateway.enabled=false --set components.citadel.enabled=true
+
+install booking info sample:
+============================
+kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml (to access outside the cluster)
+
+kubectl get svc istio-ingressgateway -n istio-system
+
+http://192.168.145.234/productpage (ip from loadbalancer)
+
+generate traffic:
+for i in `seq 1 100`; do curl -s -o /dev/null http://192.168.145.234/productpage; done
+
+
+
+
+kubectl port-forward (kubectl get pods -l app=productpage -o=jsonpath='{.items[0].metadata.name}') 7000:9080
+
+for i in `seq 1 100`; do curl -s -o /dev/null http://localhost:7000/productpage; done
+
+unistall:
+
+istioctl manifest generate <your original installation options> | kubectl delete -f -
+
+1.4:
+istioctl manifest generate --set profile=default --set values.tracing.enabled=true --set values.kiali.enabled=true --set values.pilot.traceSampling=100.0 --set values.global.mtls.auto=false --set values.gateways.istio-ingressgateway.enabled=true | kubectl delete -f -
+istioctl manifest generate --set profile=default --set values.tracing.enabled=true --set components.telemetry.enabled=true --set values.kiali.enabled=true --set values.pilot.traceSampling=100.0 --set values.global.mtls.auto=false --set values.gateways.istio-ingressgateway.enabled=true | kubectl delete -f -
+
+
+client version: 1.4.2
+control plane version: 1.4.2
+data plane version: 1.4.2 (8 proxies)
