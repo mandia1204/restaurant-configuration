@@ -1,10 +1,58 @@
 - name: install python-pip
   apt:
-    name: python-pip
+    name: python3-pip
     state: present
+
 - name: install boto
   pip:
    name: boto
+
 - name: install boto3
   pip:
    name: boto3
+
+- name: download aws-authenticator
+  uri:
+    dest: /home/matt/aws
+    status_code: 200,304
+    url: https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/aws-iam-authenticator
+
+- name: exec permission to aws-authenticator
+  file:
+    path: /home/matt/aws/aws-iam-authenticator
+    mode: +x
+
+- name: copy file to bin
+  copy:
+    src: /home/matt/aws/aws-iam-authenticator
+    dest: /home/matt/bin/
+    mode: preserve
+
+- shell: if echo "$PATH"|grep -q /home/matt/bin; then echo 1; else echo 0; fi
+  become: no
+  changed_when: false
+  register: result
+
+- name: update global PATH
+  become: no
+  shell: echo updating PATH
+  environment:
+    PATH: $PATH:/home/matt/bin
+  when: result.stdout != "1"
+
+- name: install aws cli
+  become: no
+  pip:
+   name: awscli
+   extra_args: --upgrade --user
+
+- name: aws path exists
+  shell: if echo "$PATH"|grep -q /home/matt/.local/bin; then echo 1; else echo 0; fi
+  become: no
+  changed_when: false
+  register: aws_path_exists
+
+- name: add awscli to global PATH
+  become: no
+  shell: export PATH=/home/matt/.local/bin:$PATH
+  when: aws_path_exists.stdout != "1"
