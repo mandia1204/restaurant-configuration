@@ -44,8 +44,8 @@ Resources:
         - Key: kubernetes.io/cluster/{{ clusterName }}
           Value: owned
       VpcId:
-        !ImportValue
-          !Sub "${NetworkStackName}-VPCID"
+        Fn::ImportValue:
+          Fn::Sub: "${NetworkStackName}-VPCID"
 # ingress/egress rules for security group
 {{ lookup('file', 'files/security-group-rules.yml') }}
 

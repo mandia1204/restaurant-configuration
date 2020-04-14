@@ -16,8 +16,8 @@
       Description: Allow pods to communicate with the cluster API Server
       FromPort: 443
       GroupId:
-        !ImportValue
-          !Sub "${NetworkStackName}-SECURITY-GROUP-ID" #from vpc-subnets exported values
+        Fn::ImportValue:
+          Fn::Sub: "${NetworkStackName}-SECURITY-GROUP-ID" #from vpc-subnets exported values
       IpProtocol: tcp
       SourceSecurityGroupId: !Ref NodeSecurityGroup
       ToPort: 443
@@ -30,8 +30,8 @@
       DestinationSecurityGroupId: !Ref NodeSecurityGroup
       FromPort: 1025
       GroupId:
-        !ImportValue
-          !Sub "${NetworkStackName}-SECURITY-GROUP-ID"
+        Fn::ImportValue:
+          Fn::Sub: "${NetworkStackName}-SECURITY-GROUP-ID"
       IpProtocol: tcp
       ToPort: 65535
 
@@ -43,8 +43,8 @@
       DestinationSecurityGroupId: !Ref NodeSecurityGroup
       FromPort: 443
       GroupId:
-        !ImportValue
-          !Sub "${NetworkStackName}-SECURITY-GROUP-ID"
+        Fn::ImportValue:
+          Fn::Sub: "${NetworkStackName}-SECURITY-GROUP-ID"
       IpProtocol: tcp
       ToPort: 443
 
@@ -57,8 +57,8 @@
       GroupId: !Ref NodeSecurityGroup
       IpProtocol: tcp
       SourceSecurityGroupId:
-        !ImportValue
-          !Sub "${NetworkStackName}-SECURITY-GROUP-ID"
+        Fn::ImportValue:
+          Fn::Sub: "${NetworkStackName}-SECURITY-GROUP-ID"
       ToPort: 65535
 
   NodeSecurityGroupFromControlPlaneOn443Ingress:
@@ -70,6 +70,6 @@
       GroupId: !Ref NodeSecurityGroup
       IpProtocol: tcp
       SourceSecurityGroupId:
-        !ImportValue
-          !Sub "${NetworkStackName}-SECURITY-GROUP-ID"
+        Fn::ImportValue:
+          Fn::Sub: "${NetworkStackName}-SECURITY-GROUP-ID"
       ToPort: 443
