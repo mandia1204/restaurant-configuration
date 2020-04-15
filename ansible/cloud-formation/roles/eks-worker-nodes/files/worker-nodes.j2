@@ -7,7 +7,7 @@ Parameters:
     Type: String
   NodeImageIdSSMParam:
     Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
-    Default: /aws/service/eks/optimized-ami/1.14/amazon-linux-2/recommended/image_id
+    Default: /aws/service/eks/optimized-ami/1.15/amazon-linux-2/recommended/image_id
     Description: AWS Systems Manager Parameter Store parameter of the AMI ID for the worker node instances.
 
 Resources:
@@ -61,8 +61,8 @@ Resources:
             VolumeType: gp2
       IamInstanceProfile: !Ref NodeInstanceProfile
       ImageId: !Ref NodeImageIdSSMParam
-      InstanceType: t2.micro
-      KeyName:  k8sNodeInstance
+      InstanceType: t3.micro
+      KeyName:  k8sNodeInstanceKey
       SecurityGroups:
         - Ref: NodeSecurityGroup
       UserData: !Base64

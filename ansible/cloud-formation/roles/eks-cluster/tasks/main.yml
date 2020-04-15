@@ -9,12 +9,3 @@
       NetworkStackName: "mandia-eks-vpc-4subnets"
     tags:
       Stack: "mandia-cloudformation-eks-cluster"
-
-# - name: test template
-#   become_user: matt
-#   template:
-#     src: roles/eks-cluster/files/worker-nodes.j2
-#     dest: ~/ansible/test/template.yml
-#     owner: matt
-#     group: matt
-#     mode: 0644
