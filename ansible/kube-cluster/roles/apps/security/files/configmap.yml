@@ -16,7 +16,15 @@ data:
         hostName: 'security-db',
       },
       loggingUrl: 'logging-app:5051',
+      notificationUrl: 'notification:5052',
       baseDir: process.env.PWD,
+      tracingEnabled: false,
+      notificationEnabled: false,
+      cacheEnabled: false,
+      redis: {
+        host: 'security-app-cache',
+        port: 6379,
+      },
       auth: {
         issuer: 'security.mattcompany.com',
         audience: 'restaurant.mattcompany.com',
