@@ -30,6 +30,9 @@ dig -t a mandialand.com
 
 in namecheap console don't put the full path _acme-challenge.mandialand.com, just put _acme-challenge
 
+UI to test dns:
+https://toolbox.googleapps.com/apps/dig/#CNAME/
+
 after the cert is created, we need to access as a root to the folder:
 sudo -i
 /etc/letsencrypt/live/mandialand.com/

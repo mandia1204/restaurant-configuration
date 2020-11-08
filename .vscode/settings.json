@@ -1,0 +1,8 @@
+{
+  "editor.fontSize": 16,
+  "yaml.customTags": [
+      "!Sub scalar",
+      "!GetAtt scalar",
+      "!Ref scalar"
+  ]
+}

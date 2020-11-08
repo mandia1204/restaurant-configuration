@@ -88,7 +88,8 @@ ansible-vault create passwd.yml
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/kube-dependencies.yml (using sudo user)
 
 4- initialize the cluster
-    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/master.yml
+    inside kube-cluster folder:
+    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' master.yml
 
     * if we have the error :
     Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
@@ -106,7 +107,16 @@ ansible-vault create passwd.yml
       more info https://github.com/coreos/flannel/pull/855#issuecomment-349520067 , https://github.com/coreos/flannel/releases
 
 5- add nodes
+    inside kube-cluster folder:
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/workers.yml
+    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' workers.yml
 
 6- create k8s objects
     ansible-playbook -i hosts ~/kube-cluster/kube-objects.yml
+
+
+****RE-RUN worker-nodes
+
+- sudo rm /root/node_joined.txt
+- sudo kubeadm reset
+- run worker-nodes.yml
