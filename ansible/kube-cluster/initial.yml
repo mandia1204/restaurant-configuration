@@ -1,5 +1,8 @@
 - hosts: all
   become: yes
+  become_method: sudo
+  vars:
+    ansible_become_pass: '{{ hosts_sudo_pass }}'
   tasks:
     - name: create the 'ubuntu' user
       user: name=ubuntu append=yes state=present createhome=yes shell=/bin/bash

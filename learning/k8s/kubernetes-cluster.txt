@@ -1,9 +1,3 @@
-Install kubeadm
-    https://kubernetes.io/docs/setup/independent/install-kubeadm/
-    Verify the MAC address and product_uuid are unique for every node:
-        ip link
-        sudo cat /sys/class/dmi/id/product_uuid
-
 * opened ports in machines:
 https://kubernetes.io/docs/setup/independent/install-kubeadm/#check-required-ports
 https://github.com/coreos/coreos-kubernetes/blob/master/Documentation/kubernetes-networking.md (flannel)
@@ -64,17 +58,15 @@ https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-1-11
 
 https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804
 
-ssh-copy-id matt@192.168.100.106 (master)
-ssh-copy-id matt@192.168.100.107 (node1)
-ssh-copy-id matt@192.168.100.108 (node2)
-ssh-copy-id matt@192.168.100.117 (node3)
-ssh-copy-id matt@192.168.100.121 (node4)
-ssh matt@192.168.100.106
-ssh matt@192.168.100.107
+ssh-copy-id matt@192.168.200.106 (master)
+ssh-copy-id matt@192.168.200.107 (node1)
+ssh-copy-id matt@192.168.200.117 (node3)
+ssh matt@192.168.200.106
+ssh matt@192.168.200.117
 
 2- complete the steps in link , after we have /ansible/kube-cluster/* , run the command:
-ansible-playbook -i hosts ~/kube-cluster/initial.yml
-ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/initial.yml (using sudo user)
+inside kube-cluster folder:
+ansible-playbook -i hosts --vault-password-file=~/oli --extra-vars '@passwd.yml' initial.yml
 
 create vault password:
 ======================
@@ -83,11 +75,7 @@ ansible-vault create passwd.yml
 -it will open an editor, you have to put the variables like var: value, we need to add this var:
  hosts_sudo_pass: "sudo pass for matt user"
 
-3- install k8 dependencies in master and nodes
-    ansible-playbook -i hosts ~/kube-cluster/kube-dependencies.yml
-    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/kube-dependencies.yml (using sudo user)
-
-4- initialize the cluster
+3- initialize the cluster
     inside kube-cluster folder:
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' master.yml
 
@@ -106,17 +94,19 @@ ansible-vault create passwd.yml
     * if there is a problem with cni flannel conflist, remove the file /etc/cni/net.d/10-flannel.conf
       more info https://github.com/coreos/flannel/pull/855#issuecomment-349520067 , https://github.com/coreos/flannel/releases
 
-5- add nodes
+4- add nodes
     inside kube-cluster folder:
-    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' ~/kube-cluster/workers.yml
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' workers.yml
 
-6- create k8s objects
+    * if we get error with conflicts in apt step, remove /etc/apt/sources.list.d/kubernetes.list
+    * if the nodes are not joined to cluset, remove node_joined.txt in node connected as root.
+
+5- create k8s objects
     ansible-playbook -i hosts ~/kube-cluster/kube-objects.yml
 
 
 ****RE-RUN worker-nodes
 
 - sudo rm /root/node_joined.txt
-- sudo kubeadm reset
+- sudo kubeadm reset on each node
 - run worker-nodes.yml

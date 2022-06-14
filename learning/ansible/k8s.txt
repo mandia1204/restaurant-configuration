@@ -25,3 +25,19 @@ to use lookup 'k8s' plugin (query k8s objects from ansible)
   kubectl config view --flatten -o jsonpath='{.clusters[?(@.name=="kubernetes")].cluster.certificate-authority-data}'
 
 
+kubelet fails in join init:
+
+/etc/docker
+add to daemon.json :
+
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+
+
+sudo journalctl -u kubelet -n 100 --no-pager
