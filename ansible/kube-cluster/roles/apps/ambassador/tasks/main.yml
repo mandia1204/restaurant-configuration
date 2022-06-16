@@ -1,17 +1,27 @@
-- name: "{{ create_or_delete }} service account and role"
+- name: "{{ create_or_delete }} custom resource definitions"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', 'files/account-roles.yml') | from_yaml_all | list }}"
+    definition: "{{ lookup('file', 'files/aes-crds.yml') | from_yaml_all | list }}"
 
-- name: "{{ create_or_delete }} restaurant service"
+- name: "{{ create_or_delete }} accounts and roles"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', 'files/restaurant-service.yml') | from_yaml_all | list }}"
+    definition: "{{ lookup('file', 'files/aes-account-roles.yml') | from_yaml_all | list }}"
 
-- name: "{{ create_or_delete }} restaurant tls context"
+- name: "{{ create_or_delete }} ambassador deployment and service"
   k8s:
     state: "{{ desired_state }}"
-    definition: "{{ lookup('file', 'files/restaurant-tls.yml') | from_yaml_all | list }}"
+    definition: "{{ lookup('file', 'files/aes-service.yml') | from_yaml_all | list }}"
+
+# - name: "{{ create_or_delete }} restaurant service"
+#   k8s:
+#     state: "{{ desired_state }}"
+#     definition: "{{ lookup('file', 'files/restaurant-service.yml') | from_yaml_all | list }}"
+
+# - name: "{{ create_or_delete }} restaurant tls context"
+#   k8s:
+#     state: "{{ desired_state }}"
+#     definition: "{{ lookup('file', 'files/restaurant-tls.yml') | from_yaml_all | list }}"
 
 # - name: "{{ create_or_delete }} metrics service"
 #   k8s:

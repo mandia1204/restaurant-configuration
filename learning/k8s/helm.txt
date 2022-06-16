@@ -41,6 +41,9 @@ helm template \
   --output-dir ./manifests \
     ./charts/elasticsearch
 
+helm template --release-name main --skip-tests --values values.yaml --output-dir ./result jenkinsci/jenkins
+
+
 cp -r ./manifests/kibana /home/matt/shares
 
 template execution order:

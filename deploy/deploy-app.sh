@@ -11,4 +11,4 @@ do
 done
 
 cd $HOME/ansible/kube-cluster
-ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "$APP_NAME" --extra-vars "app_image_tag=$IMAGE_TAG"
+ansible-playbook -i hosts --vault-password-file=~/oli all-apps.pb.yml --tags "$APP_NAME" --extra-vars "app_image_tag=$IMAGE_TAG"

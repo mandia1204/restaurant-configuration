@@ -1,3 +1,4 @@
+# initial setup for hosts, creates the users.
 - hosts: all
   become: yes
   become_method: sudo

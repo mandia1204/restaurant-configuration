@@ -1,0 +1,7 @@
+- hosts: master
+  become: yes
+  become_user: matt
+  roles:
+    - { role: apps/metallb, tags: metallb }
+    - { role: apps/ambassador, tags: ambassador }
+    - { role: ansible-access, tags: ansible-access }

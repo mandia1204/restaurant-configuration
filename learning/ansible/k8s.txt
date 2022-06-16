@@ -9,7 +9,7 @@ to use lookup 'k8s' plugin (query k8s objects from ansible)
 
 2- create service account and role for ansible
   inside kube-cluster:
-  ansible-playbook -i hosts --vault-password-file=~/oli kube-objects.yml --tags "ansible-access"
+  ansible-playbook -i hosts --vault-password-file=~/oli all-apps.pb.yml --tags "ansible-access"
 
 3- it should have a kubeconfig in '~/.kube/config', to configure it follow the steps:
   http://docs.shippable.com/deploy/tutorial/create-kubeconfig-for-self-hosted-kubernetes-cluster/

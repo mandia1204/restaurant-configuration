@@ -66,7 +66,7 @@ ssh matt@192.168.200.117
 
 2- complete the steps in link , after we have /ansible/kube-cluster/* , run the command:
 inside kube-cluster folder:
-ansible-playbook -i hosts --vault-password-file=~/oli --extra-vars '@passwd.yml' initial.yml
+ansible-playbook -i hosts --vault-password-file=~/oli --extra-vars '@passwd.yml' initial.pb.yml
 
 create vault password:
 ======================
@@ -77,7 +77,7 @@ ansible-vault create passwd.yml
 
 3- initialize the cluster
     inside kube-cluster folder:
-    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' master.yml
+    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' master.pb.yml
 
     * if we have the error :
     Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
@@ -96,14 +96,18 @@ ansible-vault create passwd.yml
 
 4- add nodes
     inside kube-cluster folder:
-    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' workers.yml
+    ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' workers.pb.yml
 
     * if we get error with conflicts in apt step, remove /etc/apt/sources.list.d/kubernetes.list
     * if the nodes are not joined to cluset, remove node_joined.txt in node connected as root.
 
-5- create k8s objects
-    ansible-playbook -i hosts ~/kube-cluster/kube-objects.yml
-
+5- create k8s objects, inside kube-cluster folder:
+    ansible-playbook -i hosts --vault-password-file=~/oli all-apps.pb.yml
+    ***we can run the specific group of apps:
+    ansible-playbook -i hosts --vault-password-file=~/oli common-apps.pb.yml
+    ansible-playbook -i hosts --vault-password-file=~/oli prometheus.pb.yml
+    ansible-playbook -i hosts --vault-password-file=~/oli restaurant-apps.pb.yml
+    ansible-playbook -i hosts --vault-password-file=~/oli elk-stack.pb.yml
 
 ****RE-RUN worker-nodes
 

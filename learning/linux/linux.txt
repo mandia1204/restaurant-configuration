@@ -14,6 +14,10 @@ pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\ansible\ku
 
 pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\k8s matt@192.168.100.106:/restaurant/
 
+copy using ssh:
+
+scp -r /home/matt/manifests/result/main matt@192.168.200.239:/home/matt/ansible
+
 change hostname:
 https://askubuntu.com/questions/1028633/host-name-reverts-to-old-name-after-reboot-in-18-04-lts
 
