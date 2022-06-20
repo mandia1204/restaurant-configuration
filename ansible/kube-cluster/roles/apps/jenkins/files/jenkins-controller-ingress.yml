@@ -1,0 +1,23 @@
+---
+# Source: jenkins/templates/jenkins-controller-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: default
+  labels:
+    "app.kubernetes.io/name": 'jenkins'
+    "app.kubernetes.io/instance": "main"
+    "app.kubernetes.io/component": "jenkins-controller"
+  name: main-jenkins
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      -
+        backend:
+          service:
+            name: main-jenkins
+            port:
+              number: 8080
+        pathType: ImplementationSpecific

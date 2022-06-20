@@ -10,10 +10,10 @@ listen for open connection
 nc -l 27017
 
 
-nc 192.168.100.107 27017
+nc 192.168.200.107 27017
 
 
-nc -zv 192.168.100.114 1434
+nc -zv 192.168.200.114 1434
 
 look active connections and ports:
 

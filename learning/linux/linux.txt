@@ -10,9 +10,9 @@ uname -r
 copy to putty:
 pscp C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\kubernetes\mongodb-volume.yml matt@192.168.127.129:/restaurant/k8/volumes/mongodb-volume.yml
 dirs:
-pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\ansible\kube-cluster matt@192.168.100.105:/home/matt/
+pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\ansible\kube-cluster matt@192.168.200.105:/home/matt/
 
-pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\k8s matt@192.168.100.106:/restaurant/
+pscp -r C:\Users\Marvin\Documents\Restaurant\restaurant-configuration\k8s matt@192.168.200.106:/restaurant/
 
 copy using ssh:
 
@@ -41,7 +41,7 @@ awk to filter strings
 https://www.digitalocean.com/community/tutorials/how-to-use-the-awk-language-to-manipulate-text-in-linux
 
 remove a known host
-ssh-keygen -f "/home/matt/.ssh/known_hosts" -R "192.168.100.106"
+ssh-keygen -f "/home/matt/.ssh/known_hosts" -R "192.168.200.106"
 
 firewall
 =========

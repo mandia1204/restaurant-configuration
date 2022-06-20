@@ -10,5 +10,3 @@ Ctrl-b c - new windows
 Ctrl-b n - next windows
 Ctrl-b p - prev windows
 Ctrl-b [ - scroll / q to quit
-
-curl http://192.168.100.106:8878/ambassador/v0/diag/
