@@ -9440,6 +9440,13 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
   name: argocd-cm
+data:
+    configManagementPlugins: |-
+      - name: argocd-vault-plugin
+        generate:
+          command: ["argocd-vault-plugin"]
+          args: ["generate","./"]
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -9951,7 +9958,7 @@ spec:
                   app.kubernetes.io/part-of: argocd
               topologyKey: kubernetes.io/hostname
             weight: 5
-      automountServiceAccountToken: false
+      automountServiceAccountToken: true
       containers:
       - command:
         - sh
@@ -10068,7 +10075,13 @@ spec:
             - all
           readOnlyRootFilesystem: true
           runAsNonRoot: true
+        envFrom:
+          - secretRef:
+              name: argocd-vault-plugin-credentials
         volumeMounts:
+        - name: custom-tools
+          mountPath: /usr/local/bin/argocd-vault-plugin
+          subPath: argocd-vault-plugin
         - mountPath: /app/config/ssh
           name: ssh-known-hosts
         - mountPath: /app/config/tls
@@ -10103,6 +10116,21 @@ spec:
         volumeMounts:
         - mountPath: /var/run/argocd
           name: var-files
+      - name: download-tools
+        image: alpine:3.8
+        command: [sh, -c]
+        env:
+          - name: AVP_VERSION
+            value: "1.11.0"
+        args:
+          - >-
+            wget -O argocd-vault-plugin
+            https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v${AVP_VERSION}/argocd-vault-plugin_${AVP_VERSION}_linux_amd64 &&
+            chmod +x argocd-vault-plugin &&
+            mv argocd-vault-plugin /custom-tools/
+        volumeMounts:
+          - mountPath: /custom-tools
+            name: custom-tools
       serviceAccountName: argocd-repo-server
       volumes:
       - configMap:
@@ -10135,6 +10163,8 @@ spec:
         name: var-files
       - emptyDir: {}
         name: plugins
+      - name: custom-tools
+        emptyDir: {}
 ---
 apiVersion: apps/v1
 kind: Deployment

@@ -3,6 +3,11 @@
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/namespace.yml') | from_yaml_all | list }}"
 
+- name: "{{ create_or_delete }} secret"
+  k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('template', 'templates/secret.j2') | from_yaml }}"
+
 - name: "{{ create_or_delete }} all objects"
   k8s:
     state: "{{ desired_state }}"

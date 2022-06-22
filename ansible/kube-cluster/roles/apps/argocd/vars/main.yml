@@ -1,0 +1,2 @@
+aws_secrets_key_id: "{{ vault_aws_secrets_key_id }}"
+aws_secrets_access_key: "{{ vault_aws_secrets_access_key }}"
