@@ -1,0 +1,23 @@
+- name: "{{ create_or_delete }} namespace"
+  k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('file', 'files/namespace.yml') | from_yaml_all | list }}"
+
+- name: "{{ create_or_delete }} all objects"
+  k8s:
+    state: "{{ desired_state }}"
+    namespace: "argocd"
+    definition: "{{ lookup('file', 'files/all-objects.yml') | from_yaml_all | list }}"
+
+- name: Download argocd cli
+  become: yes
+  become_method: sudo
+  become_user: root
+  vars:
+    ansible_become_pass: '{{ hosts_sudo_pass }}'
+  uri:
+    url: https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+    method: GET
+    dest: /usr/local/bin/argocd
+    mode: +x
+    creates: /usr/local/bin/argocd
