@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: security-app
+  namespace: restaurant
+spec:
+  hostname: "*"
+  prefix: /securityApi/
+  service: security-app:3001

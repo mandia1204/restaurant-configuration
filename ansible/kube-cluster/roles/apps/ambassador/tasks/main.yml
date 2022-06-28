@@ -1,3 +1,8 @@
+- name: "{{ create_or_delete }} namespace"
+  k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('file', 'files/namespace.yml') | from_yaml_all | list }}"
+
 - name: "{{ create_or_delete }} custom resource definitions"
   k8s:
     state: "{{ desired_state }}"
@@ -12,6 +17,12 @@
   k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/aes-service.yml') | from_yaml_all | list }}"
+
+- name: "{{ create_or_delete }} listeners for 8080 and 8443"
+  k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('file', 'files/listener.yml') | from_yaml_all | list }}"
+
 
 # - name: "{{ create_or_delete }} restaurant service"
 #   k8s:

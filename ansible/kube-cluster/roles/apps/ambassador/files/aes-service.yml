@@ -73,6 +73,9 @@ spec:
   - name: https
     port: 443
     targetPort: 8443
+  - name: mongo
+    port: 27017
+    targetPort: 27017
   selector:
     app.kubernetes.io/name: edge-stack
     app.kubernetes.io/instance: edge-stack

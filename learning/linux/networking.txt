@@ -9,10 +9,7 @@ nc security-db 27017
 listen for open connection
 nc -l 27017
 
-
 nc 192.168.200.107 27017
-
-
 nc -zv 192.168.200.114 1434
 
 look active connections and ports:
@@ -29,3 +26,13 @@ sudo reboot
 
 https://makandracards.com/operations/42688-how-to-remove-cloud-init-from-ubuntu
 https://nucco.org/2018/05/ubuntu-18-04-chronicles-removing-cloud-init.html
+
+-- using a tcp server
+https://hub.docker.com/r/dellabetta/tcpserver/
+
+k run tcp --image=dellabetta/tcpserver --port=5678 -- 0 5678 echo oliiii
+k expose pod tcp
+
+test the tcp server:
+nc AMBASSADOR_IP 5678
+telnet AMBASSADOR_IP 5678
