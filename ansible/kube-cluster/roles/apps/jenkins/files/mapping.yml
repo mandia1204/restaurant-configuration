@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: jenkins
+  namespace: default
+spec:
+  hostname: "jenkins.mandialand.com"
+  prefix: /
+  service: main-jenkins.default:8080

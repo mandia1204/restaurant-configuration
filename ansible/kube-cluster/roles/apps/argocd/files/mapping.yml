@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  hostname: "argocd.mandialand.com"
+  prefix: /
+  service: argocd-server.argocd:5002

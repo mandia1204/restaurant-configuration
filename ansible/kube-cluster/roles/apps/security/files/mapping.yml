@@ -1,9 +1,9 @@
-apiVersion: getambassador.io/v2
+apiVersion: getambassador.io/v3alpha1
 kind: Mapping
 metadata:
   name: security-app
   namespace: restaurant
 spec:
-  hostname: "*"
+  hostname: "mandialand.com"
   prefix: /securityApi/
-  service: security-app:3001
+  service: security-app.restaurant:3001

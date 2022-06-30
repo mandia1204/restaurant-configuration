@@ -1,0 +1,22 @@
+apiVersion: getambassador.io/v3alpha1
+kind: TLSContext
+metadata:
+  name: tls-context
+  namespace: restaurant
+spec:
+  hosts:
+    - mandialand.com
+  secret: restaurant-cert
+  min_tls_version: v1.2
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: mandialand-host
+  namespace: restaurant
+spec:
+  hostname: mandialand.com
+  tlsSecret:
+    name: restaurant-cert
+  tlsContext:
+    name: tls-context

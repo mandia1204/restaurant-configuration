@@ -26,3 +26,13 @@
     dest: /usr/local/bin/argocd
     mode: +x
     creates: /usr/local/bin/argocd
+
+- name: "{{ create_or_delete }} tls context"
+  k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('file', 'files/tls.yml') | from_yaml_all | list }}"
+
+- name: "{{ create_or_delete }} ambassador mapping"
+  k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('file', 'files/mapping.yml') | from_yaml_all | list }}"
