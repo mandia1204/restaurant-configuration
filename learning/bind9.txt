@@ -18,7 +18,7 @@ https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-priv
     sudo named-checkzone matt.domain.com db.matt.domain.com
     sudo named-checkzone mandialand.com /etc/bind/zones/db.mandialand.com
    check the reverse zone files
-    sudo named-checkzone 100.168.192.in-addr.arpa /etc/bind/zones/db.100.168.192
+    sudo named-checkzone 200.168.192.in-addr.arpa /etc/bind/zones/db.200.168.192
 
 4-
     if all ok with tests, restart svc

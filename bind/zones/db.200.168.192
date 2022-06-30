@@ -13,8 +13,10 @@ $TTL    604800
       IN      NS      ns1.mandialand.com.
 
 ; PTR Records
-101   IN      PTR     ns1.mandialand.com.         ; 192.168.100.101
-150   IN      PTR     mandialand.com.  ; 192.168.100.150
-151   IN      PTR     prometheus.mandialand.com.  ; 192.168.100.151
-152   IN      PTR     grafana.mandialand.com.  ; 192.168.100.152
-153   IN      PTR     kibana.mandialand.com.  ; 192.168.100.153
+101   IN      PTR     ns1.mandialand.com.         ; 192.168.200.101
+150   IN      PTR     mandialand.com.  ; 192.168.200.152
+151   IN      PTR     prometheus.mandialand.com.  ; 192.168.200.151
+152   IN      PTR     grafana.mandialand.com.  ; 192.168.200.152
+153   IN      PTR     kibana.mandialand.com.  ; 192.168.200.153
+154   IN      PTR     jenkins.mandialand.com.  ; 192.168.200.152
+155   IN      PTR     argocd.mandialand.com.  ; 192.168.200.152

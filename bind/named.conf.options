@@ -1,13 +1,13 @@
 acl "trusted" {
-        192.168.100.101; #ns1
-        192.168.100.114; #host1
-        192.168.100.103; #client1
-        192.168.100.107; #k8s-node1
-        192.168.100.106; #k8s-master
-        192.168.100.150; #restaurant web
-        192.168.100.151; #prometheus
-        192.168.100.152; #grafana
-        192.168.100.153; #kibana
+        192.168.200.101; #ns1
+        192.168.200.114; #host1
+        192.168.200.103; #client1
+        192.168.200.107; #k8s-node1
+        192.168.200.106; #k8s-master
+        192.168.200.150; #restaurant web
+        192.168.200.151; #prometheus
+        192.168.200.152; #ambassador
+        192.168.200.153; #kibana
 };
 
 
@@ -15,7 +15,7 @@ options {
         directory "/var/cache/bind";
         recursion yes;                 # enables resursive queries
         allow-recursion { trusted; };  # allows recursive queries from "trusted" clients
-        listen-on { 192.168.100.101; };   # ns1 private IP address - listen on private network only
+        listen-on { 192.168.200.101; };   # ns1 private IP address - listen on private network only
         allow-transfer { none; };      # disable zone transfers by default
 
         forwarders {

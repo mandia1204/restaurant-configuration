@@ -13,6 +13,6 @@ zone "mandialand.com" {
 
 zone "100.168.192.in-addr.arpa" {
     type master;
-    file "/etc/bind/zones/db.100.168.192";  # 192.168.100.0/24 subnet
+    file "/etc/bind/zones/db.200.168.192";  # 192.168.200.0/24 subnet
     #allow-transfer { 10.128.20.12; };  # ns2 private IP address - secondary
 };
