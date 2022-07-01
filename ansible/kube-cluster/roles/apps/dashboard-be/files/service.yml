@@ -2,16 +2,9 @@ kind: Service
 apiVersion: v1
 metadata:
   name: dashboard-be-app
-  namespace: default
-  annotations:
-    getambassador.io/config: |
-      ---
-      apiVersion: ambassador/v1
-      kind:  Mapping
-      name:  dashboard_be_mapping
-      prefix: /dashboardApi/
-      rewrite: /api/
-      service: dashboard-be-app:5000
+  namespace: restaurant
+  labels:
+    app: dashboard-be
 spec:
   selector:
     app: dashboard-be

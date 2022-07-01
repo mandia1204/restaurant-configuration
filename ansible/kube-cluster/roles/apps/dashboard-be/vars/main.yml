@@ -1,0 +1,3 @@
+almacen_db_user: "{{ vault_almacen_db_user }}" #from group_vars/masters/vault.yml
+almacen_db_password: "{{ vault_almacen_db_password }}"
+security_access_token_secret: "{{ vault_security_access_token_secret }}"

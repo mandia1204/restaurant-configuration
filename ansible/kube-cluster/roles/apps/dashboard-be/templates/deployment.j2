@@ -1,8 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: default
+  namespace: restaurant
   name: dashboard-be-app
+  labels:
+    app: dashboard-be
 spec:
   selector:
     matchLabels:
@@ -14,7 +16,24 @@ spec:
         app: dashboard-be
     spec:
       containers:
-      - name: res-dashboard-be
-        image: mandia1204/dashboard-be-app:{{ app_image_tag }}
-        ports:
-        - containerPort: 5000
+        - name: res-dashboard-be
+          image: mandia1204/dashboard-be-app:{{ app_image_tag }}
+          volumeMounts:
+            - mountPath: /app/secrets.json
+              subPath: secrets.json
+              name: combined
+              readOnly: true
+            - mountPath: /app/appsettings.Production.json
+              subPath: appsettings.Production.json
+              name: combined
+              readOnly: true
+          ports:
+            - containerPort: 5000
+      volumes:
+        - name: combined
+          projected:
+            sources:
+              - secret:
+                  name: dashboard-be
+              - configMap:
+                  name: dashboard-be-config

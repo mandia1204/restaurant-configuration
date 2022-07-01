@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashboard-be-config
+  namespace: restaurant
+  labels:
+    app: dashboard-be
+data:
+  appsettings.Production.json: |+
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Warning"
+        },
+        "Console": {
+          "IncludeScopes": false
+        }
+      },
+      "Database": {
+        "DataSource": "192.168.100.114\\SQLEXPRESS",
+        "InitialCatalog": "VENTAS"
+      },
+      "Security": {
+        "Issuer": "security.mattcompany.com",
+        "Audience": "restaurant.mattcompany.com",
+        "UseRsa" : false,
+        "UseKms" : false
+      }
+    }

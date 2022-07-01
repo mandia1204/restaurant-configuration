@@ -1,3 +1,13 @@
+- name: "{{ create_or_delete }} configmap"
+  k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('file', 'files/configmap.yml') | from_yaml }}"
+
+- name: "{{ create_or_delete }} secret"
+  k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('template', 'templates/secret.j2') | from_yaml }}"
+
 - name: "{{ create_or_delete }} service"
   k8s:
     state: "{{ desired_state }}"
