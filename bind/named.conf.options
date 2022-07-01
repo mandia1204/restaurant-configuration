@@ -4,7 +4,6 @@ acl "trusted" {
         192.168.200.103; #client1
         192.168.200.107; #k8s-node1
         192.168.200.106; #k8s-master
-        192.168.200.150; #restaurant web
         192.168.200.151; #prometheus
         192.168.200.152; #ambassador
         192.168.200.153; #kibana

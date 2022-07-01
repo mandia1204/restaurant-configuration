@@ -22,3 +22,4 @@ grafana.mandialand.com.           IN      A      192.168.200.152
 kibana.mandialand.com.            IN      A      192.168.200.153
 jenkins.mandialand.com.           IN      A      192.168.200.152
 argocd.mandialand.com.            IN      A      192.168.200.152
+securitydb.mandialand.com.        IN      A      192.168.200.152

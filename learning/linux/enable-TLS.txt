@@ -15,6 +15,9 @@ after buying a dns in namecheap and installing certbot:
 - sudo certbot -d prometheus.mandialand.com --manual --preferred-challenges dns certonly
 - sudo certbot -d grafana.mandialand.com --manual --preferred-challenges dns certonly
 - sudo certbot -d kibana.mandialand.com --manual --preferred-challenges dns certonly
+- sudo certbot -d jenkins.mandialand.com --manual --preferred-challenges dns certonly
+- sudo certbot -d argocd.mandialand.com --manual --preferred-challenges dns certonly
+- sudo certbot -d securitydb.mandialand.com --manual --preferred-challenges dns certonly
 
 CHECK IF TXT is present:
 ========================

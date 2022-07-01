@@ -20,3 +20,4 @@ $TTL    604800
 153   IN      PTR     kibana.mandialand.com.  ; 192.168.200.153
 154   IN      PTR     jenkins.mandialand.com.  ; 192.168.200.152
 155   IN      PTR     argocd.mandialand.com.  ; 192.168.200.152
+156   IN      PTR     securitydb.mandialand.com.  ; 192.168.200.152
