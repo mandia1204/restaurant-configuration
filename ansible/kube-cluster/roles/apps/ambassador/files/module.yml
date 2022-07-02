@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v2
+kind: Module
+metadata:
+  namespace: ambassador
+  name: tls
+spec:
+  config:
+    server:
+      redirect_cleartext_from: 8080
