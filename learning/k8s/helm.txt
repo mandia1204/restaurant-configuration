@@ -48,3 +48,17 @@ cp -r ./manifests/kibana /home/matt/shares
 
 template execution order:
 https://github.com/helm/helm/issues/1780
+
+
+helm show values prometheus-community/kube-prometheus-stack > prom-values.yaml
+
+helm template \
+  --values prom-values.yaml \
+  --output-dir ./manifests \
+    prometheus-community/kube-prometheus-stack
+
+helm install prometheus --values=prom-values.yaml --namespace=prometheus --create-namespace prometheus-community/kube-prometheus-stack
+
+Use --create-namespace in addition to --namespace <namespace>
+
+

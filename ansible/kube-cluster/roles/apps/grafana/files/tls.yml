@@ -1,0 +1,22 @@
+apiVersion: getambassador.io/v3alpha1
+kind: TLSContext
+metadata:
+  name: grafana-tls-context
+  namespace: prometheus
+spec:
+  hosts:
+    - grafana.mandialand.com
+  secret: grafana-cert
+  min_tls_version: v1.2
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: grafana-host
+  namespace: prometheus
+spec:
+  hostname: grafana.mandialand.com
+  tlsSecret:
+    name: grafana-cert
+  tlsContext:
+    name: grafana-tls-context

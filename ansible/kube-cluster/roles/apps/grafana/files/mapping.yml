@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: grafana
+  namespace: prometheus
+spec:
+  hostname: "grafana.mandialand.com"
+  prefix: /
+  service: prometheus-grafana.prometheus:80

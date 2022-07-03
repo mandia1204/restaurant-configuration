@@ -1,0 +1,22 @@
+apiVersion: getambassador.io/v3alpha1
+kind: TLSContext
+metadata:
+  name: prometheus-tls-context
+  namespace: prometheus
+spec:
+  hosts:
+    - prometheus.mandialand.com
+  secret: prometheus-cert
+  min_tls_version: v1.2
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: prometheus-host
+  namespace: prometheus
+spec:
+  hostname: prometheus.mandialand.com
+  tlsSecret:
+    name: prometheus-cert
+  tlsContext:
+    name: prometheus-tls-context

@@ -17,9 +17,9 @@ ns1.mandialand.com.               IN      A       192.168.200.101
 
 ; 192.168.100.0/24 - A records
 mandialand.com.                   IN      A      192.168.200.152
-prometheus.mandialand.com.        IN      A      192.168.200.151
+prometheus.mandialand.com.        IN      A      192.168.200.152
 grafana.mandialand.com.           IN      A      192.168.200.152
-kibana.mandialand.com.            IN      A      192.168.200.153
+kibana.mandialand.com.            IN      A      192.168.200.152
 jenkins.mandialand.com.           IN      A      192.168.200.152
 argocd.mandialand.com.            IN      A      192.168.200.152
 securitydb.mandialand.com.        IN      A      192.168.200.152

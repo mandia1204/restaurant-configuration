@@ -15,8 +15,8 @@ files are located here: /etc/letsencrypt/live/mandialand.com/ in master k8s
 
 sudo kubectl create secret tls restaurant-cert-secret --cert=/etc/letsencrypt/live/mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/mandialand.com/privkey.pem -n restaurant
 
-sudo kubectl create secret tls prometheus-cert-secret --cert=/etc/letsencrypt/live/prometheus.mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/prometheus.mandialand.com/privkey.pem
-sudo kubectl create secret tls grafana-cert-secret --cert=/etc/letsencrypt/live/grafana.mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/grafana.mandialand.com/privkey.pem
+sudo kubectl create secret tls prometheus-cert --cert=/etc/letsencrypt/live/prometheus.mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/prometheus.mandialand.com/privkey.pem -n prometheus
+sudo kubectl create secret tls grafana-cert --cert=/etc/letsencrypt/live/grafana.mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/grafana.mandialand.com/privkey.pem -n prometheus
 sudo kubectl create secret tls kibana-cert-secret --cert=/etc/letsencrypt/live/kibana.mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/kibana.mandialand.com/privkey.pem
 sudo kubectl create secret tls restaurant-cert --cert=/etc/letsencrypt/live/mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/mandialand.com/privkey.pem -n restaurant
 sudo kubectl create secret tls jenkins-cert --cert=/etc/letsencrypt/live/jenkins.mandialand.com/fullchain.pem --key=/etc/letsencrypt/live/jenkins.mandialand.com/privkey.pem -n default

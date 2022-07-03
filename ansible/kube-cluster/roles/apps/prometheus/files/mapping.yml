@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  hostname: "prometheus.mandialand.com"
+  prefix: /
+  service: prometheus-kube-prometheus-prometheus.prometheus:9090
