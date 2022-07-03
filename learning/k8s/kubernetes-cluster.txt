@@ -61,6 +61,7 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubunt
 ssh-copy-id matt@192.168.200.106 (master)
 ssh-copy-id matt@192.168.200.107 (node1)
 ssh-copy-id matt@192.168.200.117 (node3)
+ssh-copy-id matt@192.168.200.130 (node5)
 ssh matt@192.168.200.106
 ssh matt@192.168.200.117
 
@@ -98,8 +99,21 @@ ansible-vault create passwd.yml
     inside kube-cluster folder:
     ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' workers.pb.yml
 
+    * check swap if it's off
     * if we get error with conflicts in apt step, remove /etc/apt/sources.list.d/kubernetes.list
     * if the nodes are not joined to cluset, remove node_joined.txt in node connected as root.
+    * kubelet fails in join init:
+      /etc/docker
+      add to daemon.json(create if it doesn't exists) :
+
+      {
+        "exec-opts": ["native.cgroupdriver=systemd"],
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "100m"
+        },
+        "storage-driver": "overlay2"
+      }
 
 5- create k8s objects, inside kube-cluster folder:
     ansible-playbook -i hosts --vault-password-file=~/oli all-apps.pb.yml

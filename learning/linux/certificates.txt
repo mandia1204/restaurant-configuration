@@ -7,11 +7,11 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt
 
 SERVER:
 openssl genrsa -out notification.key 2048
-openssl req -new -sha256 -key notification.key -subj "//C=PE\ST=Lima\O=Mandia\CN=localhost\OU=Server" -out notification.csr
+openssl req -new -sha256 -key notification.key -subj "//C=PE\ST=Lima\O=Mandia\CN=notification.restaurant.\OU=Server" -out notification.csr
 openssl x509 -req -in notification.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out notification.crt -days 500 -sha256
 
 
 CLIENT:
 openssl genrsa -out client.key 2048
-openssl req -new -sha256 -key client.key -subj "//C=PE\ST=Lima\O=Mandia\CN=localhost\OU=Client" -out client.csr
+openssl req -new -sha256 -key client.key -subj "//C=PE\ST=Lima\O=Mandia\CN=security-app.restaurant\OU=Client" -out client.csr
 openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 500 -sha256
