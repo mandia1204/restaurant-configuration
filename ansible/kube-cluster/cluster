@@ -3,8 +3,8 @@
 master ansible_host=192.168.200.106 ansible_user=matt
 worker1 ansible_host=192.168.200.107 ansible_user=matt
 worker3 ansible_host=192.168.200.117 ansible_user=matt
+worker5 ansible_host=192.168.200.130 ansible_user=matt
 bind9 ansible_host=192.168.200.101 ansible_user=matt
-jenkinsslave ansible_host=192.168.200.102 ansible_user=matt
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3

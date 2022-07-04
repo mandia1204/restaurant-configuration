@@ -23,3 +23,4 @@ kibana.mandialand.com.            IN      A      192.168.200.152
 jenkins.mandialand.com.           IN      A      192.168.200.152
 argocd.mandialand.com.            IN      A      192.168.200.152
 securitydb.mandialand.com.        IN      A      192.168.200.152
+restaurant.mandialand.com.        IN      A      192.168.200.152

@@ -4,6 +4,6 @@ metadata:
   name: security-app
   namespace: restaurant
 spec:
-  hostname: "mandialand.com"
+  hostname: "restaurant.mandialand.com"
   prefix: /securityApi/
   service: security-app.restaurant:3001

@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: dashboard-be-app
+  namespace: restaurant
+  labels:
+    app: dashboard-be
+spec:
+  hostname: "restaurant.mandialand.com"
+  prefix: /dashboardApi/
+  rewrite: /api/
+  service: dashboard-be-app.restaurant:5000

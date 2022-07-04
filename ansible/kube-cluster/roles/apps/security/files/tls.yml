@@ -5,7 +5,7 @@ metadata:
   namespace: restaurant
 spec:
   hosts:
-    - mandialand.com
+    - restaurant.mandialand.com
   secret: restaurant-cert
   min_tls_version: v1.2
 ---
@@ -15,7 +15,7 @@ metadata:
   name: mandialand-host
   namespace: restaurant
 spec:
-  hostname: mandialand.com
+  hostname: restaurant.mandialand.com
   tlsSecret:
     name: restaurant-cert
   tlsContext:

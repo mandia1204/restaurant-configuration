@@ -21,8 +21,8 @@ data:
         "InitialCatalog": "VENTAS"
       },
       "Security": {
-        "Issuer": "security.mattcompany.com",
-        "Audience": "restaurant.mattcompany.com",
+        "Issuer": "security.mandialand.com",
+        "Audience": "restaurant.mandialand.com",
         "UseRsa" : false,
         "UseKms" : false
       }
