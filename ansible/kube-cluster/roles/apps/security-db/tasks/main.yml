@@ -1,20 +1,20 @@
 - name: "create local storage class"
-  k8s:
+  kubernetes.core.k8s:
     state: "present" # cannot delete because this is used by many PV
     definition: "{{ lookup('file', 'files/local-storage-class.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} volume"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/mongodb-volume.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} service"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/service.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} stateful set"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/statefulset.yml') | from_yaml }}"
 # TODO: Missing script tp delete PVC

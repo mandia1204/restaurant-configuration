@@ -1,9 +1,9 @@
 - name: "{{ create_or_delete }} required objects"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/deploy.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} config for load balancer"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/config.yml') | from_yaml }}"

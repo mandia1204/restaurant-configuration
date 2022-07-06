@@ -1,39 +1,39 @@
 - name: "{{ create_or_delete }} configmap"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/configmap.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} accounts"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/account.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} master storage objects"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/master-storage.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} data storage objects"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/data-storage.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} services"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/service.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} master statefulset"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/master-statefulset.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} client deployment"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/client-deployment.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} data statefulset"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/data-statefulset.yml') | from_yaml }}"

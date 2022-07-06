@@ -1,15 +1,15 @@
 - name: "{{ create_or_delete }} namespace"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/namespace.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} secret"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('template', 'templates/secret.j2') | from_yaml }}"
 
 - name: "{{ create_or_delete }} all objects"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     namespace: "argocd"
     definition: "{{ lookup('file', 'files/all-objects.yml') | from_yaml_all | list }}"
@@ -28,11 +28,11 @@
     creates: /usr/local/bin/argocd
 
 - name: "{{ create_or_delete }} tls context"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/tls.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} ambassador mapping"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/mapping.yml') | from_yaml_all | list }}"

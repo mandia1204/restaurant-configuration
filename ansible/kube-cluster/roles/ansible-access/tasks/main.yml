@@ -1,9 +1,9 @@
 - name: create service account
-  k8s:
+  kubernetes.core.k8s:
     state: present
     definition: "{{ lookup('file', 'files/account.yml') | from_yaml }}"
 
 - name: create cluster role and binding
-  k8s:
+  kubernetes.core.k8s:
     state: present
     definition: "{{ lookup('file', 'files/roles.yml') | from_yaml_all | list }}"

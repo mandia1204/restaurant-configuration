@@ -1,44 +1,44 @@
 - name: "{{ create_or_delete }} service account"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/service-account.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} secret"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/secret.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} configmaps"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/config.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} volume"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/volume.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} statefulset"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/jenkins-controller-statefulset.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} services"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/services.yml') | from_yaml_all | list }}"
 
 # - name: "{{ create_or_delete }} ingress"
-#   k8s:
+#   kubernetes.core.k8s:
 #     state: "{{ desired_state }}"
 #     definition: "{{ lookup('file', 'files/jenkins-controller-ingress.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} tls context"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/tls.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} ambassador mapping"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/mapping.yml') | from_yaml_all | list }}"

@@ -1,14 +1,14 @@
 - name: "{{ create_or_delete }} configmap"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/configmap.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} service"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/service.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} deployment"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/deployment.yml') | from_yaml }}"

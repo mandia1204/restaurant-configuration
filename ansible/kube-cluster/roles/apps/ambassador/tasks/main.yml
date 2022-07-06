@@ -1,29 +1,29 @@
 - name: "{{ create_or_delete }} namespace"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/namespace.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} custom resource definitions"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/aes-crds.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} accounts and roles"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/aes-account-roles.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} ambassador deployment and service"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/aes-service.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} listeners for 8080 and 8443"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/listener.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} module"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/module.yml') | from_yaml_all | list }}"

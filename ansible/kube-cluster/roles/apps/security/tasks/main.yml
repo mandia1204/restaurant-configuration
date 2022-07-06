@@ -1,15 +1,15 @@
 - name: "{{ create_or_delete }} secret"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('template', 'templates/secret.j2') | from_yaml }}"
 
 - name: "{{ create_or_delete }} configmap"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/configmap.yml') | from_yaml }}"
 
 - name: "{{ create_or_delete }} service"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/service.yml') | from_yaml }}"
 
@@ -24,16 +24,16 @@
   when: (app_image_tag|length == 0) and (desired_state == "present")
 
 - name: "{{ create_or_delete }} deployment"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('template', 'templates/deployment.j2') | from_yaml }}"
 
 - name: "{{ create_or_delete }} tls context"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/tls.yml') | from_yaml_all | list }}"
 
 - name: "{{ create_or_delete }} ambassador mapping"
-  k8s:
+  kubernetes.core.k8s:
     state: "{{ desired_state }}"
     definition: "{{ lookup('file', 'files/mapping.yml') | from_yaml_all | list }}"
