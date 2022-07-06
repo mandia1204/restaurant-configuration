@@ -6,3 +6,4 @@
     - { role: apps/jenkins, tags: jenkins }
     - { role: apps/argocd, tags: argocd }
     - { role: apps/prometheus, tags: prometheus }
+    - { role: helm, tags: helm }

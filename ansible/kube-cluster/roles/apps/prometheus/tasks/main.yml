@@ -8,3 +8,13 @@
     binary_path: /snap/bin/helm
     state: present
     values: "{{ lookup('file', 'values.yml') | from_yaml }}"
+
+- name: "{{ create_or_delete }} tls context"
+  kubernetes.core.k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('file', 'files/tls.yml') | from_yaml_all | list }}"
+
+- name: "{{ create_or_delete }} prometheus mapping"
+  kubernetes.core.k8s:
+    state: "{{ desired_state }}"
+    definition: "{{ lookup('file', 'files/mapping.yml') | from_yaml_all | list }}"
