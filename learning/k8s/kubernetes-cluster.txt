@@ -118,9 +118,7 @@ ansible-vault create passwd.yml
 5- create k8s objects, inside kube-cluster folder:
     ansible-playbook -i hosts --vault-password-file=~/oli all-apps.pb.yml
     ***we can run the specific group of apps:
-    ansible-playbook -i hosts --vault-password-file=~/oli common-apps.pb.yml
-    ansible-playbook -i hosts --vault-password-file=~/oli prometheus.pb.yml
-    ansible-playbook -i hosts --vault-password-file=~/oli restaurant-apps.pb.yml
+    ansible-playbook -i hosts --vault-password-file=~/oli common-apps.pb.yml    ansible-playbook -i hosts --vault-password-file=~/oli restaurant-apps.pb.yml
     ansible-playbook -i hosts --vault-password-file=~/oli elk-stack.pb.yml
 
 ****RE-RUN worker-nodes

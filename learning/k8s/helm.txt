@@ -62,3 +62,4 @@ helm install prometheus --values=prom-values.yaml --namespace=prometheus --creat
 Use --create-namespace in addition to --namespace <namespace>
 
 
+helm upgrade -f prom.yml prometheus --namespace=prometheus prometheus-community/kube-prometheus-stack

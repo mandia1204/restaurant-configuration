@@ -1,0 +1,5 @@
+ansible-playbook -i hosts --vault-password-file=~/oli --extra-vars '@passwd.yml' initial.pb.yml
+ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' master.pb.yml
+ansible-playbook -i hosts --ask-vault-pass --extra-vars '@passwd.yml' workers.pb.yml
+
+ansible-playbook -i hosts --vault-password-file=~/oli --extra-vars '@passwd.yml' common-apps.pb.yml

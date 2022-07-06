@@ -1,8 +1,0 @@
-- hosts: master
-  become: yes
-  become_user: matt
-  roles:
-    - { role: apps/prometheus, tags: prometheus }
-    - { role: apps/prometheus-kube-state-metrics, tags: prometheus-kube-state-metrics }
-    - { role: apps/prometheus-node-exporter, tags: prometheus-node-exporter }
-    - { role: apps/prometheus-alert-manager, tags: prometheus-alert-manager }

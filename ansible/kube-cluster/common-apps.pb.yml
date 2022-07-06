@@ -5,3 +5,4 @@
     - { role: ansible-access, tags: ansible-access }
     - { role: apps/jenkins, tags: jenkins }
     - { role: apps/argocd, tags: argocd }
+    - { role: apps/prometheus, tags: prometheus }
